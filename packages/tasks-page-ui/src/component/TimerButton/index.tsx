@@ -8,7 +8,7 @@ import { TaskStatus } from '@dreamer/tasks-page-common';
 
 // Util
 import { useIntl } from 'react-intl';
-import { millisecondsToMinutes } from 'date-fns';
+import millisecondsToMinutes from 'date-fns/millisecondsToMinutes';
 
 type Props = {
   duration: number;
@@ -59,6 +59,19 @@ export default function TimerButton({
                 defaultMessage: 'Done',
               })
             : `${millisecondsToMinutes(duration - commit)} minutes remaining`}
+        </ActionButton>
+      );
+    }
+    case TaskStatus.Pending: {
+      return (
+        <ActionButton
+          disabled={disabled}
+          type={'pending'}
+          leftIcon={null}
+          rightIcon={<IconPlay height="20" />}
+          onClick={onClick}
+        >
+          {`${millisecondsToMinutes(duration - commit)} minutes`}
         </ActionButton>
       );
     }

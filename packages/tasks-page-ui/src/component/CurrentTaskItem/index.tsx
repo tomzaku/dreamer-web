@@ -149,9 +149,13 @@ export default function CurrentTaskItem({
           className={
             status === TaskStatus.Processing ? styles.progress : styles.division
           }
+          style={
+            status !== TaskStatus.Processing
+              ? {}
+              : { width: `${Math.min((commit / duration) * 100, 100)}%` }
+          }
         />
       )}
     </div>
   );
 }
-

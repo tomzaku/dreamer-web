@@ -54,7 +54,7 @@ export default function CreateTask({ className }: { className?: string }) {
             <Typography.Paragraph noMargin isDescription>
               {intl.formatMessage({
                 id: 'CreateTask.msg-morning-greeting-description',
-                defaultMessage: 'What are you up to?',
+                defaultMessage: 'What is your goal today?',
               })}
             </Typography.Paragraph>
           </div>
@@ -100,7 +100,7 @@ export default function CreateTask({ className }: { className?: string }) {
                 projectId: '0',
               });
               setDuration(INIT_DURATION);
-              setTaskText('')
+              setTaskText('');
             }}
           >
             {intl.formatMessage({
@@ -110,29 +110,30 @@ export default function CreateTask({ className }: { className?: string }) {
           </Button>
         </div>
       </div>
-      {!taskText && !focus ? null : (
-        <>
-          <div className={styles.divider} />
-          <div className={styles.section}>
-            <Typography.Paragraph isDescription noMargin>
-              {intl.formatMessage({
-                id: 'CreateTask.label-recommendations',
-                defaultMessage: 'Recommendations',
-              })}
-            </Typography.Paragraph>
-            <div>
-              {recommendedTasks.map(({ title, project }) => (
-                <RecommendedTaskItem
-                  key={title}
-                  title={title}
-                  project={project}
-                />
-              ))}
-            </div>
+      <div
+        className={cx(
+          !taskText && !focus ? styles.hiddenRecommend : styles.recommend
+        )}
+      >
+        <div className={styles.divider} />
+        <div className={styles.section}>
+          <Typography.Paragraph isDescription noMargin>
+            {intl.formatMessage({
+              id: 'CreateTask.label-recommendations',
+              defaultMessage: 'Recommendations',
+            })}
+          </Typography.Paragraph>
+          <div>
+            {recommendedTasks.map(({ title, project }) => (
+              <RecommendedTaskItem
+                key={title}
+                title={title}
+                project={project}
+              />
+            ))}
           </div>
-        </>
-      )}
+        </div>
+      </div>
     </div>
   );
 }
-

@@ -1,9 +1,9 @@
 export enum TypeSound {
-  Bird,
-  Cricket,
-  Fireplace,
-  InterviewInACafe,
-  RainAndThunder,
-  Rain,
+  Bird = 'bird',
+  Cricket = 'cricket',
+  Fireplace = 'fireplace',
+  InterviewInACafe = 'interview-in-a-cafe',
+  RainAndThunder = 'rain-and-thunder',
+  Rain = 'rain',
 }
 

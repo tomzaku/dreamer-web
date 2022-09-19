@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/index.ts",
   "scripts": {
-    "generate:language": "formatjs extract '../**/*.ts*' --out-file ./src/language/en.json --ignore='**/*.d.ts' --format simple"
+    "generate:language": "formatjs extract '../**/*.ts*' --out-file ./src/language/en.json --ignore='../**/*.d.ts' --format simple"
   },
   "author": "",
   "license": "ISC",

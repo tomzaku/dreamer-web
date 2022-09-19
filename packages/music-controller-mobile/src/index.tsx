@@ -19,6 +19,7 @@ import {
   toggleSound,
   TypeSound,
 } from '@dreamer/music-controller-common';
+
 type SoundInfo = Record<
   TypeSound,
   {

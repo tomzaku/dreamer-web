@@ -7,10 +7,10 @@
   box-shadow: 0 7px 18px $card-shadow;
   display: flex;
   flex-direction: column;
+  margin-left: 10px;
+  margin-right: 10px;
   margin-top: 40px;
   position: relative;
-  margin-left:10px;
-  margin-right: 10px;
 }
 
 .section {
@@ -53,9 +53,9 @@
 }
 
 .hiImg {
+  height: 30px;
   margin-right: 12px;
   width: 30px;
-  height: 30px;
 }
 
 .durationInput {
@@ -70,3 +70,16 @@
   width: 100%;
 }
 
+.recommend {
+  background: $white;
+  max-height: 200px;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in;
+}
+
+.hiddenRecommend {
+  background: $white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-out
+}
