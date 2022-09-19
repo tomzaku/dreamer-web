@@ -1,0 +1,23 @@
+@import '@moon-ui/app-scss/color';
+
+.button {
+  border-radius: 0;
+}
+
+.firstButton {
+  border-radius: 5px 0 0 5px;
+  border-width: 1px 0 1px 1px;
+}
+
+.lastButton {
+  border-radius: 0 5px 5px 0;
+}
+
+.middleButton {
+  border-width: 1px 0 1px 1px;
+}
+
+.active {
+  border-color: $primary;
+  color: $primary;
+}

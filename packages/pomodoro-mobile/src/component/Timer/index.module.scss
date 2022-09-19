@@ -1,0 +1,13 @@
+@import '@moon-ui/app-scss/color';
+@import '@moon-ui/app-scss/function';
+
+.time {
+  align-items: center;
+  color: $primary-dark;
+  display: flex;
+  flex: 1;
+  font-size: toRem(100px);
+  font-weight: bold;
+  justify-content: center;
+  text-align: center;
+}

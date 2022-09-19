@@ -1,0 +1,52 @@
+@import '@moon-ui/app-scss/color';
+
+.container {
+  border-radius: 10px;
+  padding: 10px 16px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.checkbox {
+  accent-color: $success;
+}
+
+.body {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.bodyProcessing {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.project {
+  color: $black50;
+}
+
+.disabled {
+  opacity: 0.3;
+}
+
+.division {
+  background-color: $black12;
+  height: 1px;
+  margin: 0 16px;
+}
+
+.progress {
+  background-color: $secondary;
+  height: 5px;
+}
+
+.more {
+  margin-left: 6px;
+}

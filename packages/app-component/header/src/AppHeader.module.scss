@@ -1,0 +1,47 @@
+@import '@moon-ui/app-scss/color';
+@import '@moon-ui/app-scss/metric';
+@import 'include-media/dist/include-media';
+
+.container {
+  align-items: center;
+  background: $white;
+  box-shadow: 0 7px 18px $card-shadow;
+  display: flex;
+  height: 50px;
+  justify-content: space-between;
+  @include media('<=tablet') {
+    margin-bottom: 10px;
+  }
+}
+
+.left {
+  align-items: center;
+  color: $primary;
+  cursor: pointer;
+  display: flex;
+  margin-left: 25px;
+  z-index: 1;
+  @include media('<=tablet') {
+    margin-left: 10px;
+  }
+}
+
+.right {
+  cursor: pointer;
+  margin-right: 25px;
+  z-index: 1;
+  @include media('<=tablet') {
+    margin-right: 10px;
+  }
+}
+
+.menu {
+  align-items: center;
+  color: $black80;
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}

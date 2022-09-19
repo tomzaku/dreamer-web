@@ -1,0 +1,10 @@
+{
+  "name": "@dreamer/music-controller-mobile",
+  "version": "1.0.0",
+  "main": "src/index.tsx",
+  "license": "MIT",
+  "dependencies": {
+    "@dreamer/header": "^1.0.0",
+    "@moon-ui/drawer": "^1.0.0"
+  }
+}

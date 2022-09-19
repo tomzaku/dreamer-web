@@ -1,0 +1,16 @@
+@import '@moon-ui/app-scss/color';
+@import '@moon-ui/app-scss/metric';
+
+.container {
+  align-items: center;
+  background: $white;
+  display: flex;
+  padding: $spacing-md;
+}
+
+.body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  margin-left: $spacing-sm;
+}

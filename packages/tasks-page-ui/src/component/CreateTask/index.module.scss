@@ -1,0 +1,72 @@
+@import '@moon-ui/app-scss/color';
+@import '@moon-ui/app-scss/function';
+
+.container {
+  background: $white;
+  border-radius: 10px;
+  box-shadow: 0 7px 18px $card-shadow;
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  position: relative;
+  margin-left:10px;
+  margin-right: 10px;
+}
+
+.section {
+  padding: 12px;
+}
+
+.header {
+  align-items: center;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px $card-shadow;
+  display: flex;
+  left: 20px;
+  padding: 6px 12px;
+  position: absolute;
+  top: -24px;
+}
+
+.input {
+  font-size: toRem(20px);
+  width: 100%;
+}
+
+.menu {
+  height: 25px;
+  margin-bottom: 20px;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dashed {
+  border: 0;
+  border-top: 3px dashed $black6;
+  height: 0;
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+.hiImg {
+  margin-right: 12px;
+  width: 30px;
+  height: 30px;
+}
+
+.durationInput {
+  font-size: toRem(20px);
+  margin-right: 6px;
+  text-align: center;
+  width: 60px;
+}
+
+.divider {
+  border-top: 6px solid #f4f4f4;
+  width: 100%;
+}
+

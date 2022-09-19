@@ -1,0 +1,22 @@
+@import '@moon-ui/app-scss/metric';
+@import '@moon-ui/app-scss/color';
+
+.container {
+  background: $background;
+  left: 0;
+  min-height: 100vh;
+  min-height: fill-available;
+  min-width: 100vw;
+  opacity: 1;
+  position: fixed;
+  top: 0;
+  transform: translateY(0);
+  transition: 0.5s ease;
+  z-index: $drawer-z-index;
+}
+
+.hidden {
+  opacity: 0;
+  transform: translateY(100%);
+  transition: 0.5s ease;
+}

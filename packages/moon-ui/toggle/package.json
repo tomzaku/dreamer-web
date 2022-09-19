@@ -1,0 +1,10 @@
+{
+  "name": "@moon-ui/toggle",
+  "version": "1.0.0",
+  "main": "src/index.tsx",
+  "license": "MIT",
+  "dependencies": {
+    "@types/react-toggle": "^4.0.3",
+    "react-toggle": "^4.1.3"
+  }
+}

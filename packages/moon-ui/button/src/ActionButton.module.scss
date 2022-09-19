@@ -1,0 +1,40 @@
+@import '@moon-ui/app-scss/color';
+@import '@moon-ui/app-scss/function';
+
+.container {
+  align-items: stretch;
+  background: $primary-extra-light;
+  color: $primary-dark;
+  display: flex;
+  font-size: toRem(12px);
+  font-weight: 500;
+  padding: 2px 10px;
+}
+
+.success {
+  background: $success-extra-light;
+}
+
+.pending {
+  background: $primary-extra-light;
+}
+
+.processing {
+  background: $secondary-extra-light;
+}
+
+.verticalLine {
+  background: $black12;
+  margin: 4px 6px;
+  width: 1px;
+}
+
+.body {
+  align-items: center;
+  display: flex;
+  flex: 1;
+}
+
+.disabled {
+  background: $black6;
+}

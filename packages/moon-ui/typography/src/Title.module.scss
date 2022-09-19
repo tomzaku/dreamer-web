@@ -1,0 +1,13 @@
+@import '@moon-ui/app-scss/color';
+
+.default {
+  font-weight: 500;
+}
+
+.primary {
+  color: $primary;
+}
+
+.noMargin {
+  margin: 0;
+}

@@ -1,0 +1,4 @@
+#!/usr/bin/env node
+
+yarn extract 'src/**/*.ts*' --ignore='**/*.d.ts' --out-file lang/en.json --id-interpolation-pattern '[sha512:contenthash:base64:6]'
+

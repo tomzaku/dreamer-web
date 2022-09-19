@@ -1,0 +1,23 @@
+@import '@moon-ui/app-scss/color';
+
+.default {
+  font-size: 14px;
+}
+
+.description {
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 18px;
+}
+
+.noMargin {
+  margin: 0;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.bold {
+  font-weight: 600;
+}

@@ -1,0 +1,18 @@
+@import '@moon-ui/app-scss/color';
+
+.project {
+  color: $black50;
+}
+
+.container {
+  border: 1px solid $black24;
+  border-radius: 6px;
+  margin-top: 6px;
+  padding: 6px;
+}
+
+.footer {
+  align-items: flex-end;
+  display: flex;
+  justify-content: space-between;
+}

@@ -1,0 +1,34 @@
+@import '@moon-ui/app-scss/color';
+@import '@moon-ui/app-scss/function';
+
+.default {
+  background: $primary;
+  border: 0;
+  border-radius: 6px;
+  color: $white;
+  font-size: toRem(14px);
+  font-weight: 400;
+  padding: 6px 20px;
+}
+
+.ghost {
+  background: transparent;
+  border: 1px solid $black50;
+  color: $black50;
+  padding: 0 4px;
+}
+
+.sm {
+  font-size: toRem(12px);
+  padding: 4px 12px;
+}
+
+.lg {
+  font-size: toRem(18px);
+  padding: 10px 12px;
+}
+
+.md {
+  font-size: toRem(14px);
+  padding: 6px 20px;
+}
