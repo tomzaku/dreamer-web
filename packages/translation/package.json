@@ -12,6 +12,7 @@
     "@dreamer/global": "^1.0.0"
   },
   "devDependencies": {
-    "@formatjs/cli": "^5.1.0"
+    "@formatjs/cli": "^5.1.0",
+    "@types/react-motion": "^0.0.33"
   }
 }

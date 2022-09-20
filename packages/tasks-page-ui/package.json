@@ -11,10 +11,14 @@
   "dependencies": {
     "@dreamer/music-controller-mobile": "^1.0.0",
     "@dreamer/tasks-page-common": "^1.0.0",
+    "@dreamer/translation": "^1.0.0",
     "@moon-ui/button": "^1.0.0",
     "@moon-ui/checkbox": "^1.0.0",
     "@moon-ui/icon": "^1.0.0",
     "@moon-ui/input": "^1.0.0",
     "@moon-ui/typography": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/react-motion": "^0.0.33"
   }
 }

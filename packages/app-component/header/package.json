@@ -12,5 +12,8 @@
     "@moon-ui/app-scss": "^1.0.0",
     "@moon-ui/avatar": "^1.0.0",
     "@moon-ui/icon": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/react-motion": "^0.0.33"
   }
 }

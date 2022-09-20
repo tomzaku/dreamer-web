@@ -10,5 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "react-tiny-fab": "^4.0.4"
+  },
+  "devDependencies": {
+    "@types/react-motion": "^0.0.33"
   }
 }

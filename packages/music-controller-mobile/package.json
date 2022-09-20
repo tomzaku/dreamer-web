@@ -5,6 +5,11 @@
   "license": "MIT",
   "dependencies": {
     "@dreamer/header": "^1.0.0",
-    "@moon-ui/drawer": "^1.0.0"
+    "@moon-ui/drawer": "^1.0.0",
+    "@moon-ui/toggle": "^1.0.0",
+    "@moon-ui/typography": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/react-motion": "^0.0.33"
   }
 }

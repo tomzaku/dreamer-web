@@ -7,5 +7,14 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@dreamer/translation": "^1.0.0",
+    "@moon-ui/icon": "^1.0.0",
+    "@moon-ui/list": "^1.0.0",
+    "@moon-ui/radio": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/react-motion": "^0.0.33"
+  }
 }

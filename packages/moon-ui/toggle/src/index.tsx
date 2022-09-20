@@ -1,14 +1,10 @@
-import cx from 'classnames'
-import { motion } from 'framer-motion';
+import cx from 'classnames';
+/* import { m, LazyMotion, domMax } from 'framer-motion'; */
+import { Motion, spring } from 'react-motion';
 
-import styles from './index.module.scss'
+import styles from './index.module.scss';
 
-const spring = {
-  type: 'spring',
-  stiffness: 700,
-  damping: 30,
-};
-
+const MAX_WIDTH = 26;
 export default function Toggle({
   checked,
   onChange,
@@ -17,8 +13,23 @@ export default function Toggle({
   onChange: () => void;
 }) {
   return (
-    <div className={cx(styles.container, checked && styles.checkedContainer)} onClick={onChange}>
-      <motion.div className={styles.handle} layout transition={spring} />
+    <div
+      className={cx(styles.container, checked && styles.checkedContainer)}
+      onClick={onChange}
+    >
+      <Motion
+        defaultStyle={{ translateX: checked ? 0 : MAX_WIDTH }}
+        style={{ translateX: spring(checked ? MAX_WIDTH : 0) }}
+      >
+        {value => (
+          <div
+            style={{
+              transform: `translateX(${value.translateX}px)`,
+            }}
+            className={styles.handle}
+          />
+        )}
+      </Motion>
     </div>
   );
 }

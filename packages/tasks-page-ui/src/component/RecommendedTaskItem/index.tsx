@@ -1,4 +1,4 @@
-import Button from '@moon-ui/button/src/DefaultButton';
+import Button from '@moon-ui/button';
 import Typography from '@moon-ui/typography';
 
 import styles from './index.module.scss';

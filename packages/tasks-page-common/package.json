@@ -7,5 +7,12 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@dreamer/global": "^1.0.0",
+    "date-fns": "^2.29.3"
+  },
+  "devDependencies": {
+    "@types/react-motion": "^0.0.33"
+  }
 }

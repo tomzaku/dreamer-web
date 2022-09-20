@@ -31,7 +31,7 @@ type SoundInfo = Record<
 
 const soundInfo: SoundInfo = {
   [TypeSound.Rain]: {
-    logo: <IconRainy />,
+    logo: <IconRainy className={styles.iconInactive} />,
     logoActive: <IconRainy className={styles.iconActive} />,
     message: {
       id: 'music-controller-mobile.label-rain',
@@ -39,7 +39,7 @@ const soundInfo: SoundInfo = {
     },
   },
   [TypeSound.RainAndThunder]: {
-    logo: <IconThunder />,
+    logo: <IconThunder className={styles.iconInactive} />,
     logoActive: <IconThunder className={styles.iconActive} />,
     message: {
       id: 'music-controller-mobile.label-thunder',
@@ -47,7 +47,7 @@ const soundInfo: SoundInfo = {
     },
   },
   [TypeSound.InterviewInACafe]: {
-    logo: <IconCafe />,
+    logo: <IconCafe className={styles.iconInactive} />,
     logoActive: <IconCafe className={styles.iconActive} />,
     message: {
       id: 'music-controller-mobile.label-cafe',
@@ -55,7 +55,7 @@ const soundInfo: SoundInfo = {
     },
   },
   [TypeSound.Fireplace]: {
-    logo: <IconFire />,
+    logo: <IconFire className={styles.iconInactive} />,
     logoActive: <IconFire className={styles.iconActive} />,
     message: {
       id: 'music-controller-mobile.label-fire',
@@ -63,7 +63,7 @@ const soundInfo: SoundInfo = {
     },
   },
   [TypeSound.Cricket]: {
-    logo: <IconSunny />,
+    logo: <IconSunny className={styles.iconInactive} />,
     logoActive: <IconSunny className={styles.iconActive} />,
     message: {
       id: 'music-controller-mobile.label-sunny',
@@ -71,7 +71,7 @@ const soundInfo: SoundInfo = {
     },
   },
   [TypeSound.Bird]: {
-    logo: <IconBird />,
+    logo: <IconBird className={styles.iconInactive} />,
     logoActive: <IconBird className={styles.iconActive} />,
     message: {
       id: 'music-controller-mobile.label-bird',

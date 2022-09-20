@@ -9,8 +9,17 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@dreamer/global-tool-common": "^1.0.0",
+    "@dreamer/global-tool-mobile": "^1.0.0",
     "@dreamer/header": "^1.0.0",
+    "@dreamer/music-controller-mobile": "^1.0.0",
+    "@dreamer/pomodoro-mobile": "^1.0.0",
+    "@dreamer/setting-page-ui": "^1.0.0",
+    "@dreamer/tasks-page-common": "^1.0.0",
     "@dreamer/tasks-page-ui": "^1.0.0",
     "react-router-dom": "^6.3.0"
+  },
+  "devDependencies": {
+    "@types/react-motion": "^0.0.33"
   }
 }
