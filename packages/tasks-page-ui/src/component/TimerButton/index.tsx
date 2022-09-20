@@ -7,7 +7,7 @@ import IconCheck from '@moon-ui/icon/IconCheck';
 import { TaskStatus } from '@dreamer/tasks-page-common';
 
 // Util
-import { useIntl } from 'react-intl';
+import { useIntl } from '@dreamer/translation';
 import millisecondsToMinutes from 'date-fns/millisecondsToMinutes';
 
 type Props = {

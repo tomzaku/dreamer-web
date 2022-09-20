@@ -7,12 +7,12 @@ import Radio from '@moon-ui/radio';
 import { Language } from '@dreamer/global';
 
 // Hooks
-import { useTranslation } from '@dreamer/translation';
+import { useIntl } from '@dreamer/translation';
 
 import styles from './index.module.scss'
 
 export default function SettingPage() {
-  const { language, changeLanguage } = useTranslation();
+  const { language, changeLanguage } = useIntl();
   return (
     <div className={styles.container}>
       <List.ItemMeta

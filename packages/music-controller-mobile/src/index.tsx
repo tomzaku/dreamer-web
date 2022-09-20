@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Hooks
-import { MessageDescriptor, useIntl } from 'react-intl';
+import { MessageDescriptor, useIntl } from '@dreamer/translation';
 
 // Components
 import IconBird from '@moon-ui/icon/IconBird';

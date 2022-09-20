@@ -4,7 +4,7 @@ import React from 'react';
 import Button from '@moon-ui/button';
 import Typography from '@moon-ui/typography';
 import Input from '@moon-ui/input';
-import { useIntl } from 'react-intl';
+import { useIntl } from '@dreamer/translation';
 
 // Hooks
 import { useTask } from '@dreamer/tasks-page-common';
@@ -46,7 +46,7 @@ export default function CreateTask({ className }: { className?: string }) {
               {intl.formatMessage(
                 {
                   id: 'CreateTask.label-morning-greeting',
-                  defaultMessage: 'Good morning, {name}',
+                  defaultMessage: 'Good morning, {{name}}',
                 },
                 { name: 'Guest' }
               )}

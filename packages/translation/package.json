@@ -9,8 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@dreamer/global": "^1.0.0",
-    "react-intl": "^6.1.1"
+    "@dreamer/global": "^1.0.0"
   },
   "devDependencies": {
     "@formatjs/cli": "^5.1.0"

@@ -5,7 +5,7 @@ import Typography from '@moon-ui/typography';
 import cx from 'classnames';
 
 // Hooks
-import { useIntl } from 'react-intl';
+import { useIntl } from '@dreamer/translation';
 import { useTask } from '@dreamer/tasks-page-common';
 
 import styles from './index.module.scss';

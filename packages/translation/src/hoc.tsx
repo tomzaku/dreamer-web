@@ -1,11 +1,13 @@
 import React from 'react';
 
 // Component
-import { IntlProvider } from 'react-intl';
 import { TranslationContext } from './context';
 
 // Enum
 import { Language } from '@dreamer/global';
+
+// Type
+import { MessageDescriptor } from './type';
 
 export const withTranslation = (Component: React.FC) =>
   function TranslationWrapper(props: any) {
@@ -20,6 +22,15 @@ export const withTranslation = (Component: React.FC) =>
     React.useEffect(() => {
       loadLanguage(language)
     }, [])
+    const formatMessage = (
+      descriptor: MessageDescriptor,
+      values?: Record<string, string>
+    ) => {
+      const { id, defaultMessage } = descriptor
+      const message = messages[id] || defaultMessage
+      if(!values) return message
+      return Object.entries(values).reduce((result, [key, value]) => result.replace(new RegExp(`{{${key}}}`, 'gm'), value) ,message)
+    }
     return (
       <TranslationContext.Provider
         value={{
@@ -29,11 +40,10 @@ export const withTranslation = (Component: React.FC) =>
             setLanguage(nextLanguage);
             loadLanguage(nextLanguage)
           },
+          formatMessage,
         }}
       >
-        <IntlProvider messages={messages} locale={language}>
           <Component {...props} />
-        </IntlProvider>
       </TranslationContext.Provider>
     );
   };

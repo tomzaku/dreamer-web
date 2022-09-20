@@ -5,7 +5,7 @@ import CurrentTaskItem from '../CurrentTaskItem';
 import { useTask } from '@dreamer/tasks-page-common';
 // Util
 import cx from 'classnames';
-import { useIntl } from 'react-intl';
+import { useIntl } from '@dreamer/translation';
 
 // Enum
 import { TaskStatus } from '@dreamer/tasks-page-common';

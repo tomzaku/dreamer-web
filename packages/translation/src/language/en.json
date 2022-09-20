@@ -1,6 +1,6 @@
 {
   "CreateTask.label-create-task-input-placeholder": "Write your task today",
-  "CreateTask.label-morning-greeting": "Good morning, {name}",
+  "CreateTask.label-morning-greeting": "Good morning, {{name}}",
   "CreateTask.label-morning-greeting-minutes": "minutes",
   "CreateTask.label-recommendations": "Recommendations",
   "CreateTask.label-submit": "Submit",

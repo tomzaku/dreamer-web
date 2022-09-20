@@ -2,6 +2,6 @@ import React from 'react';
 
 import { TranslationContext } from './context';
 
-export const useTranslation = () => {
+export const useIntl = () => {
   return React.useContext(TranslationContext);
 };
