@@ -1,5 +1,4 @@
 import cx from 'classnames';
-/* import { m, LazyMotion, domMax } from 'framer-motion'; */
 import { Motion, spring } from 'react-motion';
 
 import styles from './index.module.scss';

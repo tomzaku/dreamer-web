@@ -15,10 +15,7 @@ import Drawer from '@moon-ui/drawer';
 import { MobileHeader } from '@dreamer/header';
 
 import styles from './index.module.scss';
-import {
-  toggleSound,
-  TypeSound,
-} from '@dreamer/music-controller-common';
+import { setSoundVolume, toggleSound, TypeSound } from '@dreamer/music-controller-common';
 
 type SoundInfo = Record<
   TypeSound,
@@ -82,7 +79,7 @@ const soundInfo: SoundInfo = {
 
 export default function MusicControllerMobile({
   visible,
-  onClickBackButton
+  onClickBackButton,
 }: {
   visible: boolean;
   onClickBackButton?: () => void;
@@ -91,6 +88,9 @@ export default function MusicControllerMobile({
   const [soundActiveIndex, setSoundActiveIndexes] = React.useState<
     Record<string, boolean>
   >({});
+  const [volumeSound, setVolumeSound] = React.useState<Record<string, number>>(
+    {}
+  );
 
   return (
     <Drawer visible={visible}>
@@ -109,6 +109,14 @@ export default function MusicControllerMobile({
               title={intl.formatMessage(message)}
               logo={soundActiveIndex[index] ? logoActive : logo}
               active={soundActiveIndex[index]}
+              volume={volumeSound[index]}
+              onChangeVolume={volume => {
+                setVolumeSound({
+                  ...volumeSound,
+                  [index]: volume,
+                });
+                setSoundVolume(typeSound as TypeSound, volume)
+              }}
               onChange={() => {
                 setSoundActiveIndexes({
                   ...soundActiveIndex,
@@ -123,4 +131,3 @@ export default function MusicControllerMobile({
     </Drawer>
   );
 }
-

@@ -28,3 +28,10 @@ export const toggleSound = async (typeSound: TypeSound, toggleValue: boolean) =>
   }
 };
 
+export const setSoundVolume = async (typeSound: TypeSound, volume: number) => {
+  if (!sounds[typeSound]) {
+    return;
+  }
+  sounds[typeSound].volume = volume
+
+}
