@@ -15,6 +15,7 @@ export const withGlobalTool = <P extends {}>(
           },
           close: () => setVisibleTool([]),
           isToolVisible: tool => visibleTool.includes(tool),
+          visibleTool,
         }}
       >
         <WrapComponent {...props} />

@@ -1,6 +1,5 @@
 import React from 'react'
 
-// Component
 import Timer from '../Timer';
 import Button from '@moon-ui/button/src/DefaultButton';
 import Division from '@moon-ui/division';
@@ -15,16 +14,15 @@ import { useTask } from '@dreamer/tasks-page-common';
 
 import styles from './index.module.scss';
 
-
 const ONE_MINUTE = 60 * 1000;
 
-export default function Pomodoro() {
-  const timer = useTimer({ duration: 25 * ONE_MINUTE });
+export default function LongBreak() {
+  const timer = useTimer({ duration: 15 * ONE_MINUTE });
   const { getTaskDetail, activeTaskId } = useTask();
   const task = activeTaskId && getTaskDetail(activeTaskId);
   React.useEffect(() => {
     if(timer.time ===0) {
-      notify("Let's break up", {})
+      notify("Let's continue", {})
     }
   },[timer.time])
   if (!task) return null

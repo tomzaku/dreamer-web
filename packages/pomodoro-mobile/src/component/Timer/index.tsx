@@ -7,7 +7,7 @@ import styles from './index.module.scss'
 
 export default function Timer({ time }: { time: number }) {
   return (
-    <Typography.Title className={styles.time} level={1}>
+    <Typography.Title noMargin className={styles.time} level={1}>
       {formatMinuteAndSecond(time)}
     </Typography.Title>
   );

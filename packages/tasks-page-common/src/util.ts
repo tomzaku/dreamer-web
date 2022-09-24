@@ -6,6 +6,6 @@ function leftFillNum(num: number, targetLength: number) {
 }
 
 export const formatMinuteAndSecond = (milliseconds: number) => {
-  return `${millisecondsToMinutes(milliseconds)}:${leftFillNum(millisecondsToSeconds(milliseconds) % 60, 2)}`;
+  return `${leftFillNum(millisecondsToMinutes(milliseconds), 2)}:${leftFillNum(millisecondsToSeconds(milliseconds) % 60, 2)}`;
 };
 

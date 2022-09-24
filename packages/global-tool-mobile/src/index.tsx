@@ -9,7 +9,8 @@ import { GlobalTool, useGlobalTool } from '@dreamer/global-tool-common';
 import styles from './index.module.scss';
 
 export default function GlobalToolMobile() {
-  const { open } = useGlobalTool();
+  const { open, visibleTool } = useGlobalTool();
+  if(visibleTool.length > 0) return null
   return (
     <Fab
       alwaysShowTitle={true}

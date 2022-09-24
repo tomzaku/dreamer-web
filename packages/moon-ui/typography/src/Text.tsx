@@ -2,7 +2,7 @@ import cx from 'classnames';
 
 import styles from './Paragraph.module.scss';
 
-type Props = {
+type Props = React.DetailedHTMLProps<React.HTMLAttributes<HTMLSpanElement>, HTMLSpanElement> & {
   children?: React.ReactNode;
   isDescription?: boolean;
   underline?: boolean;
@@ -14,6 +14,7 @@ export default function Text({
   isDescription,
   underline,
   className,
+  ...restProps
 }: Props) {
   return (
     <span
@@ -23,6 +24,7 @@ export default function Text({
         underline && styles.underline,
         className
       )}
+      {...restProps}
     >
       {children}
     </span>

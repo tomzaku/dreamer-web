@@ -1,12 +1,6 @@
 @import '@moon-ui/app-scss/color';
 @import '@moon-ui/app-scss/function';
 
-.body {
-  display: flex;
-  flex-direction: column;
-  padding: 24px 12px;
-}
-
 .drawer {
   display: flex;
   flex-direction: column;
@@ -24,6 +18,7 @@
 
 .tab {
   display: flex;
+  padding: 10px 12px;
 }
 
 .tabName {
