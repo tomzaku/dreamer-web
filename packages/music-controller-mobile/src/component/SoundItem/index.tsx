@@ -8,7 +8,7 @@ type Props = {
   logo: React.ReactNode;
   title: string;
   active: boolean;
-  onChange: () => void;
+  onToggle: () => void;
   volume?: number;
   onChangeVolume: (volume: number) => void;
 };
@@ -17,8 +17,8 @@ export default function SoundItem({
   logo,
   title,
   active,
-  onChange,
-  volume = 0,
+  onToggle,
+  volume = 1,
   onChangeVolume,
 }: Props) {
   return (
@@ -30,7 +30,7 @@ export default function SoundItem({
             {title}
           </Typography.Paragraph>
         </div>
-        <Toggle checked={active} onChange={onChange} />
+        <Toggle checked={active} onChange={onToggle} />
       </div>
       {active && (
         <div className={styles.slider}>

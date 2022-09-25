@@ -27,17 +27,18 @@ export default function Pomodoro() {
       notify("Let's break up", {})
     }
   },[timer.time])
-  if (!task) return null
   return (
     <>
       <div className={styles.body}>
         <Timer time={timer.time} />
+        {task && 
         <div>
           <Division />
           <Typography.Title noMargin level={4}>
             {task?.name}
           </Typography.Title>
         </div>
+        }
       </div>
       <div className={styles.footer}>
         <Button

@@ -32,3 +32,13 @@
   font-size: toRem(14px);
   padding: 6px 20px;
 }
+
+.dash {
+  border: 1px dashed $black24;
+  background: transparent;
+}
+
+.block {
+  width: 100%;
+  box-sizing: border-box;
+}

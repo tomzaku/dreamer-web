@@ -1,0 +1,22 @@
+@import '@moon-ui/app-scss/color';
+@import '@moon-ui/app-scss/metric';
+
+.addTaskButton {
+  border: 2px dashed $white50;
+  color: $white50
+}
+
+.container {
+  margin: 0 $spacing-xl;
+  display: flex;
+  flex-direction: column;
+}
+
+.task {
+  background: $white24;
+  padding: $spacing-md;
+  border-radius: 12px;
+  margin-bottom: $spacing-sm;
+  color: $white;
+  text-align: center;
+}

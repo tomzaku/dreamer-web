@@ -1,0 +1,58 @@
+@import '@moon-ui/app-scss/color';
+@import '@moon-ui/app-scss/metric';
+
+.container {
+  background: #0093e9;
+  background-image: linear-gradient(341.38deg,
+  rgba(0, 147, 233, 0) -7.21%,
+  #80d0c7 85.89%);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.icon {
+  fill: $white;
+  margin: $spacing-md;
+  z-index: 1;
+}
+
+.headerBackground {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  height: 81vh;
+  left: -80%;
+  position: fixed;
+  top: -50%;
+  width: 260vw;
+}
+
+.christmasTree {
+  height: 20vh
+}
+
+.imgContainer {
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+}
+
+.text {
+  color: $white;
+}
+
+.time {
+  color: $white;
+  flex: 0;
+  margin-top: $spacing-xl;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  flex: 1
+}
+
+.footer {
+  margin-bottom: $spacing-md;
+}

@@ -117,7 +117,7 @@ export default function MusicControllerMobile({
                 });
                 setSoundVolume(typeSound as TypeSound, volume)
               }}
-              onChange={() => {
+              onToggle={() => {
                 setSoundActiveIndexes({
                   ...soundActiveIndex,
                   [index]: !soundActiveIndex[index],

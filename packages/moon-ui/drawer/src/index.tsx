@@ -9,7 +9,7 @@ type Props = {
 };
 export default function Drawer({ children, visible, className }: Props) {
   return (
-    <div className={cx(styles.container, !visible && styles.hidden, className)}>
+    <div className={cx(styles.container,className, !visible && styles.hidden)}>
       {children}
     </div>
   );

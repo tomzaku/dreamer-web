@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 import Timer from '../Timer';
 import Button from '@moon-ui/button/src/DefaultButton';
@@ -21,27 +21,26 @@ export default function ShortBreak() {
   const { getTaskDetail, activeTaskId } = useTask();
   const task = activeTaskId && getTaskDetail(activeTaskId);
   React.useEffect(() => {
-    if(timer.time ===0) {
-      notify("Let's continue", {})
+    if (timer.time === 0) {
+      notify("Let's continue", {});
     }
-  },[timer.time])
-  if (!task) return null
+  }, [timer.time]);
   return (
     <>
       <div className={styles.body}>
         <Timer time={timer.time} />
-        <div>
-          <Division />
-          <Typography.Title noMargin level={3}>
-            {task?.name}
-          </Typography.Title>
-        </div>
+        {task && (
+          <div>
+            <Division />
+            <Typography.Title noMargin level={3}>
+              {task?.name}
+            </Typography.Title>
+          </div>
+        )}
       </div>
       <div className={styles.footer}>
         <Button
-          onClick={
-            timer.isPlaying ? timer.pause : timer.start
-          }
+          onClick={timer.isPlaying ? timer.pause : timer.start}
           size="lg"
           className={styles.button}
         >
@@ -51,4 +50,3 @@ export default function ShortBreak() {
     </>
   );
 }
-

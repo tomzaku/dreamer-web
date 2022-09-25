@@ -10,9 +10,10 @@ export type DefaultButtonProps = Omit<
   'type'
 > & {
   disabled?: boolean;
-  type?: 'primary' | 'ghost';
+  type?: 'primary' | 'ghost' | 'dash';
   onClick?: () => void;
   size?: 'sm' | 'md' | 'lg';
+  block?: boolean;
   children?: React.ReactNode;
 };
 
@@ -21,6 +22,7 @@ export default function Button({
   children,
   type,
   className,
+  block,
   size,
   ...props
 }: DefaultButtonProps) {
@@ -30,6 +32,8 @@ export default function Button({
       className={cx(
         styles.default,
         type === 'ghost' && styles.ghost,
+        type === 'dash' && styles.dash,
+        block && styles.block,
         size === 'sm' && styles.sm,
         size === 'lg' && styles.lg,
         size === 'md' && styles.md,
