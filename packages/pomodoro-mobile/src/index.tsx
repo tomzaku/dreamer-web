@@ -2,7 +2,6 @@ import React from 'react';
 import Drawer from '@moon-ui/drawer';
 import ShortBreak from './component/ShortBreak';
 import LongBreak from './component/LongBreak';
-import { MobileHeader } from '@dreamer/header';
 import Typography from '@moon-ui/typography';
 import Pomodoro from './component/Pomodoro';
 
@@ -16,11 +15,13 @@ import styles from './index.module.scss';
 // Enum
 import { PomodoroPhase } from './enum';
 import Intro from './component/Intro';
+import Header from './component/Header';
 
 enum State {
   Intro,
   Pomodoro,
 }
+
 export default function PomodoroMobile({
   visible,
   onClickBackButton,
@@ -29,65 +30,90 @@ export default function PomodoroMobile({
   onClickBackButton?: () => void;
 }) {
   const intl = useIntl();
-  const [state, setState] = React.useState(State.Intro);
+  const [state, setState] = React.useState<State>(State.Intro);
   const [pomodoroPhase, setPomodoroPhase] = React.useState<PomodoroPhase>(
     PomodoroPhase.Pomodoro
   );
   const renderBody = () => {
     if (state === State.Intro) {
-      return <Intro onClickBackButton={onClickBackButton} onSubmit={() => setState(State.Pomodoro)} />;
+      return (
+        <Intro
+          onClickBackButton={onClickBackButton}
+          onSubmit={() => setState(State.Pomodoro)}
+        />
+      );
     }
 
     return (
       <>
-        <MobileHeader
-          onClickBackButton={onClickBackButton}
-          title={intl.formatMessage({
-            id: 'music-controller-mobile.label-pomodoro-title',
-            defaultMessage: 'Pomodoro',
-          })}
-        />
-        <div className={styles.tab}>
-          <Typography.Text
-            className={cx(
-              styles.tabName,
-              pomodoroPhase === PomodoroPhase.Pomodoro && styles.tabNameActive
-            )}
-            onClick={() => setPomodoroPhase(PomodoroPhase.Pomodoro)}
-          >
-            {intl.formatMessage({
-              id: 'music-controller-mobile.label-pomodoro-tab',
-              defaultMessage: 'Pomodoro',
-            })}
-          </Typography.Text>
-          <Typography.Text
-            className={cx(
-              styles.tabName,
-              pomodoroPhase === PomodoroPhase.ShortBreak && styles.tabNameActive
-            )}
-            onClick={() => setPomodoroPhase(PomodoroPhase.ShortBreak)}
-          >
-            {intl.formatMessage({
-              id: 'music-controller-mobile.label-pomodoro-short-break',
-              defaultMessage: 'Short Break',
-            })}
-          </Typography.Text>
-          <Typography.Text
-            className={cx(
-              styles.tabName,
-              pomodoroPhase === PomodoroPhase.LongBreak && styles.tabNameActive
-            )}
-            onClick={() => setPomodoroPhase(PomodoroPhase.LongBreak)}
-          >
-            {intl.formatMessage({
-              id: 'music-controller-mobile.label-pomodoro-long-break',
-              defaultMessage: 'Long Break',
-            })}
-          </Typography.Text>
-        </div>
-        {pomodoroPhase === PomodoroPhase.Pomodoro && <Pomodoro />}
-        {pomodoroPhase === PomodoroPhase.ShortBreak && <ShortBreak />}
-        {pomodoroPhase === PomodoroPhase.LongBreak && <LongBreak />}
+        <Header onClickBackButton={onClickBackButton}>
+          <div className={styles.tab}>
+            <Typography.Text
+              className={cx(
+                styles.tabName,
+                pomodoroPhase === PomodoroPhase.Pomodoro && styles.tabNameActive
+              )}
+              onClick={() => setPomodoroPhase(PomodoroPhase.Pomodoro)}
+            >
+              {intl.formatMessage({
+                id: 'music-controller-mobile.label-pomodoro-tab',
+                defaultMessage: 'Pomodoro',
+              })}
+            </Typography.Text>
+            <Typography.Text
+              className={cx(
+                styles.tabName,
+                pomodoroPhase === PomodoroPhase.ShortBreak &&
+                  styles.tabNameActive
+              )}
+              onClick={() => setPomodoroPhase(PomodoroPhase.ShortBreak)}
+            >
+              {intl.formatMessage({
+                id: 'music-controller-mobile.label-pomodoro-short-break',
+                defaultMessage: 'Short Break',
+              })}
+            </Typography.Text>
+            <Typography.Text
+              className={cx(
+                styles.tabName,
+                pomodoroPhase === PomodoroPhase.LongBreak &&
+                  styles.tabNameActive
+              )}
+              onClick={() => setPomodoroPhase(PomodoroPhase.LongBreak)}
+            >
+              {intl.formatMessage({
+                id: 'music-controller-mobile.label-pomodoro-long-break',
+                defaultMessage: 'Long Break',
+              })}
+            </Typography.Text>
+          </div>
+        </Header>
+        {(() => {
+          switch (pomodoroPhase) {
+            case PomodoroPhase.Pomodoro: {
+              return (
+                <Pomodoro
+                  onTimeUp={() => setPomodoroPhase(PomodoroPhase.ShortBreak)}
+                />
+              );
+            }
+            case PomodoroPhase.ShortBreak: {
+              return (
+                <ShortBreak
+                  onTimeUp={() => setPomodoroPhase(PomodoroPhase.Pomodoro)}
+                />
+              );
+            }
+            case PomodoroPhase.LongBreak:
+            default: {
+              return (
+                <LongBreak
+                  onTimeUp={() => setPomodoroPhase(PomodoroPhase.Pomodoro)}
+                />
+              );
+            }
+          }
+        })()}
       </>
     );
   };

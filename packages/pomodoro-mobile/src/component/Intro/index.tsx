@@ -1,12 +1,14 @@
-import IconBack from '@moon-ui/icon/IconBack';
 import ChristmasTreeImg from '@dreamer/global/assert/image/christmas-tree.png';
 import Typography from '@moon-ui/typography';
 import Timer from '../Timer';
-
-// Hooks
-import styles from './index.module.scss';
 import SelectTask from '../SelectTask';
 import SlideToPass from '@dreamer/slide-to-pass';
+
+import styles from './index.module.scss';
+
+// Constants
+import { ONE_MINUTE } from '../../constant';
+import Header from '../Header';
 
 type Props = {
   onClickBackButton?: () => void;
@@ -17,7 +19,7 @@ export default function Intro({ onClickBackButton, onSubmit }: Props) {
     <div className={styles.container}>
       <div className={styles.body}>
         <div className={styles.headerBackground} />
-        <IconBack className={styles.icon} onClick={onClickBackButton} />
+        <Header onClickBackButton={onClickBackButton} />
         <div className={styles.imgContainer}>
           <img src={ChristmasTreeImg} className={styles.christmasTree} />
           <Typography.Paragraph
@@ -32,7 +34,7 @@ export default function Intro({ onClickBackButton, onSubmit }: Props) {
             Grow your tree
           </Typography.Paragraph>
         </div>
-        <Timer className={styles.time} time={25000} />
+        <Timer className={styles.time} time={25 * ONE_MINUTE} />
         <SelectTask />
       </div>
       <div className={styles.footer}>

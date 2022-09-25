@@ -1,57 +1,46 @@
-import React from 'react'
+import React from 'react';
 
 // Component
 import Timer from '../Timer';
-import Button from '@moon-ui/button/src/DefaultButton';
-import Division from '@moon-ui/division';
-import Typography from '@moon-ui/typography';
 
 // Utils
 import { notify } from '@dreamer/notification';
 
 // Hooks
 import { useTimer } from '@dreamer/timer-hook';
-import { useTask } from '@dreamer/tasks-page-common';
 
 import styles from './index.module.scss';
-
+import SelectTask from '../SelectTask';
+import Button3D from '../Button3D';
 
 const ONE_MINUTE = 60 * 1000;
 
-export default function Pomodoro() {
-  const timer = useTimer({ duration: 25 * ONE_MINUTE });
-  const { getTaskDetail, activeTaskId } = useTask();
-  const task = activeTaskId && getTaskDetail(activeTaskId);
+type Props = {
+  onTimeUp: () => void
+}
+
+export default function Pomodoro({onTimeUp}: Props) {
+  const timer = useTimer({ duration: 0.1 * ONE_MINUTE });
   React.useEffect(() => {
-    if(timer.time ===0) {
-      notify("Let's break up", {})
+    if (timer.time === 0) {
+      notify("Let's break up", {});
+      onTimeUp()
     }
-  },[timer.time])
+  }, [timer.time]);
   return (
     <>
       <div className={styles.body}>
         <Timer time={timer.time} />
-        {task && 
-        <div>
-          <Division />
-          <Typography.Title noMargin level={4}>
-            {task?.name}
-          </Typography.Title>
-        </div>
-        }
+        <SelectTask />
       </div>
       <div className={styles.footer}>
-        <Button
-          onClick={
-            timer.isPlaying ? timer.pause : timer.start
-          }
-          size="lg"
-          className={styles.button}
+        <Button3D
+          active={timer.isPlaying}
+          onClick={timer.isPlaying ? timer.pause : timer.start}
         >
-          {timer.isPlaying ? 'Pause' : 'Play'}
-        </Button>
+          {timer.isPlaying ? 'PAUSE' : 'PLAY'}
+        </Button3D>
       </div>
     </>
   );
 }
-

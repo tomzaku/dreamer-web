@@ -9,7 +9,7 @@ import styles from './index.module.scss'
 export default function Timer({ time, className }: { time: number, className?: string }) {
   return (
     <Typography.Title noMargin className={cx(styles.time, className)} level={1}>
-      {formatMinuteAndSecond(time)}
+    {formatMinuteAndSecond(time).split('').map((key, index) => <span key={index} className={styles.key}>{key}</span>)}
     </Typography.Title>
   );
 }

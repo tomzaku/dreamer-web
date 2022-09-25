@@ -4,6 +4,10 @@
 .drawer {
   display: flex;
   flex-direction: column;
+  background: #0093e9;
+  background-image: linear-gradient(341.38deg,
+  rgba(0, 147, 233, 0) -7.21%,
+  #80d0c7 85.89%);
 }
 
 .footer {
@@ -18,15 +22,18 @@
 
 .tab {
   display: flex;
-  padding: 10px 12px;
+  flex: 1;
+  align-items: center;
+  /* padding: 10px 12px; */
 }
 
 .tabName {
   background: transparent;
   border-radius: 6px;
   flex: 1;
-  padding: 6px 12px;
+  /* padding: 6px 12px; */
   text-align: center;
+  cursor: pointer;
 }
 
 .tabNameActive {

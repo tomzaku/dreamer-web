@@ -15,13 +15,12 @@ export const notify = async (title: string, options: NotificationOptions) => {
   if (Notification.permission !== 'granted') {
     await Notification.requestPermission();
   }
-  console.log(">>>", Notification.permission, title)
   switch(Notification.permission){
     case "granted": {
 
       const notification: Notification = new Notification(title, {
-        body: "BODDDDDY",
-        data: "DATTTAA",
+        body: title,
+        /* data: "DATTTAA", */
         /* icon, */
         /* vibrate, */
         /* silent */

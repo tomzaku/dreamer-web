@@ -3,11 +3,14 @@
 
 .time {
   align-items: center;
-  color: $primary-dark;
+  color: $white;
   display: flex;
-  flex: 1;
   font-size: toRem(100px);
   font-weight: bold;
   justify-content: center;
   text-align: center;
+}
+
+.key {
+  width: toRem(65px)
 }

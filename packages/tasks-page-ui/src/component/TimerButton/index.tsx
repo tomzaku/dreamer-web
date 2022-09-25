@@ -9,6 +9,8 @@ import { TaskStatus } from '@dreamer/tasks-page-common';
 // Util
 import { useIntl } from '@dreamer/translation';
 import millisecondsToMinutes from 'date-fns/millisecondsToMinutes';
+import formatDuration from 'date-fns/formatDuration';
+import { timeToDuration } from './util';
 
 type Props = {
   duration: number;
@@ -55,10 +57,10 @@ export default function TimerButton({
         >
           {done
             ? intl.formatMessage({
-                id: 'TimerButton.label-done',
-                defaultMessage: 'Done',
-              })
-            : `${millisecondsToMinutes(duration - commit)} minutes remaining`}
+              id: 'TimerButton.label-done',
+              defaultMessage: 'Done',
+            })
+            : `${formatDuration(timeToDuration(duration - commit))} remaining`}
         </ActionButton>
       );
     }
@@ -84,7 +86,7 @@ export default function TimerButton({
           rightIcon={<IconPlay height="20" />}
           onClick={onClick}
         >
-          {`${millisecondsToMinutes(duration - commit)} minutes remaining`}
+          {`${formatDuration(timeToDuration(duration - commit))} remaining`}
         </ActionButton>
       );
     }

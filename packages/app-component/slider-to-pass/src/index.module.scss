@@ -21,7 +21,8 @@ $tray_slider_with_spacing: calc($slider-size / 2) + $padding-slider;
 }
 
 .tray {
-  background-color: $white24;
+  /* background-color: $white24; */
+  background-image: linear-gradient(90deg, #FFF -57.39%, rgba(255, 255, 255, 0) 106.14%);
   border-radius: 27px;
   height: $tray-height;
   position: absolute;

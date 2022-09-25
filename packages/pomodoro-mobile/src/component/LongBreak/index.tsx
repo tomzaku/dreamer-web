@@ -1,55 +1,46 @@
-import React from 'react'
+import React from 'react';
 
+// Component
 import Timer from '../Timer';
-import Button from '@moon-ui/button/src/DefaultButton';
-import Division from '@moon-ui/division';
-import Typography from '@moon-ui/typography';
+import Button3D from '../Button3D';
+import SelectTask from '../SelectTask';
 
 // Utils
 import { notify } from '@dreamer/notification';
 
 // Hooks
 import { useTimer } from '@dreamer/timer-hook';
-import { useTask } from '@dreamer/tasks-page-common';
 
 import styles from './index.module.scss';
+import { ONE_MINUTE } from '../../constant';
 
-const ONE_MINUTE = 60 * 1000;
 
-export default function LongBreak() {
+type Props = {
+  onTimeUp: () => void
+}
+
+export default function LongBreak({onTimeUp}: Props) {
   const timer = useTimer({ duration: 15 * ONE_MINUTE });
-  const { getTaskDetail, activeTaskId } = useTask();
-  const task = activeTaskId && getTaskDetail(activeTaskId);
   React.useEffect(() => {
-    if(timer.time ===0) {
-      notify("Let's continue", {})
+    if (timer.time === 0) {
+      notify("Let's continue", {});
+      onTimeUp()
     }
-  },[timer.time])
+  }, [timer.time]);
   return (
     <>
       <div className={styles.body}>
         <Timer time={timer.time} />
-        { task &&
-        <div>
-          <Division />
-          <Typography.Title noMargin level={4}>
-            {task.name}
-          </Typography.Title>
-        </div>
-        }
+        <SelectTask />
       </div>
       <div className={styles.footer}>
-        <Button
-          onClick={
-            timer.isPlaying ? timer.pause : timer.start
-          }
-          size="lg"
-          className={styles.button}
+        <Button3D
+          active={timer.isPlaying}
+          onClick={timer.isPlaying ? timer.pause : timer.start}
         >
-          {timer.isPlaying ? 'Pause' : 'Play'}
-        </Button>
+          {timer.isPlaying ? 'PAUSE' : 'PLAY'}
+        </Button3D>
       </div>
     </>
   );
 }
-

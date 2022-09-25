@@ -3,9 +3,10 @@
 @import '@moon-ui/app-scss/function';
 
 .footer {
-  background: $white;
-  box-shadow: 0 7px 18px $card-shadow;
   padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .button {
@@ -17,6 +18,7 @@
   flex-direction: column;
   flex: 1;
   padding: 0px $spacing-md;
-  margin-bottom: $spacing-md
+  margin-bottom: $spacing-xl;
+  justify-content: center;
 }
 

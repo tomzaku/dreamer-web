@@ -1,0 +1,12 @@
+@import '@moon-ui/app-scss/color';
+@import '@moon-ui/app-scss/metric';
+
+.container {
+  display: flex;
+}
+
+.icon {
+  fill: $white;
+  margin: $spacing-md;
+  z-index: 1;
+}
