@@ -1,12 +1,13 @@
 @import '@moon-ui/app-scss/metric';
 @import '@moon-ui/app-scss/color';
+@import 'include-media/dist/include-media';
 
 .container {
   background: $background;
   left: 0;
   min-height: 100vh;
   min-height: fill-available;
-  min-height: -webkit-fill-available;
+  min-height: fill-available;
   min-width: 100vw;
   opacity: 1;
   position: fixed;
@@ -14,6 +15,13 @@
   transform: translateY(0);
   transition: 0.5s ease;
   z-index: $drawer-z-index;
+  @include media('>=tablet') {
+    left: unset;
+    margin: auto;
+    max-width: 600px;
+    min-width: 0;
+    width: 100%;
+  }
 }
 
 .hidden {
@@ -21,4 +29,21 @@
   transform: translateY(100%);
   transition: 0.5s ease;
   visibility: hidden;
+}
+
+.desktop {
+  @include media('>=tablet') {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    left: 0;
+    min-height: 100vh;
+    min-height: fill-available;
+    min-height: fill-available;
+    min-width: 100vw;
+    overflow-x: hidden;
+    position: fixed;
+    top: 0;
+    z-index: $drawer-z-index;
+  }
 }

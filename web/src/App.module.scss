@@ -1,6 +1,14 @@
 @import '@moon-ui/app-scss/color';
+@import 'include-media/dist/include-media';
 
 .container {
   background: $background;
   min-height: 100vh;
+  @include media('>=tablet') {
+    margin: auto;
+    max-width: 600px;
+    min-width: 0;
+    width: 100%;
+  }
+
 }
