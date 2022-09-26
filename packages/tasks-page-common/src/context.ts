@@ -2,7 +2,7 @@ import React from 'react';
 
 import { TaskStatus } from './enum';
 
-import { Task, TaskParams } from './type';
+import { Task, TaskFullData, TaskParams } from './type';
 
 type TaskContextType = {
   task?: Record<string, Task>;
@@ -11,6 +11,7 @@ type TaskContextType = {
   activeTaskId?: string;
   changeTaskStatus: (taskId: string, newStatus: TaskStatus) => void;
   getTaskDetail: (taskId: string) => Task | undefined;
+  getRecommendedTasks: (text?: string) => TaskFullData[];
   cancelProcessingTask: () => void
 };
 
@@ -19,6 +20,7 @@ export const TaskContext = React.createContext<TaskContextType>({
   changeTaskStatus: () => {},
   currentTasks: [],
   getTaskDetail: () => undefined,
-  cancelProcessingTask: () => undefined
+  cancelProcessingTask: () => undefined,
+  getRecommendedTasks: () => [],
 });
 

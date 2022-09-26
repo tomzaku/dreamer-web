@@ -16,17 +16,6 @@ import HiImg from '../../../assert/hi.png';
 import styles from './index.module.scss';
 import RecommendedTaskItem from '../RecommendedTaskItem';
 
-const recommendedTasks = [
-  {
-    title: 'Learning Speaking',
-    project: 'English',
-  },
-  {
-    title: 'Learning Writting',
-    project: 'English',
-  },
-];
-
 const ONE_MINUTE = 60 * 1000;
 const INIT_DURATION = 1;
 
@@ -35,7 +24,8 @@ export default function CreateTask({ className }: { className?: string }) {
   const [focus, setFocus] = React.useState(false);
   const [taskText, setTaskText] = React.useState('');
   const [duration, setDuration] = React.useState(INIT_DURATION);
-  const { createTask } = useTask();
+  const { createTask, getRecommendedTasks } = useTask();
+  const recommendedTasks = getRecommendedTasks(taskText)
   return (
     <div className={cx(styles.container, className)}>
       <div className={styles.section}>
@@ -97,7 +87,7 @@ export default function CreateTask({ className }: { className?: string }) {
               createTask({
                 name: taskText,
                 duration: duration * ONE_MINUTE,
-                projectId: '0',
+                projectId: '-999',
               });
               setDuration(INIT_DURATION);
               setTaskText('');
@@ -124,11 +114,16 @@ export default function CreateTask({ className }: { className?: string }) {
             })}
           </Typography.Paragraph>
           <div>
-            {recommendedTasks.map(({ title, project }) => (
+            {recommendedTasks.map(({ name, project, duration }, index) => (
               <RecommendedTaskItem
-                key={title}
-                title={title}
+                key={`${name}-${index}`}
+                title={name}
                 project={project}
+                duration={duration}
+                onCopy={() => {
+                  setTaskText(name)
+                  setDuration(duration || 0)
+                }}
               />
             ))}
           </div>

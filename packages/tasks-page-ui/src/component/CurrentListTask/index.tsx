@@ -11,7 +11,7 @@ import { useIntl } from '@dreamer/translation';
 import { TaskStatus } from '@dreamer/tasks-page-common';
 
 // Type
-import { Paragraph } from '@moon-ui/typography';
+import Typography, { Paragraph } from '@moon-ui/typography';
 
 import styles from './index.module.scss';
 
@@ -29,6 +29,9 @@ export default function CurrentListTask({ className }: Props) {
           id: 'ListTask.label-your-list-tasks',
           defaultMessage: 'Your List Task',
         })}
+        {/* {currentTasks.length === 0 && ( */}
+        {/*   <Typography.Paragraph isDescription>Your task is empty</Typography.Paragraph> */}
+        {/* )} */}
       </Paragraph>
       <div className={styles.body}>
         {currentTasks.map(({ commit, id, name, duration, status }, index) => (
@@ -43,7 +46,8 @@ export default function CurrentListTask({ className }: Props) {
             status={status}
             disabled={Boolean(activeTaskId && activeTaskId !== id)}
             hasDivision={
-              status === TaskStatus.Processing || index !== currentTasks.length - 1
+              status === TaskStatus.Processing ||
+              index !== currentTasks.length - 1
             }
           />
         ))}
@@ -51,4 +55,3 @@ export default function CurrentListTask({ className }: Props) {
     </div>
   );
 }
-

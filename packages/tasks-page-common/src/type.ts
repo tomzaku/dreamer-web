@@ -15,3 +15,14 @@ export type Task = {
   createdAt: string;
   id: string;
 }
+
+export type TaskFullData = {
+  name: string;
+  duration?: number;
+  commit?: number;
+  projectId: string;
+  project?: string;
+  status: TaskStatus
+  createdAt: string;
+  id: string;
+}

@@ -94,6 +94,30 @@ export const withTask = <P extends {}>(
       activeTaskId && changeTaskStatus(activeTaskId, TaskStatus.Pause)
     }
 
+    const getRecommendedTasks = (text?: string) => {
+      if(Object.values(task).length === 0) {
+        return [
+          {
+            name: 'Read Hackernews',
+            duration: 30 * 60 *60 * 1000,
+            projectId: '-999',
+            status: TaskStatus.Pending,
+            createdAt: '',
+            id: '-1',
+          }, 
+          {
+            name: 'Learn piano',
+            duration: 30 * 60 *60 * 1000,
+            projectId: '-999',
+            status: TaskStatus.Pending,
+            createdAt: '',
+            id: '-2',
+          }, 
+        ]
+      }
+      if(!text) return Object.values(task).map(t => ({...t, project: 'Other'}))
+      return Object.values(task).filter(({name}) => name.toLowerCase().includes(text.toLowerCase())).map(i => ({...i, project: 'Other'}))
+    }
 
     return (
       <TaskContext.Provider
@@ -104,7 +128,8 @@ export const withTask = <P extends {}>(
           activeTaskId,
           changeTaskStatus,
           getTaskDetail,
-          cancelProcessingTask
+          cancelProcessingTask,
+          getRecommendedTasks
         }}
       >
         <WrapComponent {...props} />
