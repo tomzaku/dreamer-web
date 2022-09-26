@@ -7,7 +7,7 @@
   left: 0;
   min-height: 100vh;
   min-height: fill-available;
-  min-height: fill-available;
+  min-height: -webkit-fill-available;
   min-width: 100vw;
   opacity: 1;
   position: fixed;
@@ -31,19 +31,3 @@
   visibility: hidden;
 }
 
-.desktop {
-  @include media('>=tablet') {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    left: 0;
-    min-height: 100vh;
-    min-height: fill-available;
-    min-height: fill-available;
-    min-width: 100vw;
-    overflow-x: hidden;
-    position: fixed;
-    top: 0;
-    z-index: $drawer-z-index;
-  }
-}
