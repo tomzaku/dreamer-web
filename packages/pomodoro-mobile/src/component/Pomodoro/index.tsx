@@ -20,7 +20,7 @@ type Props = {
 }
 
 export default function Pomodoro({onTimeUp}: Props) {
-  const timer = useTimer({ duration: 0.1 * ONE_MINUTE });
+  const timer = useTimer({ duration: 25 * ONE_MINUTE });
   React.useEffect(() => {
     if (timer.time === 0) {
       notify("Let's break up", {});

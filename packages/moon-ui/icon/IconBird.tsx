@@ -1,4 +1,4 @@
-export default function IconBird(props: React.HTMLAttributes<SVGSVGElement>) {
+export default function IconBird(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg width="24" viewBox="0 0 24 24" {...props}>
       <path

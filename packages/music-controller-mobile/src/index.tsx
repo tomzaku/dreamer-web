@@ -8,14 +8,17 @@ import IconBird from '@moon-ui/icon/IconBird';
 import IconCafe from '@moon-ui/icon/IconCafe';
 import IconFire from '@moon-ui/icon/IconFire';
 import IconRainy from '@moon-ui/icon/IconRainy';
-import IconSunny from '@moon-ui/icon/IconSunny';
 import IconThunder from '@moon-ui/icon/IconThunder';
 import SoundItem from './component/SoundItem';
 import Drawer from '@moon-ui/drawer';
+import IconMoon from '@moon-ui/icon/IconMoon';
 import { MobileHeader } from '@dreamer/header';
+import IconWave from '@moon-ui/icon/IconWave';
+import IconCoffeeShop from '@moon-ui/icon/IconCoffeeShop';
 
 import styles from './index.module.scss';
 import { setSoundVolume, toggleSound, TypeSound } from '@dreamer/music-controller-common';
+import IconWaterfall from '@moon-ui/icon/IconWaterfall';
 
 type SoundInfo = Record<
   TypeSound,
@@ -60,11 +63,11 @@ const soundInfo: SoundInfo = {
     },
   },
   [TypeSound.Cricket]: {
-    logo: <IconSunny className={styles.iconInactive} />,
-    logoActive: <IconSunny className={styles.iconActive} />,
+    logo: <IconMoon className={styles.iconInactive} />,
+    logoActive: <IconMoon className={styles.iconActive} />,
     message: {
       id: 'music-controller-mobile.label-sunny',
-      defaultMessage: 'Sunny',
+      defaultMessage: 'Cricket',
     },
   },
   [TypeSound.Bird]: {
@@ -75,6 +78,30 @@ const soundInfo: SoundInfo = {
       defaultMessage: 'Bird',
     },
   },
+  [TypeSound.Wave]: {
+    logo: <IconWave className={styles.iconInactive} />,
+    logoActive: <IconWave className={styles.iconActive} />,
+    message: {
+      id: 'music-controller-mobile.label-wave',
+      defaultMessage: 'Wave',
+    },
+  },
+  [TypeSound.BusyCoffee]: {
+    logo: <IconCoffeeShop className={styles.iconInactive} />,
+    logoActive: <IconCoffeeShop className={styles.iconActive} />,
+    message: {
+      id: 'music-controller-mobile.label-busy-coffee',
+      defaultMessage: 'Busy Coffee',
+    },
+  },
+  [TypeSound.StreamRiver]: {
+    logo: <IconWaterfall className={styles.iconInactive} />,
+    logoActive: <IconWaterfall className={styles.iconActive} />,
+    message: {
+      id: 'music-controller-mobile.label-stream-river',
+      defaultMessage: 'Stream River',
+    },
+  }
 };
 
 export default function MusicControllerMobile({
@@ -93,7 +120,7 @@ export default function MusicControllerMobile({
   );
 
   return (
-    <Drawer visible={visible}>
+    <Drawer className={styles.drawer} visible={visible}>
       <MobileHeader
         onClickBackButton={onClickBackButton}
         title={intl.formatMessage({

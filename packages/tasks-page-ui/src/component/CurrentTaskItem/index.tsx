@@ -12,6 +12,7 @@ import cx from 'classnames';
 import { useTask } from '@dreamer/tasks-page-common';
 
 import styles from './index.module.scss';
+import { useGlobalTool, GlobalTool } from '@dreamer/global-tool-common';
 
 type Props = {
   title: string;
@@ -65,6 +66,7 @@ export default function CurrentTaskItem({
   taskId,
 }: Props) {
   const { changeTaskStatus } = useTask();
+  const { open } = useGlobalTool();
   const nextStatus = getNextTaskStatus(status, { duration, commit });
   return (
     <div>
@@ -76,7 +78,7 @@ export default function CurrentTaskItem({
           <div>
             {status === TaskStatus.Processing && (
               <>
-                <IconLaunch width="20" height="20" />
+              <IconLaunch onClick={() => open(GlobalTool.FocusMode)} width="20" height="20" />
                 <IconMoreVertical
                   className={styles.more}
                   width="20"

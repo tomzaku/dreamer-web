@@ -13,7 +13,7 @@ export const withGlobalTool = <P extends {}>(
           open: tool => {
             setVisibleTool([...visibleTool, tool])
           },
-          close: () => setVisibleTool([]),
+          close: () => setVisibleTool(visibleTool.slice(0, -1)),
           isToolVisible: tool => visibleTool.includes(tool),
           visibleTool,
         }}

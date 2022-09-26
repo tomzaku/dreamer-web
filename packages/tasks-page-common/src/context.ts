@@ -10,13 +10,15 @@ type TaskContextType = {
   currentTasks: Task[];
   activeTaskId?: string;
   changeTaskStatus: (taskId: string, newStatus: TaskStatus) => void;
-  getTaskDetail: (taskId: string) => Task | undefined
+  getTaskDetail: (taskId: string) => Task | undefined;
+  cancelProcessingTask: () => void
 };
 
 export const TaskContext = React.createContext<TaskContextType>({
   createTask: () => {},
   changeTaskStatus: () => {},
   currentTasks: [],
-  getTaskDetail: () => undefined
+  getTaskDetail: () => undefined,
+  cancelProcessingTask: () => undefined
 });
 

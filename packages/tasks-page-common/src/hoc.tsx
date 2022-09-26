@@ -90,6 +90,10 @@ export const withTask = <P extends {}>(
       }, INTERVAL);
     };
 
+    const cancelProcessingTask = () => {
+      activeTaskId && changeTaskStatus(activeTaskId, TaskStatus.Pause)
+    }
+
 
     return (
       <TaskContext.Provider
@@ -100,6 +104,7 @@ export const withTask = <P extends {}>(
           activeTaskId,
           changeTaskStatus,
           getTaskDetail,
+          cancelProcessingTask
         }}
       >
         <WrapComponent {...props} />

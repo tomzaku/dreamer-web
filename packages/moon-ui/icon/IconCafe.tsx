@@ -1,4 +1,4 @@
-export default function IconCafe(props: React.HTMLAttributes<SVGSVGElement>) {
+export default function IconCafe(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg width="24" viewBox="0 0 512 512" {...props}>
       <path

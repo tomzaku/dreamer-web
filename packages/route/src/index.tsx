@@ -1,3 +1,4 @@
+import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from '@dreamer/header';
 import TaskPage from '@dreamer/tasks-page-ui';
@@ -11,10 +12,14 @@ import { useGlobalTool, GlobalTool } from '@dreamer/global-tool-common';
 //
 // Hocs
 import { withGlobalTool, } from '@dreamer/global-tool-common';
-import { withTask } from '@dreamer/tasks-page-common';
+import { useTask, withTask } from '@dreamer/tasks-page-common';
 
 const AppRouter = () => {
   const { isToolVisible, close } = useGlobalTool()
+  const { cancelProcessingTask } = useTask()
+  React.useEffect(() => {
+    cancelProcessingTask()
+  }, [])
   return (
     <BrowserRouter>
       <Header />

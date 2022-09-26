@@ -22,3 +22,15 @@
   justify-content: center;
 }
 
+.skipButton {
+  margin-left: $spacing-md;
+  background: $white;
+  height: 44px;
+  margin-bottom: 4px;
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+  fill: $primary;
+}

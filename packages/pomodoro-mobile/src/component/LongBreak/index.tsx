@@ -4,6 +4,8 @@ import React from 'react';
 import Timer from '../Timer';
 import Button3D from '../Button3D';
 import SelectTask from '../SelectTask';
+import IconSkip from '@moon-ui/icon/IconSkip';
+import Button from '@moon-ui/button/src/DefaultButton';
 
 // Utils
 import { notify } from '@dreamer/notification';
@@ -40,6 +42,9 @@ export default function LongBreak({onTimeUp}: Props) {
         >
           {timer.isPlaying ? 'PAUSE' : 'PLAY'}
         </Button3D>
+        <Button className={styles.skipButton} onClick={onTimeUp}>
+          <IconSkip className={styles.icon} />
+        </Button>
       </div>
     </>
   );
