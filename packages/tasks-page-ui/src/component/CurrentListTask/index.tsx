@@ -29,9 +29,6 @@ export default function CurrentListTask({ className }: Props) {
           id: 'ListTask.label-your-list-tasks',
           defaultMessage: 'Your List Task',
         })}
-        {/* {currentTasks.length === 0 && ( */}
-        {/*   <Typography.Paragraph isDescription>Your task is empty</Typography.Paragraph> */}
-        {/* )} */}
       </Paragraph>
       <div className={styles.body}>
         {currentTasks.map(({ commit, id, name, duration, status }, index) => (
@@ -52,6 +49,11 @@ export default function CurrentListTask({ className }: Props) {
           />
         ))}
       </div>
+      {currentTasks.length === 0 && (
+        <div className={styles.empty}>
+          <Typography.Paragraph isDescription>Your task is empty</Typography.Paragraph>
+        </div>
+      )}
     </div>
   );
 }

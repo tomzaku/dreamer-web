@@ -99,17 +99,19 @@ export const withTask = <P extends {}>(
         return [
           {
             name: 'Read Hackernews',
-            duration: 30 * 60 *60 * 1000,
+            duration: 30 * 60 * 1000,
             projectId: '-999',
             status: TaskStatus.Pending,
             createdAt: '',
+            project: 'Other',
             id: '-1',
           }, 
           {
             name: 'Learn piano',
-            duration: 30 * 60 *60 * 1000,
+            duration: 30 * 60 * 1000,
             projectId: '-999',
             status: TaskStatus.Pending,
+            project: 'Other',
             createdAt: '',
             id: '-2',
           }, 

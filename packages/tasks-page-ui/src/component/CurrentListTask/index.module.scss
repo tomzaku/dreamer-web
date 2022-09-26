@@ -8,3 +8,13 @@
 .title {
   margin-left: 16px;
 }
+
+.empty {
+  height: 100px;
+  align-items: center;
+  justify-content: center;
+  margin-left: 16px;
+  margin-right: 16px;
+  display: flex;
+  border: 1px dashed $black50;
+}
