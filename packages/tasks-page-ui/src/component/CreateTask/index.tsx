@@ -8,6 +8,7 @@ import { useIntl } from '@dreamer/translation';
 
 // Hooks
 import { useTask } from '@dreamer/tasks-page-common';
+import { useKeyListener } from '@dreamer/global';
 
 // Utils
 import cx from 'classnames';
@@ -27,6 +28,7 @@ export default function CreateTask({ className }: { className?: string }) {
   const { createTask, getRecommendedTasks } = useTask();
   const recommendedTasks = getRecommendedTasks(taskText);
   const isValidated = Boolean(taskText);
+  const refInput = React.useRef<HTMLInputElement>(null)
   const addTask = () => {
     if (!isValidated) return;
     createTask({
@@ -37,6 +39,14 @@ export default function CreateTask({ className }: { className?: string }) {
     setDuration(INIT_DURATION);
     setTaskText('');
   };
+  useKeyListener((e) => {
+    if(e.key === 'a') {
+      // TODO: REMOVE SET TIMEOUT
+      setTimeout(() => {
+        refInput.current?.focus()
+      }, 60)
+    }
+  })
   return (
     <div className={cx(styles.container, className)}>
       <div className={styles.section}>
@@ -62,6 +72,7 @@ export default function CreateTask({ className }: { className?: string }) {
         </div>
         <div className={styles.menu} />
         <Input
+          ref={refInput}
           placeholder={intl.formatMessage({
             id: 'CreateTask.label-create-task-input-placeholder',
             defaultMessage: 'Write your task today',
@@ -73,7 +84,7 @@ export default function CreateTask({ className }: { className?: string }) {
           value={taskText}
           onKeyPress={e => {
             if (e.key === 'Enter') {
-              addTask()
+              addTask();
             }
           }}
         />
@@ -92,7 +103,7 @@ export default function CreateTask({ className }: { className?: string }) {
               }}
               onKeyPress={e => {
                 if (e.key === 'Enter') {
-                  addTask()
+                  addTask();
                 }
               }}
             />

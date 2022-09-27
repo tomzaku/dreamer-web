@@ -2,7 +2,7 @@ import Checkbox from '@moon-ui/checkbox';
 import IconLaunch from '@moon-ui/icon/IconLaunch';
 import IconMoreVertical from '@moon-ui/icon/IconMoreVertical';
 import TimerButton from '../TimerButton';
-import { Paragraph, Title } from '@moon-ui/typography';
+import Typography, { Paragraph, Title } from '@moon-ui/typography';
 import { formatMinuteAndSecond, TaskStatus } from '@dreamer/tasks-page-common';
 
 // Utils
@@ -75,10 +75,18 @@ export default function CurrentTaskItem({
           <Title noMargin level={5}>
             {title}
           </Title>
-          <div>
+          <div className={styles.actionGroup}>
             {status === TaskStatus.Processing && (
               <>
-              <IconLaunch onClick={() => open(GlobalTool.FocusMode)} width="20" height="20" />
+                <div
+                  onClick={() => open(GlobalTool.FocusMode)}
+                  className={styles.actionButton}
+                >
+                  <IconLaunch className={styles.actionIcon} />
+                  <Typography.Text className={styles.actionText}>
+                    Focus
+                  </Typography.Text>
+                </div>
                 <IconMoreVertical
                   className={styles.more}
                   width="20"

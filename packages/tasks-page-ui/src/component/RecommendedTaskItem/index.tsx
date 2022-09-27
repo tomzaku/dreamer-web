@@ -13,7 +13,6 @@ type Props = {
 };
 
 export default function RecommendedTaskItem({ project, title, onCopy, duration }: Props) {
-  console.log("DURATION", duration)
   return (
     <div className={styles.container}>
       <Typography.Title level={5} noMargin>

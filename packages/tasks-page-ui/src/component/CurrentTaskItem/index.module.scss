@@ -1,4 +1,5 @@
 @import '@moon-ui/app-scss/color';
+@import '@moon-ui/app-scss/metric';
 
 .container {
   border-radius: 10px;
@@ -49,4 +50,28 @@
 
 .more {
   margin-left: 6px;
+}
+
+.actionGroup {
+  display: flex
+}
+
+.actionText {
+  color: $primary-dark;
+  margin-left: $spacing-xs;
+}
+
+.actionButton {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  background: $black6;
+  padding: 0 $spacing-md;
+  border-radius: 6px;
+}
+
+.actionIcon {
+  width: 16px;
+  height: 16px;
+  fill: $primary-dark;
 }
