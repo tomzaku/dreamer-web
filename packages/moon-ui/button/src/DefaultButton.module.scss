@@ -43,3 +43,8 @@
   width: 100%;
   box-sizing: border-box;
 }
+
+.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}

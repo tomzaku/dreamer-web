@@ -9,7 +9,6 @@ export type DefaultButtonProps = Omit<
   >,
   'type'
 > & {
-  disabled?: boolean;
   type?: 'primary' | 'ghost' | 'dash';
   onClick?: () => void;
   size?: 'sm' | 'md' | 'lg';
@@ -19,6 +18,7 @@ export type DefaultButtonProps = Omit<
 
 export default function Button({
   onClick,
+  disabled,
   children,
   type,
   className,
@@ -37,8 +37,10 @@ export default function Button({
         size === 'sm' && styles.sm,
         size === 'lg' && styles.lg,
         size === 'md' && styles.md,
-        className
+        disabled && styles.disabled,
+        className,
       )}
+      disabled={disabled}
       {...props}
     >
       {children}

@@ -17,7 +17,7 @@ import styles from './index.module.scss';
 import RecommendedTaskItem from '../RecommendedTaskItem';
 
 const ONE_MINUTE = 60 * 1000;
-const INIT_DURATION = 1;
+const INIT_DURATION = 0;
 
 export default function CreateTask({ className }: { className?: string }) {
   const intl = useIntl();
@@ -25,7 +25,18 @@ export default function CreateTask({ className }: { className?: string }) {
   const [taskText, setTaskText] = React.useState('');
   const [duration, setDuration] = React.useState(INIT_DURATION);
   const { createTask, getRecommendedTasks } = useTask();
-  const recommendedTasks = getRecommendedTasks(taskText)
+  const recommendedTasks = getRecommendedTasks(taskText);
+  const isValidated = Boolean(taskText);
+  const addTask = () => {
+    if (!isValidated) return;
+    createTask({
+      name: taskText,
+      duration: duration * ONE_MINUTE,
+      projectId: '-999',
+    });
+    setDuration(INIT_DURATION);
+    setTaskText('');
+  };
   return (
     <div className={cx(styles.container, className)}>
       <div className={styles.section}>
@@ -60,6 +71,11 @@ export default function CreateTask({ className }: { className?: string }) {
           onBlur={() => setFocus(false)}
           onChange={e => setTaskText(e.currentTarget.value)}
           value={taskText}
+          onKeyPress={e => {
+            if (e.key === 'Enter') {
+              addTask()
+            }
+          }}
         />
         <hr className={styles.dashed} />
         <div className={styles.footer}>
@@ -74,6 +90,11 @@ export default function CreateTask({ className }: { className?: string }) {
                   setDuration(Number(e.currentTarget.value));
                 }
               }}
+              onKeyPress={e => {
+                if (e.key === 'Enter') {
+                  addTask()
+                }
+              }}
             />
             <Typography.Text>
               {intl.formatMessage({
@@ -82,17 +103,7 @@ export default function CreateTask({ className }: { className?: string }) {
               })}
             </Typography.Text>
           </div>
-          <Button
-            onClick={() => {
-              createTask({
-                name: taskText,
-                duration: duration * ONE_MINUTE,
-                projectId: '-999',
-              });
-              setDuration(INIT_DURATION);
-              setTaskText('');
-            }}
-          >
+          <Button disabled={!isValidated} onClick={addTask}>
             {intl.formatMessage({
               id: 'CreateTask.label-submit',
               defaultMessage: 'Submit',
@@ -121,8 +132,8 @@ export default function CreateTask({ className }: { className?: string }) {
                 project={project}
                 duration={duration}
                 onCopy={() => {
-                  setTaskText(name)
-                  setDuration(duration || 0)
+                  setTaskText(name);
+                  setDuration(duration ? duration / ONE_MINUTE : 0);
                 }}
               />
             ))}
