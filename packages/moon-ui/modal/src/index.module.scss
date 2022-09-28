@@ -1,0 +1,27 @@
+@import '@moon-ui/app-scss/color';
+@import '@moon-ui/app-scss/metric';
+
+.overlay {
+  align-items: center;
+  background: $black50;
+  position: fixed;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: fill-available;
+  min-height: fill-available;
+  width: 100%;
+  z-index: $modal-z-index;
+  left: 0;
+  top: 0;
+}
+
+.body {
+  display: flex;
+  min-width: 400px;
+  min-height: 200px;
+  background: $white;
+  box-shadow: 0 7px 18px $card-shadow;
+  border-radius: 10px;
+}

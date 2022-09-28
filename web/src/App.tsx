@@ -7,7 +7,9 @@ import styles from './App.module.scss';
 function App() {
   return (
     <div className={styles.container}>
-      <AppRouter />
+      <div className={styles.body}>
+        <AppRouter />
+      </div>
     </div>
   );
 }

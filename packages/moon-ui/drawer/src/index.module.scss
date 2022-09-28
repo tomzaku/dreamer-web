@@ -17,7 +17,6 @@
   z-index: $drawer-z-index;
   @include media('>=tablet') {
     left: unset;
-    margin: auto;
     max-width: 600px;
     min-width: 0;
     width: 100%;

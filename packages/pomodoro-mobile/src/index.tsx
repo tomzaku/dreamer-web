@@ -7,6 +7,7 @@ import Pomodoro from './component/Pomodoro';
 import Intro from './component/Intro';
 import Header from './component/Header';
 import IconMusic from '@moon-ui/icon/IconMusic';
+import Modal from '@moon-ui/modal';
 
 import cx from 'classnames';
 
@@ -56,6 +57,7 @@ export default function PomodoroMobile({
 
     return (
       <>
+        {/* <Modal visible /> */}
         <Header onClickBackButton={onClickBackButton}>
           <div className={styles.tabContainer}>
             <div className={styles.tab}>
