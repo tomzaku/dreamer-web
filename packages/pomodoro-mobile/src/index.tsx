@@ -39,8 +39,10 @@ export default function PomodoroMobile({
   const [pomodoroPhase, setPomodoroPhase] = React.useState<PomodoroPhase>(
     PomodoroPhase.Pomodoro
   );
+  const [modalVisible, setModalVisible] = React.useState(false);
+  const [modalInfo, setModalInfo] = React.useState<PomodoroPhase>(PomodoroPhase.Pomodoro);
   const { activeTaskId } = useTask();
-  const { open  } = useGlobalTool();
+  const { open } = useGlobalTool();
 
   React.useEffect(() => {
     setState(State.Intro);
@@ -57,7 +59,37 @@ export default function PomodoroMobile({
 
     return (
       <>
-        {/* <Modal visible /> */}
+        <Modal
+          title={intl.formatMessage({
+            defaultMessage: 'STOP PROGRESS?',
+            id: 'music-controller-mobile.label-stop-progress',
+          })}
+          primaryButtonText={intl.formatMessage({
+            defaultMessage: 'NO',
+            id: 'label-no',
+          })}
+          primaryButtonOnClick={() => {
+            setModalVisible(false);
+          }}
+          secondaryButtonText={intl.formatMessage({
+            defaultMessage: 'YES',
+            id: 'label-yes',
+          })}
+          secondaryButtonClick={() => {
+            setModalVisible(false);
+            setPomodoroPhase(modalInfo);
+          }}
+          visible={modalVisible}
+          content={
+            <>
+              {intl.formatMessage({
+                id: 'music-controller-mobile.label-modal-confirm',
+                defaultMessage:
+                  'The timer is running, are you sure you want to switch',
+              })}
+            </>
+          }
+        />
         <Header onClickBackButton={onClickBackButton}>
           <div className={styles.tabContainer}>
             <div className={styles.tab}>
@@ -67,7 +99,12 @@ export default function PomodoroMobile({
                   pomodoroPhase === PomodoroPhase.Pomodoro &&
                   styles.tabNameActive
                 )}
-                onClick={() => setPomodoroPhase(PomodoroPhase.Pomodoro)}
+                onClick={() => {
+                  if (pomodoroPhase !== PomodoroPhase.Pomodoro) {
+                    setModalVisible(true);
+                    setModalInfo(PomodoroPhase.Pomodoro);
+                  }
+                }}
               >
                 {intl.formatMessage({
                   id: 'music-controller-mobile.label-pomodoro-tab',
@@ -80,7 +117,12 @@ export default function PomodoroMobile({
                   pomodoroPhase === PomodoroPhase.ShortBreak &&
                   styles.tabNameActive
                 )}
-                onClick={() => setPomodoroPhase(PomodoroPhase.ShortBreak)}
+                onClick={() => {
+                  if (pomodoroPhase !== PomodoroPhase.ShortBreak) {
+                    setModalVisible(true);
+                    setModalInfo(PomodoroPhase.ShortBreak);
+                  }
+                }}
               >
                 {intl.formatMessage({
                   id: 'music-controller-mobile.label-pomodoro-short-break',
@@ -93,7 +135,12 @@ export default function PomodoroMobile({
                   pomodoroPhase === PomodoroPhase.LongBreak &&
                   styles.tabNameActive
                 )}
-                onClick={() => setPomodoroPhase(PomodoroPhase.LongBreak)}
+                onClick={() => {
+                  if (pomodoroPhase !== PomodoroPhase.LongBreak) {
+                    setModalVisible(true);
+                    setModalInfo(PomodoroPhase.LongBreak);
+                  }
+                }}
               >
                 {intl.formatMessage({
                   id: 'music-controller-mobile.label-pomodoro-long-break',
@@ -102,10 +149,7 @@ export default function PomodoroMobile({
               </Typography.Text>
             </div>
             <div className={styles.app}>
-            <IconMusic
-
-        onClick={() => open(GlobalTool.Sound)}
-            />
+              <IconMusic onClick={() => open(GlobalTool.Sound)} />
             </div>
           </div>
         </Header>
