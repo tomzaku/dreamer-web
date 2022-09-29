@@ -28,7 +28,7 @@ export default function CreateTask({ className }: { className?: string }) {
   const { createTask, getRecommendedTasks } = useTask();
   const recommendedTasks = getRecommendedTasks(taskText);
   const isValidated = Boolean(taskText);
-  const refInput = React.useRef<HTMLInputElement>(null)
+  const inputRef = React.useRef<HTMLInputElement>(null);
   const addTask = () => {
     if (!isValidated) return;
     createTask({
@@ -39,14 +39,21 @@ export default function CreateTask({ className }: { className?: string }) {
     setDuration(INIT_DURATION);
     setTaskText('');
   };
-  useKeyListener((e) => {
-    if(e.key === 'a') {
-      // TODO: REMOVE SET TIMEOUT
+  useKeyListener(e => {
+    if (e.key === 'a') {
       setTimeout(() => {
-        refInput.current?.focus()
-      }, 60)
+        inputRef.current?.focus();
+      }, 60);
     }
-  })
+  });
+  React.useEffect(() => {
+    if (focus) {
+      inputRef.current?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
+  }, [focus]);
   return (
     <div className={cx(styles.container, className)}>
       <div className={styles.section}>
@@ -72,7 +79,7 @@ export default function CreateTask({ className }: { className?: string }) {
         </div>
         <div className={styles.menu} />
         <Input
-          ref={refInput}
+          ref={inputRef}
           placeholder={intl.formatMessage({
             id: 'CreateTask.label-create-task-input-placeholder',
             defaultMessage: 'Write your task today',
