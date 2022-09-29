@@ -1,3 +1,7 @@
+import { createGoogleDriveAudio } from '@dreamer/audio-common';
+
+import { NotificationSoundType } from "./enum";
+
 export enum NotificationStatus {
   Idle,
   BrowserDoesNotSupport,
@@ -5,26 +9,38 @@ export enum NotificationStatus {
   Denied,
 }
 
-export const notify = async (title: string, options: NotificationOptions) => {
+const GOOGLE_DRIVER_NOTIFICATION_ID_MAP: Record<NotificationSoundType, string> = {
+  [NotificationSoundType.MusicBox]: '1jhdTJIRKmZyHlRWgAtJCU6QcUmKdIsPM',
+  [NotificationSoundType.Chime]: '1_j8XmbMMCGXJPq-Vbk_-bdOeGjmJr7n1',
+}
+
+const { sounds, toggleSound, setSoundVolume } =
+  createGoogleDriveAudio(GOOGLE_DRIVER_NOTIFICATION_ID_MAP);
+
+export { toggleSound, setSoundVolume, sounds };
+
+export const notify = async (title: string, options?: NotificationOptions) => {
+  await toggleSound(NotificationSoundType.MusicBox, true)
   if (!('Notification' in window)) {
     return {
       status: NotificationStatus.BrowserDoesNotSupport
     }
   }
+  console.log("Notification", Notification.permission)
 
   if (Notification.permission !== 'granted') {
     await Notification.requestPermission();
   }
+
   switch(Notification.permission){
     case "granted": {
 
       const notification: Notification = new Notification(title, {
         body: title,
-        /* data: "DATTTAA", */
-        /* icon, */
-        /* vibrate, */
-        /* silent */
+        silent: true,
+        ...options
       });
+      
       return {
         notification,
         status:NotificationStatus.Granted
@@ -42,3 +58,4 @@ export const notify = async (title: string, options: NotificationOptions) => {
     }
   }
 };
+

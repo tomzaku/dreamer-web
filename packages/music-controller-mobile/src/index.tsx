@@ -17,7 +17,11 @@ import IconWave from '@moon-ui/icon/IconWave';
 import IconCoffeeShop from '@moon-ui/icon/IconCoffeeShop';
 
 import styles from './index.module.scss';
-import { setSoundVolume, toggleSound, TypeSound } from '@dreamer/music-controller-common';
+import {
+  setSoundVolume,
+  toggleSound,
+  TypeSound,
+} from '@dreamer/music-controller-common';
 import IconWaterfall from '@moon-ui/icon/IconWaterfall';
 
 type SoundInfo = Record<
@@ -101,7 +105,7 @@ const soundInfo: SoundInfo = {
       id: 'music-controller-mobile.label-stream-river',
       defaultMessage: 'Stream River',
     },
-  }
+  },
 };
 
 export default function MusicControllerMobile({
@@ -142,14 +146,16 @@ export default function MusicControllerMobile({
                   ...volumeSound,
                   [index]: volume,
                 });
-                setSoundVolume(typeSound as TypeSound, volume)
+                setSoundVolume(typeSound as TypeSound, volume);
               }}
               onToggle={() => {
                 setSoundActiveIndexes({
                   ...soundActiveIndex,
                   [index]: !soundActiveIndex[index],
                 });
-                toggleSound(typeSound as TypeSound, !soundActiveIndex[index]);
+                toggleSound(typeSound as TypeSound, !soundActiveIndex[index], {
+                  loop: true,
+                });
               }}
             />
           )

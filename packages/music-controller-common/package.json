@@ -10,5 +10,8 @@
   "license": "ISC",
   "devDependencies": {
     "@types/react-motion": "^0.0.33"
+  },
+  "dependencies": {
+    "@dreamer/audio-common": "^1.0.0"
   }
 }
