@@ -30,7 +30,7 @@ export const withTask = <P extends {}>(
         },
       });
     };
-    const currentTasks = Object.values(task).sort((a, b) => {
+    const orderedTasks = Object.values(task).sort((a, b) => {
       const aDate = a.createdAt && new Date(a.createdAt);
       const bDate = b.createdAt && new Date(b.createdAt);
 
@@ -40,9 +40,13 @@ export const withTask = <P extends {}>(
       return 0;
     });
 
-    const activeTaskId = currentTasks.find(
+    const activeTaskId = Object.values(task).find(
       ({ status }) => status === TaskStatus.Processing
     )?.id;
+
+    const currentTasks = activeTaskId
+      ? [task[activeTaskId], ...orderedTasks.filter(t => t.id !== activeTaskId)]
+      : orderedTasks;
 
     const changeTaskStatus = (taskId: string, newStatus: TaskStatus) => {
       setTask({
@@ -91,11 +95,11 @@ export const withTask = <P extends {}>(
     };
 
     const cancelProcessingTask = () => {
-      activeTaskId && changeTaskStatus(activeTaskId, TaskStatus.Pause)
-    }
+      activeTaskId && changeTaskStatus(activeTaskId, TaskStatus.Pause);
+    };
 
     const getRecommendedTasks = (text?: string) => {
-      if(Object.values(task).length === 0) {
+      if (Object.values(task).length === 0) {
         return [
           {
             name: 'Read Hackernews',
@@ -105,7 +109,7 @@ export const withTask = <P extends {}>(
             createdAt: '',
             project: 'Other',
             id: '-1',
-          }, 
+          },
           {
             name: 'Learn piano',
             duration: 30 * 60 * 1000,
@@ -114,12 +118,15 @@ export const withTask = <P extends {}>(
             project: 'Other',
             createdAt: '',
             id: '-2',
-          }, 
-        ]
+          },
+        ];
       }
-      if(!text) return Object.values(task).map(t => ({...t, project: 'Other'}))
-      return Object.values(task).filter(({name}) => name.toLowerCase().includes(text.toLowerCase())).map(i => ({...i, project: 'Other'}))
-    }
+      if (!text)
+        return Object.values(task).map(t => ({ ...t, project: 'Other' }));
+      return Object.values(task)
+        .filter(({ name }) => name.toLowerCase().includes(text.toLowerCase()))
+        .map(i => ({ ...i, project: 'Other' }));
+    };
 
     return (
       <TaskContext.Provider
@@ -131,7 +138,7 @@ export const withTask = <P extends {}>(
           changeTaskStatus,
           getTaskDetail,
           cancelProcessingTask,
-          getRecommendedTasks
+          getRecommendedTasks,
         }}
       >
         <WrapComponent {...props} />

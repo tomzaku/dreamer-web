@@ -8,7 +8,7 @@ import { useIntl } from '@dreamer/translation';
 
 // Hooks
 import { useTask } from '@dreamer/tasks-page-common';
-import { useKeyListener } from '@dreamer/global';
+import { detectMobile, useKeyListener } from '@dreamer/global';
 
 // Utils
 import cx from 'classnames';
@@ -46,14 +46,6 @@ export default function CreateTask({ className }: { className?: string }) {
       }, 60);
     }
   });
-  React.useEffect(() => {
-    if (focus) {
-      inputRef.current?.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-      });
-    }
-  }, [focus]);
   return (
     <div className={cx(styles.container, className)}>
       <div className={styles.section}>
@@ -85,13 +77,23 @@ export default function CreateTask({ className }: { className?: string }) {
             defaultMessage: 'Write your task today',
           })}
           className={styles.input}
-          onFocus={() => setFocus(true)}
+          onFocus={() => {
+            console.log('>>>>>>', detectMobile());
+            setFocus(true);
+            if (detectMobile()) {
+              inputRef.current?.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+              });
+            }
+          }}
           onBlur={() => setFocus(false)}
           onChange={e => setTaskText(e.currentTarget.value)}
           value={taskText}
           onKeyPress={e => {
             if (e.key === 'Enter') {
               addTask();
+              setFocus(true);
             }
           }}
         />
@@ -101,7 +103,8 @@ export default function CreateTask({ className }: { className?: string }) {
             <Input
               className={styles.durationInput}
               border="dash"
-              value={duration}
+              placeholder='20'
+              value={duration === 0 ? '' : duration}
               onChange={e => {
                 const value = e.currentTarget.value;
                 if (Number(value) || value === '') {

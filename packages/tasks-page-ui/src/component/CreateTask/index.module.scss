@@ -64,6 +64,9 @@
   text-align: center;
   width: 60px;
   border-radius: 6px;
+  &::placeholder {
+    opacity: 0.3;
+  }
 }
 
 .divider {
@@ -82,5 +85,5 @@
   background: $white;
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.5s ease-out
+  transition: max-height 0.5s ease-out;
 }
