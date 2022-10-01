@@ -17,7 +17,6 @@ function ReloadPrompt() {
     },
   });
 
-  console.log(">offlineReady", offlineReady, needRefresh,)
   const close = () => {
     setOfflineReady(false);
     setNeedRefresh(false);
