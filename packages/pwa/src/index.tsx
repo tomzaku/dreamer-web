@@ -1,25 +1,56 @@
-import { useCallback } from 'react';
-import { usePwa } from '@dotmind/react-use-pwa';
+/// <reference types="vite-plugin-pwa/client" />
+import styles from './index.module.scss';
+import { useRegisterSW } from 'virtual:pwa-register/react';
 
-const PwaInstallation = () => {
-  const { installPrompt, isInstalled, isStandalone, isOffline, canInstall } =
-    usePwa();
+function ReloadPrompt() {
+  const {
+    offlineReady: [offlineReady, setOfflineReady],
+    needRefresh: [needRefresh, setNeedRefresh],
+    updateServiceWorker,
+  } = useRegisterSW({
+    onRegistered(r) {
+      // eslint-disable-next-line prefer-template
+      console.log('SW Registered: ' + r);
+    },
+    onRegisterError(error) {
+      console.log('SW registration error', error);
+    },
+  });
 
-  const handleInstallPrompt = useCallback(() => {
-    if (canInstall) {
-      installPrompt();
-    }
-  }, [canInstall, installPrompt]);
+  console.log(">offlineReady", offlineReady, needRefresh,)
+  const close = () => {
+    setOfflineReady(false);
+    setNeedRefresh(false);
+  };
 
-  if (isOffline) {
-    return <p>Please check your network 📶</p>;
-  }
+  return (
+    <div className={styles.container}>
+      {(offlineReady || needRefresh) && (
+        <div className={styles.toast}>
+          <div className={styles.toastMessage}>
+            {offlineReady ? (
+              <span>App ready to work offline</span>
+            ) : (
+              <span>
+                New content available, click on reload button to update.
+              </span>
+            )}
+          </div>
+          {needRefresh && (
+            <button
+              className={styles.toastButton}
+              onClick={() => updateServiceWorker(true)}
+            >
+              Reload
+            </button>
+          )}
+          <button className={styles.toastButton} onClick={() => close()}>
+            Close
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
 
-  if (!isInstalled || !isStandalone) {
-    return null;
-  }
-
-  return null;
-};
-
-export default PwaInstallation;
+export default ReloadPrompt;

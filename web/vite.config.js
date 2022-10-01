@@ -9,7 +9,7 @@ export default defineConfig({
     react(),
     visualizer(),
     VitePWA({
-      injectRegister: 'inline',
+      injectRegister: 'auto',
       manifest: {
         name: 'Dreamer',
         short_name: 'Dreamer',
