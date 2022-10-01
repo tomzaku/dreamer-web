@@ -22,6 +22,9 @@ import styles from './index.module.scss';
 import { PomodoroPhase } from './enum';
 import { GlobalTool } from '@dreamer/global-tool-common';
 
+// Utils
+import { loadSounds } from '@dreamer/notification';
+
 enum State {
   Intro,
   Pomodoro,
@@ -47,6 +50,11 @@ export default function PomodoroMobile({
   React.useEffect(() => {
     setState(State.Intro);
   }, [activeTaskId]);
+
+  React.useEffect(() => {
+    loadSounds()
+  }, [])
+
   const renderBody = () => {
     if (state === State.Intro) {
       return (

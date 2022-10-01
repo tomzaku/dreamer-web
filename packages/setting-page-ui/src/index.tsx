@@ -12,7 +12,7 @@ import { useIntl } from '@dreamer/translation';
 
 import styles from './index.module.scss';
 
-const version = '1.0.0';
+const version = '1.0.1';
 
 export default function SettingPage() {
   const { language, changeLanguage } = useIntl();

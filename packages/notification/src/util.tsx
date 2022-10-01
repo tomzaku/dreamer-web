@@ -14,10 +14,9 @@ const GOOGLE_DRIVER_NOTIFICATION_ID_MAP: Record<NotificationSoundType, string> =
   [NotificationSoundType.Chime]: '1_j8XmbMMCGXJPq-Vbk_-bdOeGjmJr7n1',
 }
 
-const { sounds, toggleSound, setSoundVolume } =
+const { sounds, toggleSound, setSoundVolume, loadSounds } =
   createGoogleDriveAudio(GOOGLE_DRIVER_NOTIFICATION_ID_MAP);
 
-export { toggleSound, setSoundVolume, sounds };
 
 export const notify = async (title: string, options?: NotificationOptions) => {
   await toggleSound(NotificationSoundType.MusicBox, true)
@@ -59,3 +58,4 @@ export const notify = async (title: string, options?: NotificationOptions) => {
   }
 };
 
+export { toggleSound, setSoundVolume, sounds, loadSounds };

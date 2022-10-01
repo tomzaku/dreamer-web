@@ -27,9 +27,16 @@ export const createGoogleDriveAudio = <T extends string>(
     }
     sounds[typeSound].volume = volume;
   };
+  const loadSounds = async (typeSounds: T[] = Object.keys(googleDriverIdMap) as T[]) => {
+    const result = await Promise.all(typeSounds.map(loadTypeSound)) 
+    typeSounds.forEach((typeSound, index) => {
+      sounds[typeSound] = result[index]
+    })
+  }
   return {
     toggleSound,
     setSoundVolume,
     sounds,
+    loadSounds
   };
 };
