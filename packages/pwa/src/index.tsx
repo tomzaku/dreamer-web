@@ -16,9 +16,7 @@ const PwaInstallation = () => {
   }
 
   if (!isInstalled || !isStandalone) {
-    return (
-      null
-    );
+    return null;
   }
 
   return null;
