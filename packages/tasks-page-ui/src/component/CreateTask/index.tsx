@@ -100,6 +100,7 @@ export default function CreateTask({ className }: { className?: string }) {
         <div className={styles.footer}>
           <div>
             <Input
+              type="number"
               className={styles.durationInput}
               border="dash"
               value={duration === 0 ? '' : duration}

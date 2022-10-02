@@ -10,6 +10,7 @@
     "@dreamer/tasks-page-common": "^1.0.0",
     "@dreamer/timer-hook": "^1.0.0",
     "@dreamer/translation": "^1.0.0",
+    "@dreamer/pomodoro-common": "^1.0.0",
     "@moon-ui/button": "^1.0.0",
     "@moon-ui/division": "^1.0.0",
     "@moon-ui/drawer": "^1.0.0",

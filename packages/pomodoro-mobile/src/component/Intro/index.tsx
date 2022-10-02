@@ -6,6 +6,9 @@ import SlideToPass from '@dreamer/slide-to-pass';
 
 import styles from './index.module.scss';
 
+// Hooks
+import { usePomodoro } from '@dreamer/pomodoro-common';
+
 // Constants
 import { ONE_MINUTE } from '../../constant';
 import Header from '../Header';
@@ -15,6 +18,7 @@ type Props = {
   onSubmit: () => void;
 };
 export default function Intro({ onClickBackButton, onSubmit }: Props) {
+  const { pomodoro: duration } = usePomodoro()
   return (
     <div className={styles.container}>
       <div className={styles.body}>
@@ -34,7 +38,7 @@ export default function Intro({ onClickBackButton, onSubmit }: Props) {
             Grow your tree
           </Typography.Paragraph>
         </div>
-        <Timer className={styles.time} time={25 * ONE_MINUTE} />
+        <Timer className={styles.time} time={duration} />
         <SelectTask />
       </div>
       <div className={styles.footer}>

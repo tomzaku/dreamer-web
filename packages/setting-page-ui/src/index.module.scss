@@ -1,5 +1,6 @@
 @import '@moon-ui/app-scss/metric';
 @import '@moon-ui/app-scss/color';
+@import '@moon-ui/app-scss/function';
 
 .container {
   margin-top: $spacing-md;
@@ -16,4 +17,19 @@
   text-align: center;
   margin-bottom: $spacing-md;
   color: $black24;
+}
+ 
+.durationInput {
+  font-size: toRem(20px);
+  margin-right: 6px;
+  text-align: center;
+  width: 60px;
+  border-radius: 6px;
+  &::placeholder {
+    opacity: 0.3;
+  }
+}
+
+.icon {
+  fill: $black50
 }

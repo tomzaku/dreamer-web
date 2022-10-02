@@ -7,20 +7,20 @@ import Timer from '../Timer';
 import { notify } from '@dreamer/notification';
 
 // Hooks
+import { usePomodoro } from '@dreamer/pomodoro-common';
 import { useTimer } from '@dreamer/timer-hook';
 
 import styles from './index.module.scss';
 import SelectTask from '../SelectTask';
 import Button3D from '../Button3D';
 
-const ONE_MINUTE = 60 * 1000;
-
 type Props = {
   onTimeUp: () => void
 }
 
 export default function Pomodoro({onTimeUp}: Props) {
-  const timer = useTimer({ duration: 25 * ONE_MINUTE });
+  const { pomodoro: duration } = usePomodoro()
+  const timer = useTimer({ duration });
   React.useEffect(() => {
     if (timer.time === 0) {
       notify("Let's break up", {});

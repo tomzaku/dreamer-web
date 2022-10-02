@@ -12,9 +12,9 @@ import { notify } from '@dreamer/notification';
 
 // Hooks
 import { useTimer } from '@dreamer/timer-hook';
+import { usePomodoro } from '@dreamer/pomodoro-common';
 
 import styles from './index.module.scss';
-import { ONE_MINUTE } from '../../constant';
 
 
 type Props = {
@@ -22,7 +22,8 @@ type Props = {
 }
 
 export default function LongBreak({onTimeUp}: Props) {
-  const timer = useTimer({ duration: 15 * ONE_MINUTE });
+  const { longBreak: duration } = usePomodoro()
+  const timer = useTimer({ duration });
   React.useEffect(() => {
     if (timer.time === 0) {
       notify("Let's continue", {});
