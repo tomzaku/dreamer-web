@@ -18,7 +18,7 @@ import styles from './index.module.scss';
 import RecommendedTaskItem from '../RecommendedTaskItem';
 
 const ONE_MINUTE = 60 * 1000;
-const INIT_DURATION = 0;
+const INIT_DURATION = 20;
 
 export default function CreateTask({ className }: { className?: string }) {
   const intl = useIntl();
@@ -78,7 +78,6 @@ export default function CreateTask({ className }: { className?: string }) {
           })}
           className={styles.input}
           onFocus={() => {
-            console.log('>>>>>>', detectMobile());
             setFocus(true);
             if (detectMobile()) {
               inputRef.current?.scrollIntoView({
@@ -103,7 +102,6 @@ export default function CreateTask({ className }: { className?: string }) {
             <Input
               className={styles.durationInput}
               border="dash"
-              placeholder='20'
               value={duration === 0 ? '' : duration}
               onChange={e => {
                 const value = e.currentTarget.value;

@@ -15,6 +15,7 @@ import cx from 'classnames';
 import { useIntl } from '@dreamer/translation';
 import { useTask } from '@dreamer/tasks-page-common';
 import { useGlobalTool } from '@dreamer/global-tool-common';
+import { useWakeLockPwa } from '@dreamer/global';
 
 import styles from './index.module.scss';
 
@@ -43,17 +44,20 @@ export default function PomodoroMobile({
     PomodoroPhase.Pomodoro
   );
   const [modalVisible, setModalVisible] = React.useState(false);
-  const [modalInfo, setModalInfo] = React.useState<PomodoroPhase>(PomodoroPhase.Pomodoro);
+  const [modalInfo, setModalInfo] = React.useState<PomodoroPhase>(
+    PomodoroPhase.Pomodoro
+  );
   const { activeTaskId } = useTask();
   const { open } = useGlobalTool();
+  useWakeLockPwa()
 
   React.useEffect(() => {
     setState(State.Intro);
   }, [activeTaskId]);
 
   React.useEffect(() => {
-    loadSounds()
-  }, [])
+    loadSounds();
+  }, []);
 
   const renderBody = () => {
     if (state === State.Intro) {
@@ -105,7 +109,7 @@ export default function PomodoroMobile({
                 className={cx(
                   styles.tabName,
                   pomodoroPhase === PomodoroPhase.Pomodoro &&
-                  styles.tabNameActive
+                    styles.tabNameActive
                 )}
                 onClick={() => {
                   if (pomodoroPhase !== PomodoroPhase.Pomodoro) {
@@ -123,7 +127,7 @@ export default function PomodoroMobile({
                 className={cx(
                   styles.tabName,
                   pomodoroPhase === PomodoroPhase.ShortBreak &&
-                  styles.tabNameActive
+                    styles.tabNameActive
                 )}
                 onClick={() => {
                   if (pomodoroPhase !== PomodoroPhase.ShortBreak) {
@@ -141,7 +145,7 @@ export default function PomodoroMobile({
                 className={cx(
                   styles.tabName,
                   pomodoroPhase === PomodoroPhase.LongBreak &&
-                  styles.tabNameActive
+                    styles.tabNameActive
                 )}
                 onClick={() => {
                   if (pomodoroPhase !== PomodoroPhase.LongBreak) {
