@@ -23,6 +23,7 @@ type Props = {
   disabled?: boolean;
   hasDivision: boolean;
   taskId: string;
+  style?: React.CSSProperties
 };
 
 const getNextTaskStatus = (
@@ -64,12 +65,13 @@ export default function CurrentTaskItem({
   disabled,
   hasDivision,
   taskId,
+  style,
 }: Props) {
   const { changeTaskStatus } = useTask();
   const { open } = useGlobalTool();
   const nextStatus = getNextTaskStatus(status, { duration, commit });
   return (
-    <div>
+    <div style={style}>
       <div className={cx(styles.container, disabled && styles.disabled)}>
         <div className={styles.header}>
           <Title noMargin level={5}>

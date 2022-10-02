@@ -1,5 +1,6 @@
 // Component
 import CurrentTaskItem from '../CurrentTaskItem';
+import { Motion, spring } from 'react-motion';
 
 // Hooks
 import { useTask } from '@dreamer/tasks-page-common';
@@ -32,26 +33,36 @@ export default function CurrentListTask({ className }: Props) {
       </Paragraph>
       <div className={styles.body}>
         {currentTasks.map(({ commit, id, name, duration, status }, index) => (
-          <CurrentTaskItem
-            key={id}
-            title={name}
-            taskId={id}
-            commit={commit}
-            // TODO: Add Project later
-            project={'Other'}
-            duration={duration}
-            status={status}
-            disabled={Boolean(activeTaskId && activeTaskId !== id)}
-            hasDivision={
-              status === TaskStatus.Processing ||
-              index !== currentTasks.length - 1
-            }
-          />
+          <Motion key={id} defaultStyle={{ opacity: 0, scale: 1.2 }} style={{ opacity: spring(1), scale: spring(1) }}>
+            {value => (
+              <CurrentTaskItem
+                key={id}
+                title={name}
+                taskId={id}
+                commit={commit}
+                style={{
+                  opacity: value.opacity,
+                  transform: `scale(${value.scale})`
+                }}
+                // TODO: Add Project later
+                project={'Other'}
+                duration={duration}
+                status={status}
+                disabled={Boolean(activeTaskId && activeTaskId !== id)}
+                hasDivision={
+                  status === TaskStatus.Processing ||
+                  index !== currentTasks.length - 1
+                }
+              />
+            )}
+          </Motion>
         ))}
       </div>
       {currentTasks.length === 0 && (
         <div className={styles.empty}>
-          <Typography.Paragraph isDescription>Your task is empty</Typography.Paragraph>
+          <Typography.Paragraph isDescription>
+            Your task is empty
+          </Typography.Paragraph>
         </div>
       )}
     </div>

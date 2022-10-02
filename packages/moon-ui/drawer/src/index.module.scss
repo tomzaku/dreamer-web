@@ -11,11 +11,8 @@
   min-width: 100vw;
   overflow: hidden;
   transform: translateY(0%);
-  /* opacity: 1; */
   position: fixed;
   top: 100%;
-  /* bottom: 0; */
-  /* transition: 0.1s ease; */
   z-index: $drawer-z-index;
   @include media('>=tablet') {
     left: unset;

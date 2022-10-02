@@ -37,7 +37,7 @@ export default function CreateTask({ className }: { className?: string }) {
       projectId: '-999',
     });
     setTaskText('');
-    inputRef.current?.focus();
+    /* inputRef.current?.focus(); */
   };
   useKeyListener(e => {
     if (e.key === 'a') {
@@ -134,7 +134,7 @@ export default function CreateTask({ className }: { className?: string }) {
       </div>
       <div
         className={cx(
-          !taskText && !focus ? styles.hiddenRecommend : styles.recommend
+          !taskText && !focus || recommendedTasks.length == 0 ? styles.hiddenRecommend : styles.recommend
         )}
       >
         <div className={styles.divider} />

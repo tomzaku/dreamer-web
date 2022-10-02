@@ -122,7 +122,7 @@ export const withTask = <P extends {}>(
         ];
       }
       if (!text)
-        return Object.values(task).map(t => ({ ...t, project: 'Other' }));
+        return []
       return Object.values(task)
         .filter(({ name }) => name.toLowerCase().includes(text.toLowerCase()))
         .map(i => ({ ...i, project: 'Other' }));
