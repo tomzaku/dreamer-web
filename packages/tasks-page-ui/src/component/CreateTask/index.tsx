@@ -18,7 +18,7 @@ import styles from './index.module.scss';
 import RecommendedTaskItem from '../RecommendedTaskItem';
 
 const ONE_MINUTE = 60 * 1000;
-const INIT_DURATION = 20;
+const INIT_DURATION = 0;
 
 export default function CreateTask({ className }: { className?: string }) {
   const intl = useIntl();
@@ -36,8 +36,8 @@ export default function CreateTask({ className }: { className?: string }) {
       duration: duration * ONE_MINUTE,
       projectId: '-999',
     });
-    setDuration(INIT_DURATION);
     setTaskText('');
+    inputRef.current?.focus();
   };
   useKeyListener(e => {
     if (e.key === 'a') {
@@ -103,6 +103,7 @@ export default function CreateTask({ className }: { className?: string }) {
               type="number"
               className={styles.durationInput}
               border="dash"
+              placeholder="0"
               value={duration === 0 ? '' : duration}
               onChange={e => {
                 const value = e.currentTarget.value;

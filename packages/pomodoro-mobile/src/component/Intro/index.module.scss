@@ -9,12 +9,13 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 1;
 }
 
 .icon {
   fill: $white;
   margin: $spacing-md;
-  z-index: 1;
 }
 
 .headerBackground {
@@ -25,6 +26,7 @@
   position: fixed;
   top: -50%;
   width: 260vw;
+  overflow: hidden;
 }
 
 .christmasTree {
@@ -50,7 +52,8 @@
 .body {
   display: flex;
   flex-direction: column;
-  flex: 1
+  flex: 1;
+  overflow: hidden;
 }
 
 .footer {

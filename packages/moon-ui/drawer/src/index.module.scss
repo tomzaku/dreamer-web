@@ -9,11 +9,13 @@
   min-height: fill-available;
   min-height: -webkit-fill-available;
   min-width: 100vw;
-  opacity: 1;
+  overflow: hidden;
+  transform: translateY(0%);
+  /* opacity: 1; */
   position: fixed;
-  top: 0;
-  transform: translateY(0);
-  transition: 0.5s ease;
+  top: 100%;
+  /* bottom: 0; */
+  /* transition: 0.1s ease; */
   z-index: $drawer-z-index;
   @include media('>=tablet') {
     left: unset;
@@ -22,11 +24,3 @@
     width: 100%;
   }
 }
-
-.hidden {
-  opacity: 0;
-  transform: translateY(100%);
-  transition: 0.5s ease;
-  visibility: hidden;
-}
-
