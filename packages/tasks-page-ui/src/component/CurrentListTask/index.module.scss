@@ -1,21 +1,22 @@
 @import '@moon-ui/app-scss/color';
+@import '@moon-ui/app-scss/metric';
 
 .body {
   background-color: $white;
   box-shadow: 0 7px 18px $card-shadow;
 }
 
-.title {
-  margin-left: 16px;
-}
-
 .empty {
   height: 100px;
   align-items: center;
   justify-content: center;
-  margin-left: 16px;
-  margin-right: 16px;
+  margin-left: $spacing-md;
+  margin-right: $spacing-md;
   display: flex;
   border: 1px dashed $black50;
   border-radius: 6px;
+}
+
+.heading {
+  margin-bottom: $spacing-md;
 }

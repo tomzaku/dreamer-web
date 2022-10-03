@@ -11,12 +11,13 @@ type Props = Omit<
   size?: 'md' | 'lg';
 };
 
-export default function Checkbox({ size, className, disabled }: Props) {
+export default function Checkbox({ size, className, disabled, ...restProps }: Props) {
   return (
     <input
       className={cx(style.container, size === 'lg' && style.lg, className)}
       type="checkbox"
       disabled={disabled}
+      {...restProps}
     />
   );
 }

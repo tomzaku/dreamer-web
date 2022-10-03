@@ -1,20 +1,20 @@
 // Component
 import CurrentTaskItem from '../CurrentTaskItem';
-import { Motion, spring } from 'react-motion';
+import { Motion } from 'react-motion';
 
 // Hooks
 import { useTask } from '@dreamer/tasks-page-common';
-// Util
-import cx from 'classnames';
 import { useIntl } from '@dreamer/translation';
 
-// Enum
-import { TaskStatus } from '@dreamer/tasks-page-common';
+// Util
+import cx from 'classnames';
+import { spring } from 'react-motion';
 
 // Type
-import Typography, { Paragraph } from '@moon-ui/typography';
+import Typography from '@moon-ui/typography';
 
 import styles from './index.module.scss';
+import Checkbox from '@moon-ui/checkbox';
 
 type Props = {
   className?: string;
@@ -22,43 +22,55 @@ type Props = {
 
 export default function CurrentListTask({ className }: Props) {
   const intl = useIntl();
-  const { currentTasks, activeTaskId } = useTask();
+  const { activeTaskId, currentTaskIds, filter, setFilter } = useTask();
   return (
-    <div className={cx(className)}>
-      <Paragraph className={styles.title}>
+    <div className={className}>
+      <Typography.Paragraph noMargin>
         {intl.formatMessage({
           id: 'ListTask.label-your-list-tasks',
           defaultMessage: 'Your List Task',
         })}
-      </Paragraph>
+      </Typography.Paragraph>
+      <div className={styles.heading}>
+        <Checkbox
+          checked={filter.showDoneTask}
+          onChange={() => {
+            setFilter({
+              ...filter,
+              showDoneTask: !filter.showDoneTask,
+            });
+          }}
+        />
+        <Typography.Text isDescription>
+          {intl.formatMessage({
+            id: 'ListTask.label-show-done-task',
+            defaultMessage: 'Show Done Task',
+          })}
+        </Typography.Text>
+      </div>
       <div className={styles.body}>
-        {currentTasks.map(({ commit, id, name, duration, status }, index) => (
-          <Motion key={id} defaultStyle={{ opacity: 0, scale: 1.2 }} style={{ opacity: spring(1), scale: spring(1) }}>
+        {currentTaskIds.map((id, index) => (
+          <Motion
+            key={id}
+            defaultStyle={{ opacity: 0, scale: 1.2 }}
+            style={{ opacity: spring(1), scale: spring(1) }}
+          >
             {value => (
               <CurrentTaskItem
                 key={id}
-                title={name}
                 taskId={id}
-                commit={commit}
                 style={{
                   opacity: value.opacity,
-                  transform: `scale(${value.scale})`
+                  transform: `scale(${value.scale})`,
                 }}
-                // TODO: Add Project later
-                project={'Other'}
-                duration={duration}
-                status={status}
                 disabled={Boolean(activeTaskId && activeTaskId !== id)}
-                hasDivision={
-                  status === TaskStatus.Processing ||
-                  index !== currentTasks.length - 1
-                }
+                hasDivision={index !== currentTaskIds.length - 1}
               />
             )}
           </Motion>
         ))}
       </div>
-      {currentTasks.length === 0 && (
+      {currentTaskIds.length === 0 && (
         <div className={styles.empty}>
           <Typography.Paragraph isDescription>
             Your task is empty

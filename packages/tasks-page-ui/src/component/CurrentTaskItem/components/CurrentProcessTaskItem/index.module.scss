@@ -1,0 +1,63 @@
+@import '@moon-ui/app-scss/color';
+@import '@moon-ui/app-scss/metric';
+
+.container {
+  border-radius: 10px;
+  padding: 10px 16px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.actionGroup {
+  display: flex
+}
+
+.actionText {
+  color: $primary-dark;
+  margin-left: $spacing-xs;
+}
+
+.actionButton {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  background: $black6;
+  padding: 0 $spacing-md;
+  border-radius: 6px;
+}
+
+.actionIcon {
+  width: 16px;
+  height: 16px;
+  fill: $primary-dark;
+}
+
+.more {
+  margin-left: 6px;
+}
+
+.project {
+  color: $black50;
+}
+
+.body {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.bodyProcessing {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.progress {
+  background-color: $secondary;
+  height: 5px;
+}

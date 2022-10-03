@@ -16,6 +16,8 @@ export type Task = {
   id: string;
 }
 
+export type ListTask = Record<string, Task>
+
 export type TaskFullData = {
   name: string;
   duration?: number;
@@ -25,4 +27,9 @@ export type TaskFullData = {
   status: TaskStatus
   createdAt: string;
   id: string;
+}
+
+export type Filter = {
+  showDoneTask: boolean,
+  disableAddProgressTaskAtTop: boolean
 }

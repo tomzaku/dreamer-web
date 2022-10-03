@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Utils
-import { uniqueId, useLocalStorage } from '@dreamer/global';
+import { pipe, uniqueId, useLocalStorage } from '@dreamer/global';
 
 // Context
 import { TaskContext } from './context';
@@ -10,13 +10,17 @@ import { TaskContext } from './context';
 import { TaskStatus } from './enum';
 
 // Types
-import { Task, TaskParams } from './type';
+import { Filter, ListTask, Task, TaskParams } from './type';
 
 export const withTask = <P extends {}>(
   WrapComponent: React.ComponentType<P>
 ) => {
   return function (props: P) {
-    const [task, setTask] = useLocalStorage<Record<string, Task>>('tasks', {});
+    const [task, setTask] = useLocalStorage<ListTask>('tasks', {});
+    const [filter, setFilter] = React.useState<Filter>({
+      showDoneTask: false,
+      disableAddProgressTaskAtTop: false,
+    });
     const activeTask = React.useRef<Task>();
     const createTask = (newTask: TaskParams) => {
       const id = uniqueId();
@@ -30,23 +34,43 @@ export const withTask = <P extends {}>(
         },
       });
     };
-    const orderedTasks = Object.values(task).sort((a, b) => {
-      const aDate = a.createdAt && new Date(a.createdAt);
-      const bDate = b.createdAt && new Date(b.createdAt);
-
-      if (aDate && bDate) {
-        return bDate.getTime() - aDate.getTime();
-      }
-      return 0;
-    });
 
     const activeTaskId = Object.values(task).find(
       ({ status }) => status === TaskStatus.Processing
     )?.id;
 
-    const currentTasks = activeTaskId
-      ? [task[activeTaskId], ...orderedTasks.filter(t => t.id !== activeTaskId)]
-      : orderedTasks;
+    const sortTasks = (tasks: Task[]) => {
+      return tasks.sort((a, b) => {
+        const aDate = a.createdAt && new Date(a.createdAt);
+        const bDate = b.createdAt && new Date(b.createdAt);
+
+        if (aDate && bDate) {
+          return bDate.getTime() - aDate.getTime();
+        }
+        return 0;
+      });
+    };
+
+    const addProgressTaskAtTop = (tasks: Task[]) => {
+      if (filter.disableAddProgressTaskAtTop) return task;
+      return activeTaskId
+        ? [task[activeTaskId], ...tasks.filter(t => t.id !== activeTaskId)]
+        : tasks;
+    };
+    const removeDoneTask = (tasks: Task[]) => {
+      if (filter.showDoneTask) return tasks;
+      return tasks.filter(t => t.status !== TaskStatus.Done);
+    };
+    const getTaskIds = (task: Task[]) => task.map(t => t.id);
+
+    const getCurrentTaskIds = (task: ListTask) => {
+      return pipe<string[]>(
+        sortTasks,
+        addProgressTaskAtTop,
+        removeDoneTask,
+        getTaskIds
+      )(Object.values(task));
+    };
 
     const changeTaskStatus = (taskId: string, newStatus: TaskStatus) => {
       setTask({
@@ -98,6 +122,11 @@ export const withTask = <P extends {}>(
       activeTaskId && changeTaskStatus(activeTaskId, TaskStatus.Pause);
     };
 
+    const deleteTask = (taskId: string) => {
+      const { [taskId]: _, ...restTask } = task;
+      setTask(restTask);
+    };
+
     const getRecommendedTasks = (text?: string) => {
       if (Object.values(task).length === 0) {
         return [
@@ -121,8 +150,7 @@ export const withTask = <P extends {}>(
           },
         ];
       }
-      if (!text)
-        return []
+      if (!text) return [];
       return Object.values(task)
         .filter(({ name }) => name.toLowerCase().includes(text.toLowerCase()))
         .map(i => ({ ...i, project: 'Other' }));
@@ -132,13 +160,16 @@ export const withTask = <P extends {}>(
       <TaskContext.Provider
         value={{
           task,
-          currentTasks,
+          currentTaskIds: getCurrentTaskIds(task),
           createTask,
           activeTaskId,
           changeTaskStatus,
+          deleteTask,
           getTaskDetail,
           cancelProcessingTask,
           getRecommendedTasks,
+          filter,
+          setFilter,
         }}
       >
         <WrapComponent {...props} />
