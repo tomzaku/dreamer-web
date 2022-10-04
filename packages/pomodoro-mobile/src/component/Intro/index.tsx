@@ -10,19 +10,19 @@ import styles from './index.module.scss';
 import { usePomodoro } from '@dreamer/pomodoro-common';
 
 // Constants
-import { ONE_MINUTE } from '../../constant';
 import Header from '../Header';
 
 type Props = {
   onClickBackButton?: () => void;
   onSubmit: () => void;
 };
+
 export default function Intro({ onClickBackButton, onSubmit }: Props) {
   const { pomodoro: duration } = usePomodoro()
   return (
     <div className={styles.container}>
       <div className={styles.body}>
-        <div className={styles.headerBackground} />
+        {/* <div className={styles.headerBackground} /> */}
         <Header onClickBackButton={onClickBackButton} />
         <div className={styles.imgContainer}>
           <img src={ChristmasTreeImg} className={styles.christmasTree} />

@@ -1,13 +1,15 @@
+import React from 'react';
+
 // Component
 import CurrentTaskItem from '../CurrentTaskItem';
 import { Motion } from 'react-motion';
+import TaskItemActionModal from '../TaskItemActionModal';
 
 // Hooks
 import { useTask } from '@dreamer/tasks-page-common';
 import { useIntl } from '@dreamer/translation';
 
 // Util
-import cx from 'classnames';
 import { spring } from 'react-motion';
 
 // Type
@@ -22,31 +24,40 @@ type Props = {
 
 export default function CurrentListTask({ className }: Props) {
   const intl = useIntl();
+  const [modalVisible, setModalVisible] = React.useState(false);
+  const [modalInfo, setModalInfo] = React.useState({ taskId: '' });
   const { activeTaskId, currentTaskIds, filter, setFilter } = useTask();
   return (
     <div className={className}>
-      <Typography.Paragraph noMargin>
-        {intl.formatMessage({
-          id: 'ListTask.label-your-list-tasks',
-          defaultMessage: 'Your List Task',
-        })}
-      </Typography.Paragraph>
-      <div className={styles.heading}>
-        <Checkbox
-          checked={filter.showDoneTask}
-          onChange={() => {
-            setFilter({
-              ...filter,
-              showDoneTask: !filter.showDoneTask,
-            });
-          }}
-        />
-        <Typography.Text isDescription>
+      <TaskItemActionModal
+        visible={modalVisible}
+        taskId={modalInfo.taskId}
+        onDismiss={() => setModalVisible(false)}
+      />
+      <div className={styles.header}>
+        <Typography.Paragraph noMargin>
           {intl.formatMessage({
-            id: 'ListTask.label-show-done-task',
-            defaultMessage: 'Show Done Task',
+            id: 'ListTask.label-your-list-tasks',
+            defaultMessage: 'Your List Task',
           })}
-        </Typography.Text>
+        </Typography.Paragraph>
+        <div className={styles.heading}>
+          <Checkbox
+            checked={filter.showDoneTask}
+            onChange={() => {
+              setFilter({
+                ...filter,
+                showDoneTask: !filter.showDoneTask,
+              });
+            }}
+          />
+          <Typography.Text isDescription>
+            {intl.formatMessage({
+              id: 'ListTask.label-show-done-task',
+              defaultMessage: 'Show Done Task',
+            })}
+          </Typography.Text>
+        </div>
       </div>
       <div className={styles.body}>
         {currentTaskIds.map((id, index) => (
@@ -58,6 +69,10 @@ export default function CurrentListTask({ className }: Props) {
             {value => (
               <CurrentTaskItem
                 key={id}
+                onLongPress={taskId => {
+                  setModalVisible(true);
+                  setModalInfo({ taskId });
+                }}
                 taskId={id}
                 style={{
                   opacity: value.opacity,

@@ -9,6 +9,7 @@ type Props = {
   visible: boolean;
   className?: string;
 };
+
 export default function Drawer({ children, visible, className }: Props) {
   const rendered = React.useRef(false)
   React.useEffect(() => {

@@ -6,7 +6,7 @@ import TimerButton from '../../../TimerButton';
 import { getNextTaskStatus } from '../../util';
 
 // Hooks
-import { useGlobalTool } from '@dreamer/global-tool-common';
+import { useLongPress } from '@dreamer/global';
 import { TaskStatus, useTask } from '@dreamer/tasks-page-common';
 
 import styles from './index.module.scss';
@@ -15,23 +15,26 @@ type Props = {
   hasDivision: boolean;
   taskId: string;
   disabled?: boolean;
+  onLongPress?: (taskId: string) => void;
 };
 
 export default function CommonTaskItem({
   taskId,
   hasDivision,
   disabled,
+  onLongPress,
 }: Props) {
   const { task, changeTaskStatus } = useTask();
-  const { open } = useGlobalTool();
-
   if (!task) return null;
 
   const { duration, status, name, commit = 0 } = task[taskId];
   const projectName = 'Other';
   const nextStatus = getNextTaskStatus(status, { duration, commit });
+  const cardLongPress = useLongPress(() => {
+    onLongPress && onLongPress(taskId)
+  });
   return (
-    <div>
+    <div {...cardLongPress}>
       <div className={styles.container}>
         <div className={styles.header}>
           <Typography.Title noMargin level={5}>

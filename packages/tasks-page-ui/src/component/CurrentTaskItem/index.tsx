@@ -1,16 +1,18 @@
+
 import { TaskStatus } from '@dreamer/tasks-page-common';
+import CurrentProcessTaskItem from './components/CurrentProcessTaskItem';
+import CommonTaskItem from './components/CommonTaskItem';
 
 // Hooks
 import { useTask } from '@dreamer/tasks-page-common';
 
-import CurrentProcessTaskItem from './components/CurrentProcessTaskItem';
-import CommonTaskItem from './components/CommonTaskItem';
 
 type Props = {
   disabled?: boolean;
   hasDivision: boolean;
   taskId: string;
   style?: React.CSSProperties;
+  onLongPress?: (taskId: string) => void;
 };
 
 export default function CurrentTaskItem({
@@ -18,6 +20,7 @@ export default function CurrentTaskItem({
   hasDivision,
   taskId,
   style,
+  onLongPress
 }: Props) {
   const { task } = useTask();
   if (!task) return null;
@@ -31,6 +34,7 @@ export default function CurrentTaskItem({
           disabled={disabled}
           hasDivision={hasDivision}
           taskId={taskId}
+          onLongPress={onLongPress}
         />
       )}
     </div>

@@ -1,0 +1,29 @@
+@import '@moon-ui/app-scss/color';
+@import '@moon-ui/app-scss/metric';
+@import '@moon-ui/app-scss/function';
+
+.container {
+  display: flex;
+  position: fixed;
+  background: $white;
+  min-height: 200px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  bottom: 0;
+  width: 100%;
+  box-shadow: 0 8px 25px $card-shadow;
+  border: 1px solid $black24;
+  z-index:  $modal-z-index;
+}
+
+.overlay {
+  background: $black50;
+  position: fixed;
+  height: 100%;
+  min-height: fill-available;
+  min-height: -webkit-fill-available;
+  width: 100%;
+  z-index: $modal-z-index;
+  left: 0;
+  top: 0;
+}

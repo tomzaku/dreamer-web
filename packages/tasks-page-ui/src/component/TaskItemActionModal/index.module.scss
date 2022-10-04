@@ -1,0 +1,21 @@
+@import '@moon-ui/app-scss/metric';
+
+.container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+.title {
+  text-align: center;
+  margin: $spacing-md 0;
+}
+
+.card {
+  display: flex;
+  padding: $spacing-sm $spacing-md;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+}
