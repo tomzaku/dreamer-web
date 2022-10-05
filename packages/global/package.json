@@ -10,5 +10,8 @@
   "license": "ISC",
   "devDependencies": {
     "@types/react-motion": "^0.0.33"
+  },
+  "dependencies": {
+    "use-long-press": "^2.0.2"
   }
 }

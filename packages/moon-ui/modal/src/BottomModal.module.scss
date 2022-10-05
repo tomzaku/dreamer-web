@@ -3,17 +3,15 @@
 @import '@moon-ui/app-scss/function';
 
 .container {
-  display: flex;
-  position: fixed;
   background: $white;
   min-height: 200px;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  bottom: 0;
   width: 100%;
   box-shadow: 0 8px 25px $card-shadow;
   border: 1px solid $black24;
   z-index:  $modal-z-index;
+  max-width: 600px;
 }
 
 .overlay {
@@ -26,4 +24,7 @@
   z-index: $modal-z-index;
   left: 0;
   top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
 }

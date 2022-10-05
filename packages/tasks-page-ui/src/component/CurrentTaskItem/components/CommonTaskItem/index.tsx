@@ -9,6 +9,9 @@ import { getNextTaskStatus } from '../../util';
 import { useLongPress } from '@dreamer/global';
 import { TaskStatus, useTask } from '@dreamer/tasks-page-common';
 
+// Enums
+import { LongPressDetectEvents } from '@dreamer/global';
+
 import styles from './index.module.scss';
 
 type Props = {
@@ -32,9 +35,12 @@ export default function CommonTaskItem({
   const nextStatus = getNextTaskStatus(status, { duration, commit });
   const cardLongPress = useLongPress(() => {
     onLongPress && onLongPress(taskId)
+  }, {
+    /* detect: LongPressDetectEvents.TOUCH, */
+    cancelOnMovement: true,
   });
   return (
-    <div {...cardLongPress}>
+    <div {...cardLongPress()}>
       <div className={styles.container}>
         <div className={styles.header}>
           <Typography.Title noMargin level={5}>

@@ -11,7 +11,8 @@ type Props = {
 export default function BottomModal({ visible, content, onDismiss }: Props) {
   if (!visible) return null;
   return <>
-  <div className={styles.overlay} onClick={onDismiss} />
-  <div className={styles.container}>{content}</div>
+  <div className={styles.overlay} onClick={onDismiss}>
+      <div className={styles.container}>{content}</div>
+  </div>
   </>
 }
