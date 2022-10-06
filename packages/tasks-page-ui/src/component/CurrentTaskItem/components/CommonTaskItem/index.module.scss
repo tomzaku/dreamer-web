@@ -53,7 +53,14 @@
   }
 }
 
-.rightHeader {
+.section {
   display: flex;
   align-items: flex-start;
+}
+
+.dragIcon {
+  cursor: move;
+	cursor: -webkit-grabbing;
+  fill: $black24;
+  height: 20px;
 }

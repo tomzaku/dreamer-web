@@ -12,11 +12,29 @@ import { TaskStatus } from './enum';
 // Types
 import { Filter, ListTask, Task, TaskParams } from './type';
 
+const sortTasks = (tasks: Task[]) => {
+  return tasks.sort((a, b) => {
+    const aDate = a.createdAt && new Date(a.createdAt);
+    const bDate = b.createdAt && new Date(b.createdAt);
+
+    if (aDate && bDate) {
+      return bDate.getTime() - aDate.getTime();
+    }
+    return 0;
+  });
+};
+
+const getTaskIds = (task: Task[]) => task.map(t => t.id);
+
 export const withTask = <P extends {}>(
   WrapComponent: React.ComponentType<P>
 ) => {
-  return function (props: P) {
+  return function(props: P) {
     const [task, setTask] = useLocalStorage<ListTask>('tasks', {});
+    const [currentTaskIds, setCurrentTaskIds] = useLocalStorage<string[]>(
+      'currentTasksIds',
+      pipe<string[]>(sortTasks, getTaskIds)(Object.values(task || {}))
+    );
     const [filter, setFilter] = React.useState<Filter>({
       showDoneTask: false,
       disableAddProgressTaskAtTop: false,
@@ -33,23 +51,12 @@ export const withTask = <P extends {}>(
           id,
         },
       });
+      setCurrentTaskIds([id, ...currentTaskIds])
     };
 
     const activeTaskId = Object.values(task).find(
       ({ status }) => status === TaskStatus.Processing
     )?.id;
-
-    const sortTasks = (tasks: Task[]) => {
-      return tasks.sort((a, b) => {
-        const aDate = a.createdAt && new Date(a.createdAt);
-        const bDate = b.createdAt && new Date(b.createdAt);
-
-        if (aDate && bDate) {
-          return bDate.getTime() - aDate.getTime();
-        }
-        return 0;
-      });
-    };
 
     const addProgressTaskAtTop = (tasks: Task[]) => {
       if (filter.disableAddProgressTaskAtTop) return task;
@@ -61,15 +68,13 @@ export const withTask = <P extends {}>(
       if (filter.showDoneTask) return tasks;
       return tasks.filter(t => t.status !== TaskStatus.Done);
     };
-    const getTaskIds = (task: Task[]) => task.map(t => t.id);
 
-    const getCurrentTaskIds = (task: ListTask) => {
+    const getCurrentTaskIds = (tasks: Task[]) => {
       return pipe<string[]>(
-        sortTasks,
         addProgressTaskAtTop,
         removeDoneTask,
         getTaskIds
-      )(Object.values(task));
+      )(tasks);
     };
 
     const changeTaskStatus = (taskId: string, newStatus: TaskStatus) => {
@@ -125,6 +130,7 @@ export const withTask = <P extends {}>(
     const deleteTask = (taskId: string) => {
       const { [taskId]: _, ...restTask } = task;
       setTask(restTask);
+      setCurrentTaskIds(currentTaskIds.filter(id => id !== taskId))
     };
 
     const updateTask = (taskId: string, data: Task) => {
@@ -167,7 +173,8 @@ export const withTask = <P extends {}>(
       <TaskContext.Provider
         value={{
           task,
-          currentTaskIds: getCurrentTaskIds(task),
+          currentTaskIds: getCurrentTaskIds(currentTaskIds.map(id => task[id])),
+          setCurrentTaskIds,
           createTask,
           activeTaskId,
           changeTaskStatus,

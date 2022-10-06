@@ -5,9 +5,10 @@ import TimerButton from '../../../TimerButton';
 
 // Utils
 import { getNextTaskStatus } from '../../util';
+import cx from 'classnames'
 
 // Hooks
-import { useLongPress } from '@dreamer/global';
+import { detectMobile, useLongPress } from '@dreamer/global';
 import { TaskStatus, useTask } from '@dreamer/tasks-page-common';
 import { useIntl } from '@dreamer/translation';
 
@@ -17,6 +18,7 @@ import { LongPressDetectEvents } from '@dreamer/global';
 import styles from './index.module.scss';
 import IconTrashBin from '@moon-ui/icon/IconTrashBin';
 import IconCreate from '@moon-ui/icon/IconCreate';
+import IconDrag from '@moon-ui/icon/IconDrag';
 
 type Props = {
   hasDivision: boolean;
@@ -49,21 +51,27 @@ export default function CommonTaskItem({
     {
       detect: LongPressDetectEvents.TOUCH,
       cancelOnMovement: true,
+      /* onStart: (e) => e.preventDefault() */
     }
   );
   return (
     <div
       {...cardLongPress()}
-      onMouseEnter={() => setIsHover(true)}
-      onMouseLeave={() => setIsHover(false)}
+      onMouseEnter={() => !detectMobile() && setIsHover(true)}
+      onMouseLeave={() => !detectMobile() && setIsHover(false)}
     >
       <div className={styles.container}>
-        <div className={styles.header}>
-          <Typography.Title noMargin level={5}>
-            {name}
-          </Typography.Title>
+        <div
+          className={styles.header}
+        >
+          <div className={styles.section}>
+            <IconDrag className={cx("drag-here", styles.dragIcon)} onClick={e => e.preventDefault()} />
+            <Typography.Title noMargin level={5}>
+              {name}
+            </Typography.Title>
+          </div>
           {isHover && (
-            <div className={styles.rightHeader}>
+            <div className={styles.section}>
               <div
                 onClick={() => onClickEdit && onClickEdit(taskId)}
                 className={styles.actionContainer}

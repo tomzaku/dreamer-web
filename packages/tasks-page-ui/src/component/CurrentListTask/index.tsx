@@ -4,6 +4,7 @@ import React from 'react';
 import CurrentTaskItem from '../CurrentTaskItem';
 import { Motion } from 'react-motion';
 import TaskItemActionModal from '../TaskItemActionModal';
+import { ReactSortable } from 'react-sortablejs';
 
 // Hooks
 import { useTask } from '@dreamer/tasks-page-common';
@@ -18,6 +19,7 @@ import Typography from '@moon-ui/typography';
 import styles from './index.module.scss';
 import Checkbox from '@moon-ui/checkbox';
 import EditTaskModal from '../EditTaskModal';
+import { Task } from '@dreamer/tasks-page-common/src/type';
 
 type Props = {
   className?: string;
@@ -28,14 +30,22 @@ export default function CurrentListTask({ className }: Props) {
   const [modalMobileVisible, setModalMobileVisible] = React.useState(false);
   const [modalInfo, setModalInfo] = React.useState({ taskId: '' });
   const [modalEditTaskVisible, setModalEditTaskVisible] = React.useState(false);
-  const { activeTaskId, currentTaskIds, filter, setFilter } = useTask();
+  const {
+    activeTaskId,
+    setCurrentTaskIds,
+    currentTaskIds,
+    filter,
+    setFilter,
+    task,
+  } = useTask();
+  if (!task) return null;
   return (
     <div className={className}>
       <TaskItemActionModal
         visible={modalMobileVisible}
         taskId={modalInfo.taskId}
         onDismiss={() => setModalMobileVisible(false)}
-        onClickEdit={() => setModalEditTaskVisible(true)} 
+        onClickEdit={() => setModalEditTaskVisible(true)}
       />
       <EditTaskModal
         onDismiss={() => setModalEditTaskVisible(false)}
@@ -68,34 +78,42 @@ export default function CurrentListTask({ className }: Props) {
         </div>
       </div>
       <div className={styles.body}>
-        {currentTaskIds.map((id, index) => (
-          <Motion
-            key={id}
-            defaultStyle={{ opacity: 0, scale: 1.2 }}
-            style={{ opacity: spring(1), scale: spring(1) }}
-          >
-            {value => (
-              <CurrentTaskItem
-                key={id}
-                onLongPress={taskId => {
-                  setModalMobileVisible(true);
-                  setModalInfo({ taskId });
-                }}
-                taskId={id}
-                style={{
-                  opacity: value.opacity,
-                  transform: `scale(${value.scale})`,
-                }}
-                disabled={Boolean(activeTaskId && activeTaskId !== id)}
-                hasDivision={index !== currentTaskIds.length - 1}
-                onClickEdit={taskId => {
-                  setModalEditTaskVisible(true);
-                  setModalInfo({ taskId });
-                }}
-              />
-            )}
-          </Motion>
-        ))}
+        <ReactSortable
+          handle={'.drag-here'}
+          list={currentTaskIds.map(id => task[id])}
+          setList={(tasks: Task[]) =>
+            setCurrentTaskIds(tasks.map(task => task.id))
+          }
+        >
+          {currentTaskIds.map((id, index) => (
+            <Motion
+              key={id}
+              defaultStyle={{ opacity: 0, scale: 1.2 }}
+              style={{ opacity: spring(1), scale: spring(1) }}
+            >
+              {value => (
+                <CurrentTaskItem
+                  key={id}
+                  onLongPress={taskId => {
+                    setModalMobileVisible(true);
+                    setModalInfo({ taskId });
+                  }}
+                  taskId={id}
+                  style={{
+                    opacity: value.opacity,
+                    transform: `scale(${value.scale})`,
+                  }}
+                  disabled={Boolean(activeTaskId && activeTaskId !== id)}
+                  hasDivision={index !== currentTaskIds.length - 1}
+                  onClickEdit={taskId => {
+                    setModalEditTaskVisible(true);
+                    setModalInfo({ taskId });
+                  }}
+                />
+              )}
+            </Motion>
+          ))}
+        </ReactSortable>
       </div>
       {currentTaskIds.length === 0 && (
         <div className={styles.empty}>

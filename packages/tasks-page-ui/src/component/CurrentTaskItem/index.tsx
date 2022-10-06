@@ -6,6 +6,7 @@ import CommonTaskItem from './components/CommonTaskItem';
 // Hooks
 import { useTask } from '@dreamer/tasks-page-common';
 
+import styles from './index.module.scss'
 
 type Props = {
   disabled?: boolean;
@@ -28,7 +29,7 @@ export default function CurrentTaskItem({
   if (!task) return null;
   const { status } = task[taskId];
   return (
-    <div style={style}>
+    <div className={styles.container} style={style}>
       {status === TaskStatus.Processing ? (
         <CurrentProcessTaskItem taskId={taskId} disabled={disabled} />
       ) : (
