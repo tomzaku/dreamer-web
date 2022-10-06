@@ -11,11 +11,11 @@ import { getNextTaskStatus } from '../../util';
 
 // Enums
 import { GlobalTool } from '@dreamer/global-tool-common';
-import { TaskStatus } from '@dreamer/tasks-page-common';
 
 // Hooks
 import { useGlobalTool } from '@dreamer/global-tool-common';
 import { useTask } from '@dreamer/tasks-page-common';
+import { useIntl } from '@dreamer/translation';
 
 type Props = {
   disabled?: boolean;
@@ -24,6 +24,7 @@ type Props = {
 
 export default function CurrentProcessTaskItem({ taskId, disabled }: Props) {
   const { task, changeTaskStatus } = useTask();
+  const intl = useIntl();
   const { open } = useGlobalTool();
 
   if (!task) return null;
@@ -41,24 +42,19 @@ export default function CurrentProcessTaskItem({ taskId, disabled }: Props) {
           {name}
         </Typography.Title>
         <div className={styles.actionGroup}>
-          {status === TaskStatus.Processing && (
-            <>
-              <div
-                onClick={() => open(GlobalTool.FocusMode)}
-                className={styles.actionButton}
-              >
-                <IconLaunch className={styles.actionIcon} />
-                <Typography.Text className={styles.actionText}>
-                  Focus
-                </Typography.Text>
-              </div>
-              <IconMoreVertical
-                className={styles.more}
-                width="20"
-                height="20"
-              />
-            </>
-          )}
+          <div
+            onClick={() => open(GlobalTool.FocusMode)}
+            className={styles.actionButton}
+          >
+            <IconLaunch className={styles.actionIcon} />
+            <Typography.Text className={styles.actionText}>
+              {intl.formatMessage({
+                defaultMessage: 'Focus',
+                id: 'label-focus',
+              })}
+            </Typography.Text>
+          </div>
+          <IconMoreVertical className={styles.more} width="20" height="20" />
         </div>
       </div>
       <div>

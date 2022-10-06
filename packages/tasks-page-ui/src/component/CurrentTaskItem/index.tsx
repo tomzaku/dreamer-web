@@ -13,6 +13,7 @@ type Props = {
   taskId: string;
   style?: React.CSSProperties;
   onLongPress?: (taskId: string) => void;
+  onClickEdit?: (taskId: string) => void;
 };
 
 export default function CurrentTaskItem({
@@ -20,7 +21,8 @@ export default function CurrentTaskItem({
   hasDivision,
   taskId,
   style,
-  onLongPress
+  onLongPress,
+  onClickEdit
 }: Props) {
   const { task } = useTask();
   if (!task) return null;
@@ -35,6 +37,7 @@ export default function CurrentTaskItem({
           hasDivision={hasDivision}
           taskId={taskId}
           onLongPress={onLongPress}
+          onClickEdit={onClickEdit}
         />
       )}
     </div>

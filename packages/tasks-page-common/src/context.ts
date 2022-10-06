@@ -11,6 +11,7 @@ type TaskContextType = {
   activeTaskId?: string;
   changeTaskStatus: (taskId: string, newStatus: TaskStatus) => void;
   deleteTask: (taskId: string) => void;
+  updateTask: (taskId: string, data: Task) => void;
   getTaskDetail: (taskId: string) => Task | undefined;
   getRecommendedTasks: (text?: string) => TaskFullData[];
   cancelProcessingTask: () => void
@@ -22,6 +23,7 @@ export const TaskContext = React.createContext<TaskContextType>({
   createTask: () => {},
   changeTaskStatus: () => {},
   deleteTask: () => {},
+  updateTask: () => {},
   currentTaskIds: [],
   getTaskDetail: () => undefined,
   cancelProcessingTask: () => undefined,

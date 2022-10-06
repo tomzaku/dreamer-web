@@ -4,7 +4,7 @@ import Button from '@moon-ui/button';
 import IconWarning from '@moon-ui/icon/IconWarning';
 import Division from '@moon-ui/division';
 
-import styles from './index.module.scss';
+import styles from './WarningModal.module.scss';
 import Typography from '@moon-ui/typography';
 
 type Props = {

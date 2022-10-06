@@ -127,6 +127,13 @@ export const withTask = <P extends {}>(
       setTask(restTask);
     };
 
+    const updateTask = (taskId: string, data: Task) => {
+      setTask({
+        ...task,
+        [taskId]: data,
+      });
+    };
+
     const getRecommendedTasks = (text?: string) => {
       if (Object.values(task).length === 0) {
         return [
@@ -165,6 +172,7 @@ export const withTask = <P extends {}>(
           activeTaskId,
           changeTaskStatus,
           deleteTask,
+          updateTask,
           getTaskDetail,
           cancelProcessingTask,
           getRecommendedTasks,

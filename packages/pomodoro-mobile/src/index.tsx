@@ -7,7 +7,7 @@ import Pomodoro from './component/Pomodoro';
 import Intro from './component/Intro';
 import Header from './component/Header';
 import IconMusic from '@moon-ui/icon/IconMusic';
-import Modal from '@moon-ui/modal';
+import WarningModal from '@moon-ui/modal/src/WarningModal';
 
 import cx from 'classnames';
 
@@ -71,7 +71,7 @@ export default function PomodoroMobile({
 
     return (
       <>
-        <Modal
+        <WarningModal
           title={intl.formatMessage({
             defaultMessage: 'STOP PROGRESS?',
             id: 'music-controller-mobile.label-stop-progress',

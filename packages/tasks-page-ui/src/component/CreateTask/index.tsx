@@ -39,13 +39,13 @@ export default function CreateTask({ className }: { className?: string }) {
     setTaskText('');
     /* inputRef.current?.focus(); */
   };
-  useKeyListener(e => {
-    if (e.key === 'a') {
-      setTimeout(() => {
-        inputRef.current?.focus();
-      }, 60);
-    }
-  });
+  /* useKeyListener(e => { */
+  /*   if (e.key === 'a') { */
+  /*     setTimeout(() => { */
+  /*       inputRef.current?.focus(); */
+  /*     }, 60); */
+  /*   } */
+  /* }); */
   return (
     <div className={cx(styles.container, className)}>
       <div className={styles.section}>

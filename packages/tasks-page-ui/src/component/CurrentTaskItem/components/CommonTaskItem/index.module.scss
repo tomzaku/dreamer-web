@@ -9,6 +9,7 @@
 .header {
   display: flex;
   justify-content: space-between;
+  min-height: 40px;
 }
 
 .body {
@@ -30,4 +31,29 @@
   background-color: $black12;
   height: 1px;
   margin: 0 16px;
+}
+
+.icon {
+  margin-right: $spacing-sm;
+  width: 16px;
+  height: 16px;
+}
+
+.actionContainer {
+  padding: $spacing-xs $spacing-md;
+  background: $black6;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: $spacing-md;
+  &:hover {
+    color: $primary;
+    fill: $primary;
+  }
+}
+
+.rightHeader {
+  display: flex;
+  align-items: flex-start;
 }

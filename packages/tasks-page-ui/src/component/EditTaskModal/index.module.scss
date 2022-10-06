@@ -1,0 +1,25 @@
+@import '@moon-ui/app-scss/color';
+@import '@moon-ui/app-scss/metric';
+@import '@moon-ui/app-scss/function';
+
+.item {
+  margin-bottom: $spacing-md;
+}
+
+.durationInput {
+  font-size: toRem(20px);
+  width: 60px;
+  margin-right: $spacing-sm;
+}
+
+.nameInput {
+  font-size: toRem(16px);
+}
+
+.submitButton {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin-top: $spacing-xl;
+}

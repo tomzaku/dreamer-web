@@ -17,6 +17,7 @@ import Typography from '@moon-ui/typography';
 
 import styles from './index.module.scss';
 import Checkbox from '@moon-ui/checkbox';
+import EditTaskModal from '../EditTaskModal';
 
 type Props = {
   className?: string;
@@ -24,15 +25,22 @@ type Props = {
 
 export default function CurrentListTask({ className }: Props) {
   const intl = useIntl();
-  const [modalVisible, setModalVisible] = React.useState(false);
+  const [modalMobileVisible, setModalMobileVisible] = React.useState(false);
   const [modalInfo, setModalInfo] = React.useState({ taskId: '' });
+  const [modalEditTaskVisible, setModalEditTaskVisible] = React.useState(false);
   const { activeTaskId, currentTaskIds, filter, setFilter } = useTask();
   return (
     <div className={className}>
       <TaskItemActionModal
-        visible={modalVisible}
+        visible={modalMobileVisible}
         taskId={modalInfo.taskId}
-        onDismiss={() => setModalVisible(false)}
+        onDismiss={() => setModalMobileVisible(false)}
+        onClickEdit={() => setModalEditTaskVisible(true)} 
+      />
+      <EditTaskModal
+        onDismiss={() => setModalEditTaskVisible(false)}
+        visible={modalEditTaskVisible}
+        taskId={modalInfo.taskId}
       />
       <div className={styles.header}>
         <Typography.Paragraph noMargin>
@@ -54,7 +62,7 @@ export default function CurrentListTask({ className }: Props) {
           <Typography.Text isDescription>
             {intl.formatMessage({
               id: 'ListTask.label-show-done-task',
-              defaultMessage: 'Show Done Task',
+              defaultMessage: 'Show Done Tasks',
             })}
           </Typography.Text>
         </div>
@@ -70,7 +78,7 @@ export default function CurrentListTask({ className }: Props) {
               <CurrentTaskItem
                 key={id}
                 onLongPress={taskId => {
-                  setModalVisible(true);
+                  setModalMobileVisible(true);
                   setModalInfo({ taskId });
                 }}
                 taskId={id}
@@ -80,6 +88,10 @@ export default function CurrentListTask({ className }: Props) {
                 }}
                 disabled={Boolean(activeTaskId && activeTaskId !== id)}
                 hasDivision={index !== currentTaskIds.length - 1}
+                onClickEdit={taskId => {
+                  setModalEditTaskVisible(true);
+                  setModalInfo({ taskId });
+                }}
               />
             )}
           </Motion>
@@ -88,7 +100,10 @@ export default function CurrentListTask({ className }: Props) {
       {currentTaskIds.length === 0 && (
         <div className={styles.empty}>
           <Typography.Paragraph isDescription>
-            Your task is empty
+            {intl.formatMessage({
+              id: 'msg_task_empty',
+              defaultMessage: 'Your task is empty',
+            })}
           </Typography.Paragraph>
         </div>
       )}

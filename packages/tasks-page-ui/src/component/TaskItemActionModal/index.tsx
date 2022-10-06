@@ -14,8 +14,9 @@ type Props = {
   taskId: string;
   visible: boolean;
   onDismiss: () => void;
+  onClickEdit: () => void;
 };
-const TaskItemActionModal = ({ taskId, visible, onDismiss }: Props) => {
+const TaskItemActionModal = ({ taskId, visible, onDismiss, onClickEdit }: Props) => {
   const { task, deleteTask } = useTask();
   const intl = useIntl();
   if (!task) return null;
@@ -48,7 +49,7 @@ const TaskItemActionModal = ({ taskId, visible, onDismiss }: Props) => {
             <Division />
             <div
               onClick={() => {
-                /* deleteTask(taskId); */
+                onClickEdit && onClickEdit()
                 onDismiss();
               }}
               className={styles.card}
@@ -59,7 +60,6 @@ const TaskItemActionModal = ({ taskId, visible, onDismiss }: Props) => {
                 id: 'label-Edit',
               })}
             </div>
-            <Division />
           </div>
         </div>
       }
