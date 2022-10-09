@@ -101,7 +101,8 @@ function DraggableList<T>({
       onChange && onChange(newOrder.map(index => items[index]));
     }
   }, {
-    preventScroll: true
+    preventScroll: true,
+    delay: 50
   });
 
   return (

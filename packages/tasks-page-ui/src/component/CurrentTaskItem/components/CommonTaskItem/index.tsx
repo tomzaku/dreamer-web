@@ -5,7 +5,7 @@ import TimerButton from '../../../TimerButton';
 
 // Utils
 import { getNextTaskStatus } from '../../util';
-import cx from 'classnames'
+import cx from 'classnames';
 
 // Hooks
 import { detectMobile, useLongPress } from '@dreamer/global';
@@ -27,7 +27,7 @@ type Props = {
   disabled?: boolean;
   onLongPress?: (taskId: string) => void;
   onClickEdit?: (taskId: string) => void;
-  handlerBind: ReactDOMAttributes
+  handlerBind: ReactDOMAttributes;
 };
 
 export default function CommonTaskItem({
@@ -54,6 +54,7 @@ export default function CommonTaskItem({
     {
       detect: LongPressDetectEvents.TOUCH,
       cancelOnMovement: true,
+      threshold: 250,
     }
   );
   return (
@@ -63,11 +64,17 @@ export default function CommonTaskItem({
       onMouseLeave={() => !detectMobile() && setIsHover(false)}
     >
       <div className={styles.container}>
-        <div
-          className={styles.header}
-        >
+        <div className={styles.header}>
           <div className={styles.section}>
-            <IconDrag {...handlerBind} className={cx(styles.dragIcon)} onClick={e => e.preventDefault()} />
+            <IconDrag
+              onTouchStart={e => {
+                e.preventDefault();
+                e.stopPropagation();
+              }}
+              {...handlerBind}
+              className={cx(styles.dragIcon)}
+              onClick={e => e.preventDefault()}
+            />
             <Typography.Title noMargin level={5}>
               {name}
             </Typography.Title>

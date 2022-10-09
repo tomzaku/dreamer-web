@@ -32,11 +32,10 @@ export default function EditTaskModal({ visible, taskId, onDismiss }: Props) {
     setName(taskDetail.name);
     setDuration((taskDetail.duration || 0) / ONE_MINUTE);
   }, [taskDetail]);
-  console.log('NAME', name);
   return (
     <Modal
       visible={visible}
-      /* onDismiss={onDismiss} */
+      onDismiss={onDismiss}
       title={intl.formatMessage({
         id: 'label_edit_task',
         defaultMessage: 'EDIT TASK',

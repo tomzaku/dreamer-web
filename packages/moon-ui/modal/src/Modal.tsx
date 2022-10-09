@@ -17,7 +17,10 @@ export default function Modal({ visible, content, onDismiss, title }: Props) {
   return (
     <>
       <div className={styles.overlay} onClick={onDismiss}>
-        <div className={styles.container}>
+      <div className={styles.container} onClick={e => {
+        e.preventDefault();
+        e.stopPropagation()
+      }}>
           {title && (
             <>
               <Typography.Title level={3} className={styles.title} noMargin>
