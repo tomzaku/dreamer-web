@@ -7,6 +7,7 @@ import CommonTaskItem from './components/CommonTaskItem';
 import { useTask } from '@dreamer/tasks-page-common';
 
 import styles from './index.module.scss'
+import { ReactDOMAttributes } from '@use-gesture/react/dist/declarations/src/types';
 
 type Props = {
   disabled?: boolean;
@@ -15,6 +16,7 @@ type Props = {
   style?: React.CSSProperties;
   onLongPress?: (taskId: string) => void;
   onClickEdit?: (taskId: string) => void;
+  handlerBind: ReactDOMAttributes
 };
 
 export default function CurrentTaskItem({
@@ -23,10 +25,11 @@ export default function CurrentTaskItem({
   taskId,
   style,
   onLongPress,
-  onClickEdit
+  onClickEdit,
+  handlerBind
 }: Props) {
   const { task } = useTask();
-  if (!task) return null;
+  if (!task || !task[taskId]) return null;
   const { status } = task[taskId];
   return (
     <div className={styles.container} style={style}>
@@ -35,6 +38,7 @@ export default function CurrentTaskItem({
       ) : (
         <CommonTaskItem
           disabled={disabled}
+          handlerBind={handlerBind}
           hasDivision={hasDivision}
           taskId={taskId}
           onLongPress={onLongPress}

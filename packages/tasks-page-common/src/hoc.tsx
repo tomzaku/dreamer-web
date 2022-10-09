@@ -129,6 +129,7 @@ export const withTask = <P extends {}>(
 
     const deleteTask = (taskId: string) => {
       const { [taskId]: _, ...restTask } = task;
+      console.log("DELETE", taskId, task)
       setTask(restTask);
       setCurrentTaskIds(currentTaskIds.filter(id => id !== taskId))
     };

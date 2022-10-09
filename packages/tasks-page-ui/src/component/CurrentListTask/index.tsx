@@ -2,16 +2,12 @@ import React from 'react';
 
 // Component
 import CurrentTaskItem from '../CurrentTaskItem';
-import { Motion } from 'react-motion';
 import TaskItemActionModal from '../TaskItemActionModal';
-import { ReactSortable } from 'react-sortablejs';
 
 // Hooks
 import { useTask } from '@dreamer/tasks-page-common';
 import { useIntl } from '@dreamer/translation';
 
-// Util
-import { spring } from 'react-motion';
 
 // Type
 import Typography from '@moon-ui/typography';
@@ -19,7 +15,7 @@ import Typography from '@moon-ui/typography';
 import styles from './index.module.scss';
 import Checkbox from '@moon-ui/checkbox';
 import EditTaskModal from '../EditTaskModal';
-import { Task } from '@dreamer/tasks-page-common/src/type';
+import DraggableList from './DraggableList';
 
 type Props = {
   className?: string;
@@ -78,42 +74,29 @@ export default function CurrentListTask({ className }: Props) {
         </div>
       </div>
       <div className={styles.body}>
-        <ReactSortable
-          handle={'.drag-here'}
-          list={currentTaskIds.map(id => task[id])}
-          setList={(tasks: Task[]) =>
-            setCurrentTaskIds(tasks.map(task => task.id))
-          }
-        >
-          {currentTaskIds.map((id, index) => (
-            <Motion
-              key={id}
-              defaultStyle={{ opacity: 0, scale: 1.2 }}
-              style={{ opacity: spring(1), scale: spring(1) }}
-            >
-              {value => (
-                <CurrentTaskItem
-                  key={id}
-                  onLongPress={taskId => {
-                    setModalMobileVisible(true);
-                    setModalInfo({ taskId });
-                  }}
-                  taskId={id}
-                  style={{
-                    opacity: value.opacity,
-                    transform: `scale(${value.scale})`,
-                  }}
-                  disabled={Boolean(activeTaskId && activeTaskId !== id)}
-                  hasDivision={index !== currentTaskIds.length - 1}
-                  onClickEdit={taskId => {
-                    setModalEditTaskVisible(true);
-                    setModalInfo({ taskId });
-                  }}
-                />
-              )}
-            </Motion>
-          ))}
-        </ReactSortable>
+        <DraggableList
+          items={currentTaskIds}
+          onChange={setCurrentTaskIds}
+          renderItem={(id, bind, index) => {
+            return (
+              <CurrentTaskItem
+                handlerBind={bind}
+                key={id}
+                onLongPress={taskId => {
+                  setModalMobileVisible(true);
+                  setModalInfo({ taskId });
+                }}
+                taskId={id}
+                disabled={Boolean(activeTaskId && activeTaskId !== id)}
+                hasDivision={index !== currentTaskIds.length - 1}
+                onClickEdit={taskId => {
+                  setModalEditTaskVisible(true);
+                  setModalInfo({ taskId });
+                }}
+              />
+            );
+          }}
+        />
       </div>
       {currentTaskIds.length === 0 && (
         <div className={styles.empty}>

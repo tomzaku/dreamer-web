@@ -1,5 +1,5 @@
 import cx from 'classnames';
-import { Motion, spring } from 'react-motion';
+import { useSpring, animated } from '@react-spring/web';
 
 import styles from './index.module.scss';
 
@@ -11,24 +11,21 @@ export default function Toggle({
   checked: boolean;
   onChange: () => void;
 }) {
+  const animationStyles = useSpring({ translateX: checked ? MAX_WIDTH : 0 });
+
   return (
     <div
       className={cx(styles.container, checked && styles.checkedContainer)}
       onClick={onChange}
     >
-      <Motion
-        defaultStyle={{ translateX: checked ? 0 : MAX_WIDTH }}
-        style={{ translateX: spring(checked ? MAX_WIDTH : 0) }}
-      >
-        {value => (
-          <div
-            style={{
-              transform: `translateX(${value.translateX}px)`,
-            }}
-            className={styles.handle}
-          />
-        )}
-      </Motion>
+      <animated.div
+        style={{
+          transform: animationStyles.translateX.to(
+            x => `translateX(${x}px)`
+          )
+        }}
+        className={styles.handle}
+      />
     </div>
   );
 }
