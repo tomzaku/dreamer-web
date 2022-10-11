@@ -32,6 +32,11 @@
 .input {
   font-size: toRem(20px);
   width: 100%;
+  border: 0px;
+  resize: none;
+  &:focus {
+    outline: none;
+  }
 }
 
 .menu {

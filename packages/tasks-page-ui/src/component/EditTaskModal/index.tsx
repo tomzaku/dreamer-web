@@ -2,6 +2,7 @@ import React from 'react';
 
 import Modal from '@moon-ui/modal/src/Modal';
 import Input from '@moon-ui/input';
+import TextareaAutosize from 'react-textarea-autosize';
 
 // Hooks
 import { useIntl } from '@dreamer/translation';
@@ -10,6 +11,7 @@ import Button from '@moon-ui/button/src/DefaultButton';
 
 import styles from './index.module.scss';
 import Typography from '@moon-ui/typography';
+import ReactTextareaAutosize from 'react-textarea-autosize';
 
 type Props = {
   visible: boolean;
@@ -43,16 +45,17 @@ export default function EditTaskModal({ visible, taskId, onDismiss }: Props) {
       content={
         <div>
           <div className={styles.item}>
-            Name:{' '}
-            <Input
-              border="solid"
+          <Typography.Text isDescription>Name:</Typography.Text>
+            <ReactTextareaAutosize
               value={name}
+              maxRows={3}
               onChange={e => setName(e.currentTarget.value)}
               className={styles.nameInput}
             />
           </div>
           <div>
-            Duration:{' '}
+          <Typography.Text isDescription>Duration:</Typography.Text>
+          <br />
             <Input
               type="number"
               border="dash"

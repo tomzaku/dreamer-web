@@ -91,7 +91,7 @@ export default function BottomModal({ visible, content, onDismiss }: Props) {
         className={cx(styles.overlay, visible && styles.overlayVisible)}
         onClick={() => { close(); onDismiss()}}
         style={bgStyle}
-      ></a.div>
+        />
       <a.div
         className={styles.sheet}
         {...bind()}

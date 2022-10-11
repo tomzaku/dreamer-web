@@ -65,13 +65,12 @@ export default function CommonTaskItem({
     >
       <div className={styles.container}>
         <div className={styles.header}>
-          <div className={styles.section}>
+          <div {...handlerBind} className={styles.section}>
             <IconDrag
               onTouchStart={e => {
                 e.preventDefault();
                 e.stopPropagation();
               }}
-              {...handlerBind}
               className={cx(styles.dragIcon)}
               onClick={e => e.preventDefault()}
             />

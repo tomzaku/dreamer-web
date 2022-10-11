@@ -4,10 +4,11 @@ import React from 'react';
 import Button from '@moon-ui/button';
 import Typography from '@moon-ui/typography';
 import Input from '@moon-ui/input';
-import { useIntl } from '@dreamer/translation';
+import TextareaAutosize from 'react-textarea-autosize';
 
 // Hooks
 import { useTask } from '@dreamer/tasks-page-common';
+import { useIntl } from '@dreamer/translation';
 import { detectMobile, useKeyListener } from '@dreamer/global';
 
 // Utils
@@ -28,7 +29,7 @@ export default function CreateTask({ className }: { className?: string }) {
   const { createTask, getRecommendedTasks } = useTask();
   const recommendedTasks = getRecommendedTasks(taskText);
   const isValidated = Boolean(taskText);
-  const inputRef = React.useRef<HTMLInputElement>(null);
+  const inputRef = React.useRef<HTMLTextAreaElement>(null);
   const addTask = () => {
     if (!isValidated) return;
     createTask({
@@ -70,8 +71,9 @@ export default function CreateTask({ className }: { className?: string }) {
           </div>
         </div>
         <div className={styles.menu} />
-        <Input
+        <TextareaAutosize
           ref={inputRef}
+          // rows={5}
           placeholder={intl.formatMessage({
             id: 'CreateTask.label-create-task-input-placeholder',
             defaultMessage: 'Write your task today',
@@ -86,6 +88,7 @@ export default function CreateTask({ className }: { className?: string }) {
               });
             }
           }}
+          maxRows={3}
           onBlur={() => setFocus(false)}
           onChange={e => setTaskText(e.currentTarget.value)}
           value={taskText}
