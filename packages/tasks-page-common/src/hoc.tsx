@@ -48,6 +48,7 @@ export const withTask = <P extends {}>(
           ...newTask,
           status: TaskStatus.Pending,
           createdAt: new Date().toISOString(),
+          eisenhowerMatrix: newTask.eisenhowerMatrix,
           id,
         },
       });

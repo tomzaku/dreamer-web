@@ -7,7 +7,7 @@ import Input from '@moon-ui/input';
 import TextareaAutosize from 'react-textarea-autosize';
 
 // Hooks
-import { useTask } from '@dreamer/tasks-page-common';
+import { EisenhowerMatrix, useTask } from '@dreamer/tasks-page-common';
 import { useIntl } from '@dreamer/translation';
 import { detectMobile, useKeyListener } from '@dreamer/global';
 
@@ -17,6 +17,7 @@ import cx from 'classnames';
 import HiImg from '../../../assert/hi.png';
 import styles from './index.module.scss';
 import RecommendedTaskItem from '../RecommendedTaskItem';
+import EisenhowerMatrixComponent from './component/EisenhowerMatrix';
 
 const ONE_MINUTE = 60 * 1000;
 const INIT_DURATION = 0;
@@ -30,12 +31,15 @@ export default function CreateTask({ className }: { className?: string }) {
   const recommendedTasks = getRecommendedTasks(taskText);
   const isValidated = Boolean(taskText);
   const inputRef = React.useRef<HTMLTextAreaElement>(null);
+  const [eisenhowerMatrix, setEisenhowerMatrix] =
+    React.useState<EisenhowerMatrix>();
   const addTask = () => {
     if (!isValidated) return;
     createTask({
       name: taskText,
       duration: duration * ONE_MINUTE,
       projectId: '-999',
+      eisenhowerMatrix
     });
     setTaskText('');
     /* inputRef.current?.focus(); */
@@ -59,7 +63,7 @@ export default function CreateTask({ className }: { className?: string }) {
                   id: 'CreateTask.label-morning-greeting',
                   defaultMessage: 'Good morning, {{name}}',
                 },
-                { name: 'Guest' }
+                { name: '' }
               )}
             </Typography.Title>
             <Typography.Paragraph noMargin isDescription>
@@ -135,9 +139,15 @@ export default function CreateTask({ className }: { className?: string }) {
           </Button>
         </div>
       </div>
+      <EisenhowerMatrixComponent
+        value={eisenhowerMatrix}
+        setValue={setEisenhowerMatrix}
+      />
       <div
         className={cx(
-          !taskText && !focus || recommendedTasks.length == 0 ? styles.hiddenRecommend : styles.recommend
+          (!taskText && !focus) || recommendedTasks.length == 0
+            ? styles.hiddenRecommend
+            : styles.recommend
         )}
       >
         <div className={styles.divider} />

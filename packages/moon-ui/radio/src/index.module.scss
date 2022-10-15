@@ -19,5 +19,18 @@
 
 .active {
   border-color: $primary;
+  border-width: 1px;
   color: $primary;
+}
+
+.leftActiveBorder {
+  border-width: 1px 0px 1px 0px;
+}
+
+.rightActiveBorder {
+  border-width: 1px 0 1px 0px;
+}
+
+.rightActiveAndLastBorder {
+  border-width: 1px 1px 1px 0px;
 }

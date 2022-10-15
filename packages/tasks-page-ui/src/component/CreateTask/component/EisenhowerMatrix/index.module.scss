@@ -1,0 +1,36 @@
+@import '@dreamer/tasks-page-common/src/index.scss';
+
+.button {
+  flex: 1;
+  padding: 6px 14px;
+  margin: 0;
+}
+
+.buttonGroup {
+  display: flex;
+  padding: 6px;
+}
+
+.do {
+  border-color: $eisenhower-do !important;
+  color: $eisenhower-do !important;
+  font-weight: bold;
+}
+
+.schedule {
+  border-color: $eisenhower-schedule !important;
+  color: $eisenhower-schedule !important;
+  font-weight: bold;
+}
+
+.delegate {
+  border-color: $eisenhower-delegate !important;
+  color: $eisenhower-delegate !important;
+  font-weight: bold;
+}
+
+.eliminate {
+  border-color: $eisenhower-eliminate !important;
+  color: $eisenhower-eliminate !important;
+  font-weight: bold;
+}

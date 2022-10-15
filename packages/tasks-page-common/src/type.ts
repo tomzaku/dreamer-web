@@ -1,9 +1,10 @@
-import { TaskStatus } from "./enum";
+import { EisenhowerMatrix, TaskStatus } from "./enum";
 
 export type TaskParams = {
   name: string;
   duration?: number;
   projectId: string;
+  eisenhowerMatrix?: EisenhowerMatrix
 }
 
 export type Task = {
@@ -13,6 +14,7 @@ export type Task = {
   projectId: string;
   status: TaskStatus
   createdAt: string;
+  eisenhowerMatrix?: EisenhowerMatrix
   id: string;
 }
 
@@ -33,3 +35,4 @@ export type Filter = {
   showDoneTask: boolean,
   disableAddProgressTaskAtTop: boolean
 }
+

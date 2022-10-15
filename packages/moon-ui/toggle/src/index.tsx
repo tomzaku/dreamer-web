@@ -9,14 +9,14 @@ export default function Toggle({
   onChange,
 }: {
   checked: boolean;
-  onChange: () => void;
+  onChange: (value: boolean) => void;
 }) {
   const animationStyles = useSpring({ translateX: checked ? MAX_WIDTH : 0 });
 
   return (
     <div
       className={cx(styles.container, checked && styles.checkedContainer)}
-      onClick={onChange}
+      onClick={() => onChange(!checked)}
     >
       <animated.div
         style={{

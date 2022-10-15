@@ -1,9 +1,16 @@
 @import '@moon-ui/app-scss/color';
 @import '@moon-ui/app-scss/metric';
+@import '@dreamer/tasks-page-common/src/index';
+
+.row {
+  display: flex; 
+  flex: 1
+}
 
 .container {
   border-radius: 10px;
-  padding: 10px 16px;
+  padding: 10px 6px;
+  flex: 1
 }
 
 .header {
@@ -60,4 +67,25 @@
 .progress {
   background-color: $secondary;
   height: 5px;
+}
+
+
+.bar {
+  width: 6px;
+  height: 100%;
+}
+.do {
+  background-color: $eisenhower-do
+}
+
+.schedule {
+  background-color: $eisenhower-schedule
+}
+
+.delegate {
+  background-color: $eisenhower-delegate
+}
+.eliminate {
+  background-color: $eisenhower-eliminate
+
 }

@@ -1,9 +1,20 @@
 @import '@moon-ui/app-scss/color';
 @import '@moon-ui/app-scss/metric';
+@import '@dreamer/tasks-page-common/src/index';
 
 .container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.row {
+  display: flex;
+  flex: 1;
+}
+.main {
   border-radius: 10px;
-  padding: 10px 16px;
+  padding: 10px 6px;
+  flex: 1;
 }
 
 .header {
@@ -30,7 +41,6 @@
 .division {
   background-color: $black12;
   height: 1px;
-  margin: 0 16px;
 }
 
 .icon {
@@ -65,4 +75,24 @@
 	cursor: -webkit-grabbing;
   fill: $black24;
   height: 20px;
+}
+
+.bar {
+  width: 6px;
+  height: 100%;
+}
+.do {
+  background-color: $eisenhower-do
+}
+
+.schedule {
+  background-color: $eisenhower-schedule
+}
+
+.delegate {
+  background-color: $eisenhower-delegate
+}
+.eliminate {
+  background-color: $eisenhower-eliminate
+
 }
