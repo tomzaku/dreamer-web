@@ -17,9 +17,10 @@ import { withPomodoro } from '@dreamer/pomodoro-common';
 
 const AppRouter = () => {
   const { isToolVisible, close } = useGlobalTool()
-  const { cancelProcessingTask } = useTask()
+  const { cancelProcessingTask, createTaskFromWeeklyHobby } = useTask()
   React.useEffect(() => {
     cancelProcessingTask()
+    createTaskFromWeeklyHobby()
   }, [])
   return (
     <BrowserRouter>

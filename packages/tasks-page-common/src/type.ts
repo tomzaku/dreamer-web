@@ -8,12 +8,19 @@ export type TaskParams = {
   weeklyHobbies?: Day[];
 }
 
+export type TaskStatusHistory = {
+  from: TaskStatus,
+  to: TaskStatus,
+  createdAt: Date,
+}
+
 export type Task = {
   name: string;
   duration?: number;
   commit?: number;
   projectId: string;
   status: TaskStatus;
+  statusHistory?: TaskStatusHistory[];
   weeklyHobbies?: Day[];
   createdAt: string;
   eisenhowerMatrix?: EisenhowerMatrix

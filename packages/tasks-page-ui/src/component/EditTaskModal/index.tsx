@@ -12,6 +12,7 @@ import { useTask } from '@dreamer/tasks-page-common';
 import Button from '@moon-ui/button/src/DefaultButton';
 
 import styles from './index.module.scss';
+import BuildWeeklyHobby from '../BuildWeeklyHobby';
 
 type Props = {
   visible: boolean;
@@ -30,11 +31,17 @@ export default function EditTaskModal({ visible, taskId, onDismiss }: Props) {
   const [duration, setDuration] = React.useState(
     (taskDetail.duration || 0) / ONE_MINUTE
   );
-  const [eisenhowerMatrix, setEisenhowerMatrix] = React.useState(taskDetail.eisenhowerMatrix)
+  const [eisenhowerMatrix, setEisenhowerMatrix] = React.useState(
+    taskDetail.eisenhowerMatrix
+  );
+  const [weeklyHobbies, setWeeklyHobbies] = React.useState(
+    taskDetail.weeklyHobbies
+  );
   React.useEffect(() => {
     setName(taskDetail.name);
     setDuration((taskDetail.duration || 0) / ONE_MINUTE);
-    setEisenhowerMatrix(taskDetail.eisenhowerMatrix)
+    setEisenhowerMatrix(taskDetail.eisenhowerMatrix);
+    setWeeklyHobbies(taskDetail.weeklyHobbies);
   }, [taskDetail]);
   return (
     <Modal
@@ -47,7 +54,7 @@ export default function EditTaskModal({ visible, taskId, onDismiss }: Props) {
       content={
         <div>
           <div className={styles.item}>
-          <Typography.Text isDescription>Name:</Typography.Text>
+            <Typography.Text isDescription>Name:</Typography.Text>
             <ReactTextareaAutosize
               value={name}
               maxRows={3}
@@ -56,8 +63,8 @@ export default function EditTaskModal({ visible, taskId, onDismiss }: Props) {
             />
           </div>
           <div>
-          <Typography.Text isDescription>Duration:</Typography.Text>
-          <br />
+            <Typography.Text isDescription>Duration:</Typography.Text>
+            <br />
             <Input
               type="number"
               border="dash"
@@ -74,9 +81,16 @@ export default function EditTaskModal({ visible, taskId, onDismiss }: Props) {
               })}
             </Typography.Text>
           </div>
-          <EisenhowerMatrixComponent 
-        className={styles.eisenhowerMatrix}
-          value={eisenhowerMatrix} setValue={setEisenhowerMatrix} />
+          <EisenhowerMatrixComponent
+            className={styles.eisenhowerMatrix}
+            value={eisenhowerMatrix}
+            setValue={setEisenhowerMatrix}
+          />
+          <BuildWeeklyHobby
+            className={styles.eisenhowerMatrix}
+            values={weeklyHobbies}
+            setValues={setWeeklyHobbies}
+          />
           <Button
             size="lg"
             onClick={() => {
@@ -85,6 +99,7 @@ export default function EditTaskModal({ visible, taskId, onDismiss }: Props) {
                 name,
                 duration: duration * ONE_MINUTE,
                 eisenhowerMatrix,
+                weeklyHobbies,
               });
               onDismiss && onDismiss();
             }}

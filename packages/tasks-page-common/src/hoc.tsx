@@ -2,12 +2,17 @@ import React from 'react';
 
 // Utils
 import { pipe, uniqueId, useLocalStorage } from '@dreamer/global';
+import getDay from 'date-fns/getDay';
+import isToday from 'date-fns/isToday';
 
 // Context
 import { TaskContext } from './context';
 
-// Constants
+// Enums
 import { TaskStatus } from './enum';
+
+// Constants
+import { DAYS } from './constant';
 
 // Types
 import { Filter, ListTask, Task, TaskParams } from './type';
@@ -39,6 +44,7 @@ export const withTask = <P extends {}>(
       showDoneTask: false,
       disableAddProgressTaskAtTop: false,
     });
+    // This to get the true data when run setInterval
     const activeTask = React.useRef<Task>();
     const createTask = (newTask: TaskParams) => {
       const id = uniqueId();
@@ -52,7 +58,7 @@ export const withTask = <P extends {}>(
           id,
         },
       });
-      setCurrentTaskIds([id, ...currentTaskIds])
+      setCurrentTaskIds([id, ...currentTaskIds]);
     };
 
     const activeTaskId = Object.values(task).find(
@@ -84,6 +90,14 @@ export const withTask = <P extends {}>(
         [taskId]: {
           ...task[taskId],
           status: newStatus,
+          statusHistory: [
+            ...(task[taskId].statusHistory || []),
+            {
+              from: task[taskId].status,
+              to: newStatus,
+              createdAt: new Date(),
+            },
+          ],
         },
       });
       if (
@@ -130,9 +144,9 @@ export const withTask = <P extends {}>(
 
     const deleteTask = (taskId: string) => {
       const { [taskId]: _, ...restTask } = task;
-      console.log("DELETE", taskId, task)
+      console.log('DELETE', taskId, task);
       setTask(restTask);
-      setCurrentTaskIds(currentTaskIds.filter(id => id !== taskId))
+      setCurrentTaskIds(currentTaskIds.filter(id => id !== taskId));
     };
 
     const updateTask = (taskId: string, data: Task) => {
@@ -171,6 +185,36 @@ export const withTask = <P extends {}>(
         .map(i => ({ ...i, project: 'Other' }));
     };
 
+    const getTasksHasTodayHobby = (tasks: Task[]) => {
+      return tasks.filter(
+        task =>
+          task.weeklyHobbies &&
+          task.weeklyHobbies.length > 0 &&
+          task.weeklyHobbies.includes(DAYS[getDay(new Date())])
+      );
+    };
+    const getTaskDone = (tasks: Task[]) => {
+      return tasks.filter(task => {
+        const lastStatusHistory =
+          task.statusHistory?.[task.statusHistory?.length - 1];
+        return (
+          task.status === TaskStatus.Done &&
+          lastStatusHistory?.createdAt &&
+          !isToday(new Date(lastStatusHistory.createdAt))
+        );
+      });
+    };
+    const createTaskFromWeeklyHobby = () => {
+      const tasksShouldCreate = pipe<string[]>(
+        getTasksHasTodayHobby,
+        getTaskDone,
+        getTaskIds,
+      )(Object.values(task || {}));
+      tasksShouldCreate.forEach(taskId => {
+        changeTaskStatus(taskId, TaskStatus.Pending);
+      });
+    };
+
     return (
       <TaskContext.Provider
         value={{
@@ -182,6 +226,7 @@ export const withTask = <P extends {}>(
           changeTaskStatus,
           deleteTask,
           updateTask,
+          createTaskFromWeeklyHobby,
           getTaskDetail,
           cancelProcessingTask,
           getRecommendedTasks,
