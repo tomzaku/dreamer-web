@@ -19,6 +19,7 @@ type Props = {
   classNameOption?: string;
   getClassNameActiveOption?: (option: Option) => string;
 };
+
 export default function Radio({
   isButton,
   options,

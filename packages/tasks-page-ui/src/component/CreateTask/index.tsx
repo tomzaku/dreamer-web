@@ -7,17 +7,22 @@ import Input from '@moon-ui/input';
 import TextareaAutosize from 'react-textarea-autosize';
 import RecommendedTaskItem from '../RecommendedTaskItem';
 import EisenhowerMatrixComponent from '../EisenhowerMatrix';
+import BuildWeeklyHobby from '../BuildWeeklyHobby';
 
 // Hooks
-import { EisenhowerMatrix, useTask } from '@dreamer/tasks-page-common';
+import {  useTask } from '@dreamer/tasks-page-common';
 import { useIntl } from '@dreamer/translation';
-import { detectMobile, useKeyListener } from '@dreamer/global';
+import { useKeyListener } from '@dreamer/global';
 
 // Utils
 import cx from 'classnames';
+import { detectMobile } from '@dreamer/global';
 
 import HiImg from '../../../assert/hi.png';
 import styles from './index.module.scss';
+
+//Types
+import { EisenhowerMatrix, Day } from '@dreamer/tasks-page-common';
 
 const ONE_MINUTE = 60 * 1000;
 const INIT_DURATION = 0;
@@ -33,13 +38,15 @@ export default function CreateTask({ className }: { className?: string }) {
   const inputRef = React.useRef<HTMLTextAreaElement>(null);
   const [eisenhowerMatrix, setEisenhowerMatrix] =
     React.useState<EisenhowerMatrix>();
+  const [weeklyHobbies, setWeeklyHobbies] = React.useState<Day[]>()
   const addTask = () => {
     if (!isValidated) return;
     createTask({
       name: taskText,
       duration: duration * ONE_MINUTE,
       projectId: '-999',
-      eisenhowerMatrix
+      eisenhowerMatrix,
+      weeklyHobbies
     });
     setTaskText('');
     /* inputRef.current?.focus(); */
@@ -142,6 +149,10 @@ export default function CreateTask({ className }: { className?: string }) {
       <EisenhowerMatrixComponent
         value={eisenhowerMatrix}
         setValue={setEisenhowerMatrix}
+      />
+      <BuildWeeklyHobby 
+        values={weeklyHobbies}
+        setValues={setWeeklyHobbies}
       />
       <div
         className={cx(

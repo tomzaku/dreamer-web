@@ -13,3 +13,13 @@ export enum EisenhowerMatrix {
   Delegate = 'delegate',
   Eliminate = 'eliminate',
 }
+
+export enum Day  {
+ Mon = 'mon',
+ Tue = 'tue',
+ Thu = 'thu',
+ Wed = 'wed',
+ Fri = 'fri',
+ Sat = 'sat',
+ Sun = 'sun'
+}

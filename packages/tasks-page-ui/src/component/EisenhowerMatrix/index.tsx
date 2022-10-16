@@ -7,7 +7,6 @@ import Radio from '@moon-ui/radio';
 import { useIntl } from '@dreamer/translation';
 import { a, useSpring, config } from '@react-spring/web';
 
-
 // Enums
 import { EisenhowerMatrix } from '@dreamer/tasks-page-common';
 
@@ -50,30 +49,37 @@ const EisenhowerMatrixComponent = ({ value, setValue, className }: Props) => {
           />
         }
       />
-      <a.div style={{
-        maxHeight: animationStyles.maxHeight
-      }} className={styles.buttonGroup}>
-          <Radio
-            isButton
-            value={value}
-            onChangeValue={(value: EisenhowerMatrix) => setValue(value)}
-            options={[
-              { label: 'Do', value: EisenhowerMatrix.Do },
-              { label: 'Schedule', value: EisenhowerMatrix.Schedule },
-              { label: 'Delegate', value: EisenhowerMatrix.Delegate },
-              { label: 'Eliminate', value: EisenhowerMatrix.Eliminate },
-            ]}
-            classNameOption={styles.button}
-            getClassNameActiveOption={option => {
-              switch (option.value as EisenhowerMatrix) {
-                case EisenhowerMatrix.Do: return styles.do
-                case EisenhowerMatrix.Eliminate: return styles.eliminate
-                case EisenhowerMatrix.Delegate: return styles.delegate
-                case EisenhowerMatrix.Schedule: return styles.schedule
-              }
-            }}
-          />
-        </a.div>
+      <a.div
+        style={{
+          maxHeight: animationStyles.maxHeight,
+        }}
+        className={styles.buttonGroup}
+      >
+        <Radio
+          isButton
+          value={value}
+          onChangeValue={(value: EisenhowerMatrix) => setValue(value)}
+          options={[
+            { label: 'Do', value: EisenhowerMatrix.Do },
+            { label: 'Schedule', value: EisenhowerMatrix.Schedule },
+            { label: 'Delegate', value: EisenhowerMatrix.Delegate },
+            { label: 'Eliminate', value: EisenhowerMatrix.Eliminate },
+          ]}
+          classNameOption={styles.button}
+          getClassNameActiveOption={option => {
+            switch (option.value as EisenhowerMatrix) {
+              case EisenhowerMatrix.Do:
+                return styles.do;
+              case EisenhowerMatrix.Eliminate:
+                return styles.eliminate;
+              case EisenhowerMatrix.Delegate:
+                return styles.delegate;
+              case EisenhowerMatrix.Schedule:
+                return styles.schedule;
+            }
+          }}
+        />
+      </a.div>
     </>
   );
 };

@@ -1,10 +1,11 @@
-import { EisenhowerMatrix, TaskStatus } from "./enum";
+import { Day, EisenhowerMatrix, TaskStatus } from "./enum";
 
 export type TaskParams = {
   name: string;
   duration?: number;
   projectId: string;
   eisenhowerMatrix?: EisenhowerMatrix
+  weeklyHobbies?: Day[];
 }
 
 export type Task = {
@@ -12,7 +13,8 @@ export type Task = {
   duration?: number;
   commit?: number;
   projectId: string;
-  status: TaskStatus
+  status: TaskStatus;
+  weeklyHobbies?: Day[];
   createdAt: string;
   eisenhowerMatrix?: EisenhowerMatrix
   id: string;
