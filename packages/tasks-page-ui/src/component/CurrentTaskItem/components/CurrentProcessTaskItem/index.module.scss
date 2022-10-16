@@ -8,6 +8,17 @@
 }
 
 .container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.bar {
+  width: 6px;
+  height: 100%;
+}
+
+.main {
   border-radius: 10px;
   padding: 10px 6px;
   flex: 1

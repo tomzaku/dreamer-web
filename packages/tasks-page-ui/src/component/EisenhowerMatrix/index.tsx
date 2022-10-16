@@ -7,7 +7,6 @@ import { useIntl } from '@dreamer/translation';
 
 // Enums
 import { EisenhowerMatrix } from '@dreamer/tasks-page-common';
-import Button from '@moon-ui/button/src/DefaultButton';
 
 import styles from './index.module.scss';
 import Radio from '@moon-ui/radio';
@@ -15,13 +14,16 @@ import Radio from '@moon-ui/radio';
 type Props = {
   value?: EisenhowerMatrix;
   setValue: (value?: EisenhowerMatrix) => void;
+  className?: string;
 };
 
-const EisenhowerMatrixComponent = ({ value, setValue }: Props) => {
+const EisenhowerMatrixComponent = ({ value, setValue, className }: Props) => {
   const intl = useIntl();
+  console.log("CLA", className)
   return (
     <>
       <List.ItemMeta
+        className={className}
         logo={<IconBorderInner />}
         title={intl.formatMessage({
           defaultMessage: 'Eisenhower Matrix',

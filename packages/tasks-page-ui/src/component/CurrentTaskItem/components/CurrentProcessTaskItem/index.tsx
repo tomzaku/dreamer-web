@@ -46,7 +46,7 @@ export default function CurrentProcessTaskItem({ taskId, disabled }: Props) {
   };
   const nextStatus = getNextTaskStatus(status, { duration, commit });
   return (
-    <div>
+    <div className={styles.container}>
       <div className={styles.row}>
         <div
           className={cx(
@@ -54,7 +54,7 @@ export default function CurrentProcessTaskItem({ taskId, disabled }: Props) {
             eisenhowerMatrix && eisenhowerMatrixBarStyle[eisenhowerMatrix]
           )}
         />
-        <div className={styles.container}>
+        <div className={styles.main}>
           <div className={styles.header}>
             <Typography.Title noMargin level={5}>
               {name}
@@ -72,11 +72,11 @@ export default function CurrentProcessTaskItem({ taskId, disabled }: Props) {
                   })}
                 </Typography.Text>
               </div>
-              <IconMoreVertical
-                className={styles.more}
-                width="20"
-                height="20"
-              />
+              {/* <IconMoreVertical */}
+              {/*   className={styles.more} */}
+              {/*   width="20" */}
+              {/*   height="20" */}
+              {/* /> */}
             </div>
           </div>
           <div>

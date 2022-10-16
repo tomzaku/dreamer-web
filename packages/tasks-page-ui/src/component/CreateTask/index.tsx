@@ -5,6 +5,8 @@ import Button from '@moon-ui/button';
 import Typography from '@moon-ui/typography';
 import Input from '@moon-ui/input';
 import TextareaAutosize from 'react-textarea-autosize';
+import RecommendedTaskItem from '../RecommendedTaskItem';
+import EisenhowerMatrixComponent from '../EisenhowerMatrix';
 
 // Hooks
 import { EisenhowerMatrix, useTask } from '@dreamer/tasks-page-common';
@@ -16,8 +18,6 @@ import cx from 'classnames';
 
 import HiImg from '../../../assert/hi.png';
 import styles from './index.module.scss';
-import RecommendedTaskItem from '../RecommendedTaskItem';
-import EisenhowerMatrixComponent from './component/EisenhowerMatrix';
 
 const ONE_MINUTE = 60 * 1000;
 const INIT_DURATION = 0;

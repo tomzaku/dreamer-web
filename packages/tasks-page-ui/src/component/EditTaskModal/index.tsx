@@ -2,7 +2,9 @@ import React from 'react';
 
 import Modal from '@moon-ui/modal/src/Modal';
 import Input from '@moon-ui/input';
-import TextareaAutosize from 'react-textarea-autosize';
+import Typography from '@moon-ui/typography';
+import ReactTextareaAutosize from 'react-textarea-autosize';
+import EisenhowerMatrixComponent from '../EisenhowerMatrix';
 
 // Hooks
 import { useIntl } from '@dreamer/translation';
@@ -10,8 +12,6 @@ import { useTask } from '@dreamer/tasks-page-common';
 import Button from '@moon-ui/button/src/DefaultButton';
 
 import styles from './index.module.scss';
-import Typography from '@moon-ui/typography';
-import ReactTextareaAutosize from 'react-textarea-autosize';
 
 type Props = {
   visible: boolean;
@@ -30,6 +30,7 @@ export default function EditTaskModal({ visible, taskId, onDismiss }: Props) {
   const [duration, setDuration] = React.useState(
     (taskDetail.duration || 0) / ONE_MINUTE
   );
+  const [eisenhowerMatrix, setEisenhowerMatrix] = React.useState(taskDetail.eisenhowerMatrix)
   React.useEffect(() => {
     setName(taskDetail.name);
     setDuration((taskDetail.duration || 0) / ONE_MINUTE);
@@ -72,6 +73,9 @@ export default function EditTaskModal({ visible, taskId, onDismiss }: Props) {
               })}
             </Typography.Text>
           </div>
+          <EisenhowerMatrixComponent 
+        className={styles.eisenhowerMatrix}
+          value={eisenhowerMatrix} setValue={setEisenhowerMatrix} />
           <Button
             size="lg"
             onClick={() => {
@@ -79,6 +83,7 @@ export default function EditTaskModal({ visible, taskId, onDismiss }: Props) {
                 ...taskDetail,
                 name,
                 duration: duration * ONE_MINUTE,
+                eisenhowerMatrix,
               });
               onDismiss && onDismiss();
             }}

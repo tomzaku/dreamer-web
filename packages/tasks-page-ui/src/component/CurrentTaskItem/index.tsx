@@ -1,4 +1,3 @@
-
 import { TaskStatus } from '@dreamer/tasks-page-common';
 import CurrentProcessTaskItem from './components/CurrentProcessTaskItem';
 import CommonTaskItem from './components/CommonTaskItem';
@@ -6,7 +5,10 @@ import CommonTaskItem from './components/CommonTaskItem';
 // Hooks
 import { useTask } from '@dreamer/tasks-page-common';
 
-import styles from './index.module.scss'
+// Utils
+import cx from 'classnames';
+
+import styles from './index.module.scss';
 import { ReactDOMAttributes } from '@use-gesture/react/dist/declarations/src/types';
 
 type Props = {
@@ -16,7 +18,7 @@ type Props = {
   style?: React.CSSProperties;
   onLongPress?: (taskId: string) => void;
   onClickEdit?: (taskId: string) => void;
-  handlerBind: ReactDOMAttributes
+  handlerBind: ReactDOMAttributes;
 };
 
 export default function CurrentTaskItem({
@@ -26,13 +28,16 @@ export default function CurrentTaskItem({
   style,
   onLongPress,
   onClickEdit,
-  handlerBind
+  handlerBind,
 }: Props) {
   const { task } = useTask();
   if (!task || !task[taskId]) return null;
   const { status } = task[taskId];
   return (
-    <div className={styles.container} style={style}>
+    <div
+      className={cx(styles.container, disabled && styles.disabled)}
+      style={style}
+    >
       {status === TaskStatus.Processing ? (
         <CurrentProcessTaskItem taskId={taskId} disabled={disabled} />
       ) : (
