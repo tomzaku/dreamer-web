@@ -1,15 +1,17 @@
 import IconBorderInner from '@moon-ui/icon/IconBorderInner';
 import List from '@moon-ui/list';
 import Toggle from '@moon-ui/toggle';
+import Radio from '@moon-ui/radio';
 
 // Hooks
 import { useIntl } from '@dreamer/translation';
+import { a, useSpring, config } from '@react-spring/web';
+
 
 // Enums
 import { EisenhowerMatrix } from '@dreamer/tasks-page-common';
 
 import styles from './index.module.scss';
-import Radio from '@moon-ui/radio';
 
 type Props = {
   value?: EisenhowerMatrix;
@@ -19,7 +21,9 @@ type Props = {
 
 const EisenhowerMatrixComponent = ({ value, setValue, className }: Props) => {
   const intl = useIntl();
-  console.log("CLA", className)
+  const animationStyles = useSpring({
+    maxHeight: value ? 40 : 0,
+  });
   return (
     <>
       <List.ItemMeta
@@ -46,8 +50,9 @@ const EisenhowerMatrixComponent = ({ value, setValue, className }: Props) => {
           />
         }
       />
-      {value && (
-        <div className={styles.buttonGroup}>
+      <a.div style={{
+        maxHeight: animationStyles.maxHeight
+      }} className={styles.buttonGroup}>
           <Radio
             isButton
             value={value}
@@ -68,24 +73,7 @@ const EisenhowerMatrixComponent = ({ value, setValue, className }: Props) => {
               }
             }}
           />
-        </div>
-      )}
-      {/* {Boolean(value) && ( */}
-      {/*   <div className={styles.buttonGroup}> */}
-      {/*     <Button className={styles.button} type="ghost"> */}
-      {/*       Do */}
-      {/*     </Button> */}
-      {/*     <Button className={styles.button} type="ghost"> */}
-      {/*       Schedule */}
-      {/*     </Button> */}
-      {/*     <Button className={styles.button} type="ghost"> */}
-      {/*       Delegate */}
-      {/*     </Button> */}
-      {/*     <Button className={styles.button} type="ghost"> */}
-      {/*       Eliminate */}
-      {/*     </Button> */}
-      {/*   </div> */}
-      {/* )} */}
+        </a.div>
     </>
   );
 };

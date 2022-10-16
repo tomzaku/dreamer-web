@@ -1,5 +1,6 @@
 @import '@moon-ui/app-scss/color';
 @import '@moon-ui/app-scss/metric';
+@import '@moon-ui/app-scss/function';
 @import '@dreamer/tasks-page-common/src/index';
 
 .container {
@@ -14,23 +15,26 @@
 .main {
   padding: 10px 6px;
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  display: flex;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
-  min-height: 40px;
+  /* min-height: 40px; */
 }
 
 .body {
-  align-items: center;
+  align-items: flex-end;
   display: flex;
   justify-content: space-between;
-  margin-top: 4px;
+  margin-top: 8px;
 }
 
 .project {
-  color: $black50;
+  color: $black80;
 }
 
 .checkbox {
@@ -43,19 +47,23 @@
 }
 
 .icon {
-  margin-right: $spacing-sm;
+  margin-right: $spacing-xs;
   width: 16px;
   height: 16px;
+  color: $black80;
+  fill: $black80;
 }
 
 .actionContainer {
-  padding: $spacing-xs $spacing-md;
-  background: $black6;
-  border-radius: 6px;
+  /* padding: 0 $spacing-sm; */
+  padding: $spacing-xxs $spacing-xs;
+  /* background: $black6; */
+  /* border-radius: 4px; */
+  cursor: pointer;
+  
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: $spacing-md;
   &:hover {
     color: $primary;
     fill: $primary;
@@ -64,8 +72,6 @@
 
 .section {
   display: flex;
-  align-items: flex-start;
-  cursor: move;
 	cursor: -webkit-grabbing;
 }
 
@@ -78,7 +84,11 @@
 
 .bar {
   width: 6px;
-  height: 100%;
+  margin: 10px 0;
+  margin-left: 0px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  margin-left: 6px;
 }
 .do {
   background-color: $eisenhower-do
@@ -94,4 +104,16 @@
 .eliminate {
   background-color: $eisenhower-eliminate
 
+}
+
+.buttonText {
+  font-size: toRem(12px);
+  color: $black80;
+}
+
+.verticalDivision {
+  width: 1px;
+  border-radius: 0.5px;
+  background: $black24;
+  margin: 3px 6px;
 }

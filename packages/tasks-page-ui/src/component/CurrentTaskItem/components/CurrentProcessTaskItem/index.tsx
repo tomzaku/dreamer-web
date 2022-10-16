@@ -20,6 +20,7 @@ import { GlobalTool } from '@dreamer/global-tool-common';
 import { useGlobalTool } from '@dreamer/global-tool-common';
 import { useTask } from '@dreamer/tasks-page-common';
 import { useIntl } from '@dreamer/translation';
+import IconDrag from '@moon-ui/icon/IconDrag';
 
 type Props = {
   disabled?: boolean;
@@ -56,9 +57,15 @@ export default function CurrentProcessTaskItem({ taskId, disabled }: Props) {
         />
         <div className={styles.main}>
           <div className={styles.header}>
+            <div
+              className={styles.section}
+            >
+          
+            <IconDrag className={cx(styles.dragIcon)} />
             <Typography.Title noMargin level={5}>
               {name}
             </Typography.Title>
+            </div>
             <div className={styles.actionGroup}>
               <div
                 onClick={() => open(GlobalTool.FocusMode)}
@@ -79,13 +86,6 @@ export default function CurrentProcessTaskItem({ taskId, disabled }: Props) {
               {/* /> */}
             </div>
           </div>
-          <div>
-            <Typography.Paragraph
-              className={styles.project}
-              underline
-              noMargin
-              isDescription
-            >{`#${projectName}`}</Typography.Paragraph>
             <div className={styles.bodyProcessing}>
               <Typography.Paragraph noMargin>
                 {formatMinuteAndSecond(commit)}
@@ -99,7 +99,6 @@ export default function CurrentProcessTaskItem({ taskId, disabled }: Props) {
                   nextStatus && changeTaskStatus(taskId, nextStatus);
                 }}
               />
-            </div>
           </div>
           <div
             className={styles.progress}

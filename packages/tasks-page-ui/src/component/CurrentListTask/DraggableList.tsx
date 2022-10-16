@@ -5,7 +5,7 @@ import { useDrag } from '@use-gesture/react';
 import styles from './DraggableList.module.scss';
 import { ReactDOMAttributes } from '@use-gesture/react/dist/declarations/src/types';
 
-const ITEM_HEIGHT = 100;
+const ITEM_HEIGHT = 80;
 const updateStyle =
   (order: number[], active = false, originalIndex = 0, curIndex = 0, y = 0) =>
     (index: number) =>

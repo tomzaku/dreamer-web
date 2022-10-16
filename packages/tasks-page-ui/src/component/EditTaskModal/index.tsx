@@ -34,6 +34,7 @@ export default function EditTaskModal({ visible, taskId, onDismiss }: Props) {
   React.useEffect(() => {
     setName(taskDetail.name);
     setDuration((taskDetail.duration || 0) / ONE_MINUTE);
+    setEisenhowerMatrix(taskDetail.eisenhowerMatrix)
   }, [taskDetail]);
   return (
     <Modal

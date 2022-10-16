@@ -68,7 +68,7 @@ export default function CommonTaskItem({
   return (
     <div className={styles.container}>
       <div
-        {...cardLongPress()}
+      // {...cardLongPress()}
         className={styles.row}
         onMouseEnter={() => !detectMobile() && setIsHover(true)}
         onMouseLeave={() => !detectMobile() && setIsHover(false)}
@@ -83,10 +83,10 @@ export default function CommonTaskItem({
           <div className={styles.header}>
             <div
               {...handlerBind}
-              onTouchStart={e => {
-                e.preventDefault();
-                e.stopPropagation();
-              }}
+              /* onTouchStart={e => { */
+              /*   e.preventDefault(); */
+              /*   e.stopPropagation(); */
+              /* }} */
               onClick={e => e.preventDefault()}
               className={styles.section}
             >
@@ -95,26 +95,56 @@ export default function CommonTaskItem({
                 {name}
               </Typography.Title>
             </div>
-            {isHover && (
+            {/* {(isHover || detectMobile()) && ( */}
+            {/*   <div className={styles.section}> */}
+            {/*     <div */}
+            {/*       onClick={() => onClickEdit && onClickEdit(taskId)} */}
+            {/*       className={styles.actionContainer} */}
+            {/*     > */}
+            {/*       <IconCreate className={styles.icon} /> */}
+            {/*       <Typography.Text className={styles.buttonText}> */}
+            {/*         {intl.formatMessage({ */}
+            {/*           id: 'label_edit', */}
+            {/*           defaultMessage: 'Edit', */}
+            {/*         })} */}
+            {/*       </Typography.Text> */}
+            {/*     </div> */}
+            {/*     <div */}
+            {/*       onClick={() => deleteTask(taskId)} */}
+            {/*       className={styles.actionContainer} */}
+            {/*     > */}
+            {/*       <IconTrashBin className={styles.icon} /> */}
+            {/*       <Typography.Text className={styles.buttonText}> */}
+            {/*         {intl.formatMessage({ */}
+            {/*           id: 'label_delete', */}
+            {/*           defaultMessage: 'Delete', */}
+            {/*         })} */}
+            {/*       </Typography.Text> */}
+            {/*     </div> */}
+            {/*   </div> */}
+            {/* )} */}
+          </div>
+          <div className={styles.body}>
               <div className={styles.section}>
                 <div
                   onClick={() => onClickEdit && onClickEdit(taskId)}
                   className={styles.actionContainer}
                 >
                   <IconCreate className={styles.icon} />
-                  <Typography.Text>
+                  <Typography.Text className={styles.buttonText}>
                     {intl.formatMessage({
                       id: 'label_edit',
                       defaultMessage: 'Edit',
                     })}
                   </Typography.Text>
                 </div>
+                <div className={styles.verticalDivision}/>
                 <div
                   onClick={() => deleteTask(taskId)}
                   className={styles.actionContainer}
                 >
                   <IconTrashBin className={styles.icon} />
-                  <Typography.Text>
+                  <Typography.Text className={styles.buttonText}>
                     {intl.formatMessage({
                       id: 'label_delete',
                       defaultMessage: 'Delete',
@@ -122,15 +152,6 @@ export default function CommonTaskItem({
                   </Typography.Text>
                 </div>
               </div>
-            )}
-          </div>
-          <div className={styles.body}>
-            <Typography.Paragraph
-              className={styles.project}
-              underline
-              noMargin
-              isDescription
-            >{`#${projectName}`}</Typography.Paragraph>
             {duration ? (
               <TimerButton
                 disabled={disabled}

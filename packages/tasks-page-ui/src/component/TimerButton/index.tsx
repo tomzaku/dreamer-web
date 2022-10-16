@@ -60,7 +60,7 @@ export default function TimerButton({
               id: 'TimerButton.label-done',
               defaultMessage: 'Done',
             })
-            : `${formatDuration(timeToDuration(duration - commit))} remaining`}
+            : `${formatDuration(timeToDuration(duration - commit))}`}
         </ActionButton>
       );
     }
@@ -86,7 +86,7 @@ export default function TimerButton({
           rightIcon={<IconPlay height="20" />}
           onClick={onClick}
         >
-          {`${formatDuration(timeToDuration(duration - commit))} remaining`}
+          {`${formatDuration(timeToDuration(duration - commit))}`}
         </ActionButton>
       );
     }

@@ -14,7 +14,7 @@ type Option = {
 type Props = {
   isButton?: boolean;
   options: Option[];
-  value: string;
+  value?: string;
   onChangeValue?: (value: any) => void;
   classNameOption?: string;
   getClassNameActiveOption?: (option: Option) => string;

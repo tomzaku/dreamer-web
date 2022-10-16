@@ -15,7 +15,11 @@
 
 .bar {
   width: 6px;
-  height: 100%;
+  margin: 10px 0;
+  margin-left: 0px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  margin-left: 6px;
 }
 
 .main {
@@ -65,14 +69,14 @@
   align-items: center;
   display: flex;
   justify-content: space-between;
-  margin-top: 4px;
+  margin-top: 12px;
 }
 
 .bodyProcessing {
   align-items: center;
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
+  margin-top: 6px;
 }
 
 .progress {
@@ -80,11 +84,6 @@
   height: 5px;
 }
 
-
-.bar {
-  width: 6px;
-  height: 100%;
-}
 .do {
   background-color: $eisenhower-do
 }
@@ -99,4 +98,15 @@
 .eliminate {
   background-color: $eisenhower-eliminate
 
+}
+
+.dragIcon {
+	cursor: -webkit-grabbing;
+  fill: $black24;
+  height: 20px;
+}
+
+.section {
+  display: flex;
+	cursor: -webkit-grabbing;
 }
