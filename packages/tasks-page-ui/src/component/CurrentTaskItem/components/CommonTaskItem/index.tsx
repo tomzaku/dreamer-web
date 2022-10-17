@@ -83,10 +83,6 @@ export default function CommonTaskItem({
           <div className={styles.header}>
             <div
               {...handlerBind}
-              /* onTouchStart={e => { */
-              /*   e.preventDefault(); */
-              /*   e.stopPropagation(); */
-              /* }} */
               onClick={e => e.preventDefault()}
               className={styles.section}
             >
@@ -95,34 +91,6 @@ export default function CommonTaskItem({
                 {name}
               </Typography.Title>
             </div>
-            {/* {(isHover || detectMobile()) && ( */}
-            {/*   <div className={styles.section}> */}
-            {/*     <div */}
-            {/*       onClick={() => onClickEdit && onClickEdit(taskId)} */}
-            {/*       className={styles.actionContainer} */}
-            {/*     > */}
-            {/*       <IconCreate className={styles.icon} /> */}
-            {/*       <Typography.Text className={styles.buttonText}> */}
-            {/*         {intl.formatMessage({ */}
-            {/*           id: 'label_edit', */}
-            {/*           defaultMessage: 'Edit', */}
-            {/*         })} */}
-            {/*       </Typography.Text> */}
-            {/*     </div> */}
-            {/*     <div */}
-            {/*       onClick={() => deleteTask(taskId)} */}
-            {/*       className={styles.actionContainer} */}
-            {/*     > */}
-            {/*       <IconTrashBin className={styles.icon} /> */}
-            {/*       <Typography.Text className={styles.buttonText}> */}
-            {/*         {intl.formatMessage({ */}
-            {/*           id: 'label_delete', */}
-            {/*           defaultMessage: 'Delete', */}
-            {/*         })} */}
-            {/*       </Typography.Text> */}
-            {/*     </div> */}
-            {/*   </div> */}
-            {/* )} */}
           </div>
           <div className={styles.body}>
               <div className={styles.section}>

@@ -10,8 +10,9 @@ import EisenhowerMatrixComponent from '../EisenhowerMatrix';
 import BuildWeeklyHobby from '../BuildWeeklyHobby';
 
 // Hooks
-import {  useTask } from '@dreamer/tasks-page-common';
+import { useTask } from '@dreamer/tasks-page-common';
 import { useIntl } from '@dreamer/translation';
+import { a, useSpring, config } from '@react-spring/web';
 import { useKeyListener } from '@dreamer/global';
 
 // Utils
@@ -38,7 +39,10 @@ export default function CreateTask({ className }: { className?: string }) {
   const inputRef = React.useRef<HTMLTextAreaElement>(null);
   const [eisenhowerMatrix, setEisenhowerMatrix] =
     React.useState<EisenhowerMatrix>();
-  const [weeklyHobbies, setWeeklyHobbies] = React.useState<Day[]>()
+  const [weeklyHobbies, setWeeklyHobbies] = React.useState<Day[]>();
+  const animationFooterStyles = useSpring({
+    maxHeight: taskText || focus || weeklyHobbies || eisenhowerMatrix ? 320 : 0,
+  });
   const addTask = () => {
     if (!isValidated) return;
     createTask({
@@ -46,7 +50,7 @@ export default function CreateTask({ className }: { className?: string }) {
       duration: duration * ONE_MINUTE,
       projectId: '-999',
       eisenhowerMatrix,
-      weeklyHobbies
+      weeklyHobbies,
     });
     setTaskText('');
     /* inputRef.current?.focus(); */
@@ -111,7 +115,14 @@ export default function CreateTask({ className }: { className?: string }) {
           }}
         />
         <hr className={styles.dashed} />
-        <div className={styles.footer}>
+      </div>
+      <a.div
+        className={styles.footer}
+        style={{
+          maxHeight: animationFooterStyles.maxHeight,
+        }}
+      >
+        <div className={styles.submitFooter}>
           <div>
             <Input
               type="number"
@@ -145,15 +156,12 @@ export default function CreateTask({ className }: { className?: string }) {
             })}
           </Button>
         </div>
-      </div>
-      <EisenhowerMatrixComponent
-        value={eisenhowerMatrix}
-        setValue={setEisenhowerMatrix}
-      />
-      <BuildWeeklyHobby 
-        values={weeklyHobbies}
-        setValues={setWeeklyHobbies}
-      />
+        <EisenhowerMatrixComponent
+          value={eisenhowerMatrix}
+          setValue={setEisenhowerMatrix}
+        />
+        <BuildWeeklyHobby values={weeklyHobbies} setValues={setWeeklyHobbies} />
+      </a.div>
       <div
         className={cx(
           (!taskText && !focus) || recommendedTasks.length == 0
