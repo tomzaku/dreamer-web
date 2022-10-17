@@ -31,6 +31,7 @@
   cursor: pointer;
   margin-right: 25px;
   z-index: 1;
+  fill: $black50;
   @include media('<=tablet') {
     margin-right: 10px;
   }

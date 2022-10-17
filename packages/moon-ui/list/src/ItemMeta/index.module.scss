@@ -1,11 +1,15 @@
 @import '@moon-ui/app-scss/color';
 @import '@moon-ui/app-scss/metric';
+@import 'include-media/dist/include-media';
 
 .container {
   align-items: center;
   background: $white;
   display: flex;
   padding: $spacing-md;
+  @include media('<=tablet') {
+    padding: $spacing-sm $spacing-md;
+  }
 }
 
 .body {

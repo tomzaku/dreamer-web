@@ -1,8 +1,9 @@
 @import '@moon-ui/app-scss/color';
+@import '@moon-ui/app-scss/metric';
 
 .section {
   box-sizing: border-box;
-  margin-bottom: 35px;
+  margin-bottom: $spacing-lg;
 }
 
 .container {

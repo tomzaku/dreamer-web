@@ -20,7 +20,11 @@ export const getNextTaskStatus = (
       }
     }
     case TaskStatus.Pause: {
-      return TaskStatus.Processing;
+      if(!duration) {
+        return TaskStatus.Done
+      } else {
+        return TaskStatus.Processing;
+      }
     }
     case TaskStatus.Overdue:
     case TaskStatus.Done:

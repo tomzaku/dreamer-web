@@ -31,6 +31,7 @@ const INIT_DURATION = 0;
 export default function CreateTask({ className }: { className?: string }) {
   const intl = useIntl();
   const [focus, setFocus] = React.useState(false);
+  const [durationFocus, setDurationFocus] = React.useState(false);
   const [taskText, setTaskText] = React.useState('');
   const [duration, setDuration] = React.useState(INIT_DURATION);
   const { createTask, getRecommendedTasks } = useTask();
@@ -41,7 +42,7 @@ export default function CreateTask({ className }: { className?: string }) {
     React.useState<EisenhowerMatrix>();
   const [weeklyHobbies, setWeeklyHobbies] = React.useState<Day[]>();
   const animationFooterStyles = useSpring({
-    maxHeight: taskText || focus || weeklyHobbies || eisenhowerMatrix ? 320 : 0,
+    maxHeight: taskText || focus || durationFocus || duration || weeklyHobbies || eisenhowerMatrix ? 320 : 0,
   });
   const addTask = () => {
     if (!isValidated) return;
@@ -129,6 +130,8 @@ export default function CreateTask({ className }: { className?: string }) {
               className={styles.durationInput}
               border="dash"
               placeholder="0"
+              onFocus={() => setDurationFocus(true)}
+              onBlur={() => setDurationFocus(false)}
               value={duration === 0 ? '' : duration}
               onChange={e => {
                 const value = e.currentTarget.value;
@@ -149,7 +152,7 @@ export default function CreateTask({ className }: { className?: string }) {
               })}
             </Typography.Text>
           </div>
-          <Button disabled={!isValidated} onClick={addTask}>
+          <Button disabled={!isValidated} className={styles.submitButton} onClick={addTask}>
             {intl.formatMessage({
               id: 'CreateTask.label-submit',
               defaultMessage: 'Submit',

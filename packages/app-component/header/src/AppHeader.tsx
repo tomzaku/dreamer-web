@@ -1,4 +1,4 @@
-import Avatar, { Size } from '@moon-ui/avatar';
+import IconSetting from '@moon-ui/icon/IconSetting';
 
 // Hooks
 import { useNavigate } from 'react-router-dom';
@@ -13,8 +13,7 @@ const Header = () => {
         DREAMER
       </div>
       <div className={styles.menu}></div>
-      <Avatar
-        size={Size.sm}
+      <IconSetting
         className={styles.right}
         onClick={() => {
           navigate('/setting');

@@ -64,6 +64,7 @@ export default function CurrentListTask({ className }: Props) {
                 showDoneTask: !filter.showDoneTask,
               });
             }}
+            className={styles.checkbox}
           />
           <Typography.Text isDescription>
             {intl.formatMessage({

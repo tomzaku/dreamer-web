@@ -1,6 +1,12 @@
 export default function IconSetting(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
+    <svg
+      width="24"
+      fill="#00000075"
+      height="24"
+      viewBox="0 0 24 24"
+      {...props}
+    >
       <g>
         <path
           fillRule="evenodd"

@@ -1,5 +1,5 @@
 import IconMusic from '@moon-ui/icon/IconMusic';
-import IconSetting from '@moon-ui/icon/IconSetting';
+import IconApp from '@moon-ui/icon/IconApp';
 import IconTimer from '@moon-ui/icon/IconTimer';
 import { Fab, Action } from 'react-tiny-fab';
 import 'react-tiny-fab/dist/styles.css';
@@ -14,7 +14,7 @@ export default function GlobalToolMobile() {
   return (
     <Fab
       alwaysShowTitle={true}
-      icon={<IconSetting fill="white" className={styles.icon} />}
+      icon={<IconApp className={styles.icon} />}
       style={{ margin: 12, bottom: 0, right: 0 }}
       mainButtonStyles={{ background: '#334d6e' }}
     >

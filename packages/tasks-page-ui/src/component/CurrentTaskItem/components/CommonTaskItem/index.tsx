@@ -47,18 +47,17 @@ export default function CommonTaskItem({
   if (!task) return null;
 
   const { duration, eisenhowerMatrix, status, name, commit = 0 } = task[taskId];
-  const projectName = 'Other';
   const nextStatus = getNextTaskStatus(status, { duration, commit });
-  const cardLongPress = useLongPress(
-    () => {
-      onLongPress && onLongPress(taskId);
-    },
-    {
-      detect: LongPressDetectEvents.TOUCH,
-      cancelOnMovement: true,
-      threshold: 250,
-    }
-  );
+  /* const cardLongPress = useLongPress( */
+  /*   () => { */
+  /*     onLongPress && onLongPress(taskId); */
+  /*   }, */
+  /*   { */
+  /*     detect: LongPressDetectEvents.TOUCH, */
+  /*     cancelOnMovement: true, */
+  /*     threshold: 250, */
+  /*   } */
+  /* ); */
   const eisenhowerMatrixBarStyle = {
     [EisenhowerMatrix.Do]: styles.do,
     [EisenhowerMatrix.Schedule]: styles.schedule,
@@ -66,9 +65,8 @@ export default function CommonTaskItem({
     [EisenhowerMatrix.Eliminate]: styles.eliminate,
   };
   return (
-    <div className={styles.container}>
+    <div {...(detectMobile() ? handlerBind : {})} className={styles.container}>
       <div
-      // {...cardLongPress()}
         className={styles.row}
         onMouseEnter={() => !detectMobile() && setIsHover(true)}
         onMouseLeave={() => !detectMobile() && setIsHover(false)}
@@ -82,7 +80,7 @@ export default function CommonTaskItem({
         <div className={styles.main}>
           <div className={styles.header}>
             <div
-              {...handlerBind}
+              {...(!detectMobile() ? handlerBind : {})}
               onClick={e => e.preventDefault()}
               className={styles.section}
             >
@@ -93,33 +91,33 @@ export default function CommonTaskItem({
             </div>
           </div>
           <div className={styles.body}>
-              <div className={styles.section}>
-                <div
-                  onClick={() => onClickEdit && onClickEdit(taskId)}
-                  className={styles.actionContainer}
-                >
-                  <IconCreate className={styles.icon} />
-                  <Typography.Text className={styles.buttonText}>
-                    {intl.formatMessage({
-                      id: 'label_edit',
-                      defaultMessage: 'Edit',
-                    })}
-                  </Typography.Text>
-                </div>
-                <div className={styles.verticalDivision}/>
-                <div
-                  onClick={() => deleteTask(taskId)}
-                  className={styles.actionContainer}
-                >
-                  <IconTrashBin className={styles.icon} />
-                  <Typography.Text className={styles.buttonText}>
-                    {intl.formatMessage({
-                      id: 'label_delete',
-                      defaultMessage: 'Delete',
-                    })}
-                  </Typography.Text>
-                </div>
+            <div className={styles.section}>
+              <div
+                onClick={() => onClickEdit && onClickEdit(taskId)}
+                className={styles.actionContainer}
+              >
+                <IconCreate className={styles.icon} />
+                <Typography.Text className={styles.buttonText}>
+                  {intl.formatMessage({
+                    id: 'label_edit',
+                    defaultMessage: 'Edit',
+                  })}
+                </Typography.Text>
               </div>
+              <div className={styles.verticalDivision} />
+              <div
+                onClick={() => deleteTask(taskId)}
+                className={styles.actionContainer}
+              >
+                <IconTrashBin className={styles.icon} />
+                <Typography.Text className={styles.buttonText}>
+                  {intl.formatMessage({
+                    id: 'label_delete',
+                    defaultMessage: 'Delete',
+                  })}
+                </Typography.Text>
+              </div>
+            </div>
             {duration ? (
               <TimerButton
                 disabled={disabled}
