@@ -8,9 +8,9 @@ import { ReactDOMAttributes } from '@use-gesture/react/dist/declarations/src/typ
 const ITEM_HEIGHT = 80;
 const updateStyle =
   (order: number[], active = false, originalIndex = 0, curIndex = 0, y = 0) =>
-    (index: number) =>
-      active && index === originalIndex
-        ? {
+  (index: number) =>
+    active && index === originalIndex
+      ? {
           y: curIndex * ITEM_HEIGHT + y,
           scale: 1.1,
           zIndex: 1,
@@ -19,7 +19,7 @@ const updateStyle =
           config: (key: string) =>
             key === 'y' ? config.stiff : config.default,
         }
-        : {
+      : {
           y: order.indexOf(index) * ITEM_HEIGHT,
           scale: 1,
           zIndex: 0,
@@ -66,7 +66,11 @@ function swap(array: number[], moveIndex: number, toIndex: number) {
 type Props<T> = {
   items: T[];
   onChange?: (data: T[]) => void;
-  renderItem: (item: T, bind: ReactDOMAttributes, index: number) => React.ReactNode;
+  renderItem: (
+    item: T,
+    bind: ReactDOMAttributes,
+    index: number
+  ) => React.ReactNode;
 };
 
 function DraggableList<T>({
@@ -86,24 +90,28 @@ function DraggableList<T>({
     inputItems,
     order.current,
   ]);
-  const bind = useDrag(({ args: [originalIndex], active, movement: [, y] }) => {
-    const curIndex = order.current.indexOf(originalIndex);
-    const curRow = clamp(
-      Math.round((curIndex * ITEM_HEIGHT + y) / ITEM_HEIGHT),
-      0,
-      items.length - 1
-    );
-    const newOrder = swap(order.current, curIndex, curRow);
-    api.start(updateStyle(newOrder, active, originalIndex, curIndex, y));
-    if (!active) {
-      order.current = newOrder;
-      api.stop();
-      onChange && onChange(newOrder.map(index => items[index]));
+  const bind = useDrag(
+    ({ args: [originalIndex], active, movement: [, y], tap }) => {
+      console.log('TAP', tap);
+      const curIndex = order.current.indexOf(originalIndex);
+      const curRow = clamp(
+        Math.round((curIndex * ITEM_HEIGHT + y) / ITEM_HEIGHT),
+        0,
+        items.length - 1
+      );
+      const newOrder = swap(order.current, curIndex, curRow);
+      api.start(updateStyle(newOrder, active, originalIndex, curIndex, y));
+      if (!active) {
+        order.current = newOrder;
+        api.stop();
+        onChange && onChange(newOrder.map(index => items[index]));
+      }
+    },
+    {
+      preventScroll: true,
+      delay: 50,
     }
-  }, {
-    preventScroll: true,
-    delay: 50
-  });
+  );
 
   return (
     <div
@@ -113,7 +121,13 @@ function DraggableList<T>({
       {springs.map(({ zIndex, shadow, y, scale }, i) => (
         <animated.div
           key={`annimated-${i}`}
-          /* {...bind(i)} */
+          onTouchEnd={() => {
+            // TODO: This line will fix to stop animation when user click on the
+            // task item
+            setTimeout(() => {
+              api.start(updateStyle(order.current));
+            }, 250);
+          }}
           style={{
             zIndex,
             boxShadow: shadow.to(
@@ -136,16 +150,24 @@ function DraggableList1<T>(props: Props<T>) {
 export default function Combine<T>(props: Props<T>) {
   const [count, setCount] = React.useState(1);
   if (count % 2 == 0) {
-    return <DraggableList {...props} onChange={(data) => {
-      setCount(count + 1)
-      props.onChange && props.onChange(data)
-
-    }} />;
+    return (
+      <DraggableList
+        {...props}
+        onChange={data => {
+          setCount(count + 1);
+          props.onChange && props.onChange(data);
+        }}
+      />
+    );
   } else {
-    return <DraggableList1 {...props} onChange={(data) => {
-      setCount(count + 1)
-      props.onChange && props.onChange(data)
-
-    }} />;
+    return (
+      <DraggableList1
+        {...props}
+        onChange={data => {
+          setCount(count + 1);
+          props.onChange && props.onChange(data);
+        }}
+      />
+    );
   }
 }

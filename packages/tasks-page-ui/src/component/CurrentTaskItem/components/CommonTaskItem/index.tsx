@@ -65,7 +65,14 @@ export default function CommonTaskItem({
     [EisenhowerMatrix.Eliminate]: styles.eliminate,
   };
   return (
-    <div {...(detectMobile() ? handlerBind : {})} className={styles.container}>
+    <div
+      {...(detectMobile() ? handlerBind : {})}
+      /* onClick={e => { */
+      /*   e.preventDefault() */
+      /*   e.stopPropagation() */
+      /* }} */
+      className={styles.container}
+    >
       <div
         className={styles.row}
         onMouseEnter={() => !detectMobile() && setIsHover(true)}
@@ -81,7 +88,7 @@ export default function CommonTaskItem({
           <div className={styles.header}>
             <div
               {...(!detectMobile() ? handlerBind : {})}
-              onClick={e => e.preventDefault()}
+              /* onClick={e => e.preventDefault()} */
               className={styles.section}
             >
               <IconDrag className={cx(styles.dragIcon)} />
