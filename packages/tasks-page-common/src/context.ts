@@ -35,6 +35,7 @@ export const TaskContext = React.createContext<TaskContextType>({
   filter: {
     showDoneTask: false,
     disableAddProgressTaskAtTop: false,
+    showAllTask: false
   },
   setFilter: () => { },
 });

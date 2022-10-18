@@ -43,6 +43,7 @@ export const withTask = <P extends {}>(
     const [filter, setFilter] = React.useState<Filter>({
       showDoneTask: false,
       disableAddProgressTaskAtTop: false,
+      showAllTask: false
     });
     // This to get the true data when run setInterval
     const activeTask = React.useRef<Task>();
@@ -76,10 +77,16 @@ export const withTask = <P extends {}>(
       return tasks.filter(t => t.status !== TaskStatus.Done);
     };
 
+    const addAllTask = (tasks: Task[]) => {
+      if(!filter.showAllTask) return tasks
+      return Object.values(task)
+    }
+
     const getCurrentTaskIds = (tasks: Task[]) => {
       return pipe<string[]>(
         addProgressTaskAtTop,
         removeDoneTask,
+        addAllTask,
         getTaskIds
       )(tasks);
     };
@@ -213,6 +220,7 @@ export const withTask = <P extends {}>(
       tasksShouldCreate.forEach(taskId => {
         changeTaskStatus(taskId, TaskStatus.Pending);
       });
+      setCurrentTaskIds([...tasksShouldCreate, ...currentTaskIds])
     };
 
     return (

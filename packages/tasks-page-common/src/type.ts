@@ -42,6 +42,7 @@ export type TaskFullData = {
 
 export type Filter = {
   showDoneTask: boolean,
-  disableAddProgressTaskAtTop: boolean
+  disableAddProgressTaskAtTop: boolean,
+  showAllTask: boolean,
 }
 

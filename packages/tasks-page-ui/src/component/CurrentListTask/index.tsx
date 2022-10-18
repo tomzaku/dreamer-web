@@ -72,6 +72,22 @@ export default function CurrentListTask({ className }: Props) {
               defaultMessage: 'Show Done Tasks',
             })}
           </Typography.Text>
+          <Checkbox
+            checked={filter.showAllTask}
+            onChange={() => {
+              setFilter({
+                ...filter,
+                showAllTask: !filter.showAllTask,
+              });
+            }}
+            className={styles.checkbox}
+          />
+          <Typography.Text isDescription>
+            {intl.formatMessage({
+              id: 'ListTask.label-show-done-task',
+              defaultMessage: 'Show All Tasks',
+            })}
+          </Typography.Text>
         </div>
       </div>
       <div className={styles.body}>
