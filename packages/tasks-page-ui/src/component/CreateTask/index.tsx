@@ -54,6 +54,8 @@ export default function CreateTask({ className }: { className?: string }) {
       weeklyHobbies,
     });
     setTaskText('');
+    setFocus(true);
+    inputRef.current?.focus(); 
     /* inputRef.current?.focus(); */
   };
   /* useKeyListener(e => { */
@@ -106,12 +108,16 @@ export default function CreateTask({ className }: { className?: string }) {
           }}
           maxRows={3}
           onBlur={() => setFocus(false)}
-          onChange={e => setTaskText(e.currentTarget.value)}
+          onChange={e => {
+            setTaskText(e.currentTarget.value)
+          }}
           value={taskText}
           onKeyPress={e => {
             if (e.key === 'Enter') {
               addTask();
               setFocus(true);
+              setTaskText('')
+              e.preventDefault()
             }
           }}
         />
