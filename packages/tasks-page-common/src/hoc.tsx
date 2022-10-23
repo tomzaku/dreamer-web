@@ -36,7 +36,7 @@ export const withTask = <P extends {}>(
 ) => {
   return function(props: P) {
     const [task, setTask] = useLocalStorage<ListTask>('tasks', {});
-    const [currentTaskIds, setCurrentTaskIds] = useLocalStorage<string[]>(
+    const [saveCurrentTaskIds, setSavedCurrentTaskIds] = useLocalStorage<string[]>(
       'currentTasksIds',
       pipe<string[]>(sortTasks, getTaskIds)(Object.values(task || {}))
     );
@@ -59,7 +59,7 @@ export const withTask = <P extends {}>(
           id,
         },
       });
-      setCurrentTaskIds([id, ...currentTaskIds]);
+      setSavedCurrentTaskIds([id, ...saveCurrentTaskIds]);
     };
 
     const activeTaskId = Object.values(task).find(
@@ -78,7 +78,7 @@ export const withTask = <P extends {}>(
     };
 
     const addAllTask = (tasks: Task[]) => {
-      if(!filter.showAllTask) return tasks
+      if (!filter.showAllTask) return tasks
       return Object.values(task)
     }
 
@@ -153,7 +153,7 @@ export const withTask = <P extends {}>(
       const { [taskId]: _, ...restTask } = task;
       console.log('DELETE', taskId, task);
       setTask(restTask);
-      setCurrentTaskIds(currentTaskIds.filter(id => id !== taskId));
+      setSavedCurrentTaskIds(saveCurrentTaskIds.filter(id => id !== taskId));
     };
 
     const updateTask = (taskId: string, data: Task) => {
@@ -211,24 +211,27 @@ export const withTask = <P extends {}>(
         );
       });
     };
+    const currentTaskIds = getCurrentTaskIds(saveCurrentTaskIds.map(id => task[id]))
     const createTaskFromWeeklyHobby = () => {
-      const tasksShouldCreate = pipe<string[]>(
+      const taskShouldCreateIds = pipe<string[]>(
         getTasksHasTodayHobby,
         getTaskDone,
         getTaskIds,
       )(Object.values(task || {}));
-      tasksShouldCreate.forEach(taskId => {
-        changeTaskStatus(taskId, TaskStatus.Pending);
+      taskShouldCreateIds.forEach(taskId => {
+        if (!currentTaskIds.includes(taskId)) {
+          changeTaskStatus(taskId, TaskStatus.Pending);
+        }
       });
-      setCurrentTaskIds([...tasksShouldCreate, ...currentTaskIds])
+      setSavedCurrentTaskIds([...taskShouldCreateIds, ...saveCurrentTaskIds])
     };
 
     return (
       <TaskContext.Provider
         value={{
           task,
-          currentTaskIds: getCurrentTaskIds(currentTaskIds.map(id => task[id])),
-          setCurrentTaskIds,
+          currentTaskIds,
+          setCurrentTaskIds: setSavedCurrentTaskIds,
           createTask,
           activeTaskId,
           changeTaskStatus,
