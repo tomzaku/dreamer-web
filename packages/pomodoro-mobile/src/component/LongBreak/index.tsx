@@ -23,6 +23,9 @@ type Props = {
 export default function LongBreak({onTimeUp}: Props) {
   const { longBreakTimer } = usePomodoroTimer();
   React.useEffect(() => {
+    longBreakTimer.start()
+  }, [])
+  React.useEffect(() => {
     if (longBreakTimer.time === 0) {
       notify("Let's continue", {});
       longBreakTimer.stop()

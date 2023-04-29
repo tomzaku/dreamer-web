@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from '@dreamer/header';
 import TaskPage from '@dreamer/tasks-page-ui';
@@ -11,22 +11,28 @@ import PomodoroMobile from '@dreamer/pomodoro-mobile';
 import { useGlobalTool, GlobalTool } from '@dreamer/global-tool-common';
 
 // Hocs
-import { withGlobalTool, } from '@dreamer/global-tool-common';
+import { withGlobalTool } from '@dreamer/global-tool-common';
 import { useTask, withTask } from '@dreamer/tasks-page-common';
 import { withPomodoro, withPomodoroTimer } from '@dreamer/pomodoro-common';
 
 const AppRouter = () => {
-  const { isToolVisible, close } = useGlobalTool()
-  const { cancelProcessingTask, createTaskFromWeeklyHobby } = useTask()
+  const { isToolVisible, close } = useGlobalTool();
+  const { cancelProcessingTask, createTaskFromWeeklyHobby } = useTask();
   React.useEffect(() => {
-    cancelProcessingTask()
-    createTaskFromWeeklyHobby()
-  }, [])
+    cancelProcessingTask();
+    createTaskFromWeeklyHobby();
+  }, []);
   return (
     <BrowserRouter>
       <Header />
-      <MusicControllerMobile onClickBackButton={close} visible={isToolVisible(GlobalTool.Sound)} />
-      <PomodoroMobile onClickBackButton={close} visible={isToolVisible(GlobalTool.FocusMode)} />
+      <MusicControllerMobile
+        onClickBackButton={close}
+        visible={isToolVisible(GlobalTool.Sound)}
+      />
+      <PomodoroMobile
+        onClickBackButton={close}
+        visible={isToolVisible(GlobalTool.FocusMode)}
+      />
       <GlobalToolMobile />
       <Routes>
         <Route path="/" element={<TaskPage />}></Route>,
@@ -36,5 +42,4 @@ const AppRouter = () => {
   );
 };
 
-export default withPomodoro(withPomodoroTimer((withGlobalTool(AppRouter))));
-
+export default withPomodoro(withPomodoroTimer(withGlobalTool(AppRouter)));

@@ -1,10 +1,9 @@
 // Hooks
-import { usePomodoro } from '@dreamer/pomodoro-common';
-import { useTimer } from '@dreamer/timer-hook';
+import { usePomodoroTimer } from '@dreamer/pomodoro-common';
 
 const PomodoroPlayer = () => {
-  const { pomodoro: duration } = usePomodoro()
-  // const timer = useTimer({ duration });
+  const { pomodoroTimer, shortBreakTimer, longBreakTimer } = usePomodoroTimer()
+  // console.log(">>>>", pomodoroTimer, shortBreakTimer, longBreakTimer)
   return null
 
 }

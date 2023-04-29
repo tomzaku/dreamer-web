@@ -24,6 +24,9 @@ export default function ShortBreak({ onTimeUp }: Props) {
   const { shortBreakTimer } = usePomodoroTimer();
   const intl = useIntl();
   React.useEffect(() => {
+    shortBreakTimer.start()
+  }, [])
+  React.useEffect(() => {
     if (shortBreakTimer.time === 0) {
       notify("Let's continue", {});
       shortBreakTimer.stop()

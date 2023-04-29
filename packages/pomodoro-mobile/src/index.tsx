@@ -20,11 +20,12 @@ import { useWakeLockPwa } from '@dreamer/global';
 import styles from './index.module.scss';
 
 // Enum
-import { PomodoroPhase } from './enum';
 import { GlobalTool } from '@dreamer/global-tool-common';
+import { PomodoroPhase } from '@dreamer/pomodoro-common';
 
 // Utils
 import { loadSounds } from '@dreamer/notification';
+import { usePomodoroTimer } from '@dreamer/pomodoro-common';
 
 enum State {
   Intro,
@@ -40,10 +41,8 @@ export default function PomodoroMobile({
 }) {
   const intl = useIntl();
   const [state, setState] = React.useState<State>(State.Intro);
-  const [pomodoroPhase, setPomodoroPhase] = React.useState<PomodoroPhase>(
-    PomodoroPhase.Pomodoro
-  );
   const [modalVisible, setModalVisible] = React.useState(false);
+  const { pomodoroPhase, setPomodoroPhase } = usePomodoroTimer()
   const [modalInfo, setModalInfo] = React.useState<PomodoroPhase>(
     PomodoroPhase.Pomodoro
   );
