@@ -29,7 +29,7 @@ const AppRouter = () => {
       <PomodoroMobile onClickBackButton={close} visible={isToolVisible(GlobalTool.FocusMode)} />
       <GlobalToolMobile />
       <Routes>
-        <Route path="/" element={<TaskPage />}></Route>
+        <Route path="/" element={<TaskPage />}></Route>,
         <Route path="/setting" element={<SettingPage />}></Route>
       </Routes>
     </BrowserRouter>

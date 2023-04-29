@@ -7,10 +7,11 @@ import 'react-tiny-fab/dist/styles.css';
 // Hooks
 import { GlobalTool, useGlobalTool } from '@dreamer/global-tool-common';
 import styles from './index.module.scss';
+import { requireNotifyPermission } from '@dreamer/notification';
 
 export default function GlobalToolMobile() {
   const { open, visibleTool } = useGlobalTool();
-  if(visibleTool.length > 0) return null
+  if (visibleTool.length > 0) return null;
   return (
     <Fab
       alwaysShowTitle={true}
@@ -19,7 +20,10 @@ export default function GlobalToolMobile() {
       mainButtonStyles={{ background: '#334d6e' }}
     >
       <Action
-        onClick={() => open(GlobalTool.FocusMode)}
+        onClick={() => {
+          open(GlobalTool.FocusMode);
+          requireNotifyPermission();
+        }}
         style={{ background: '#0b7dc2' }}
         text="Focus Mode"
       >

@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@dreamer/music-controller-mobile": "^1.0.0",
+    "@dreamer/pomodoro-player-ui": "^1.0.0",
     "@dreamer/tasks-page-common": "^1.0.0",
     "@dreamer/translation": "^1.0.0",
     "@moon-ui/button": "^1.0.0",

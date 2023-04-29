@@ -42,7 +42,15 @@ export default function CreateTask({ className }: { className?: string }) {
     React.useState<EisenhowerMatrix>();
   const [weeklyHobbies, setWeeklyHobbies] = React.useState<Day[]>();
   const animationFooterStyles = useSpring({
-    maxHeight: taskText || focus || durationFocus || duration || weeklyHobbies || eisenhowerMatrix ? 320 : 0,
+    maxHeight:
+      taskText ||
+      focus ||
+      durationFocus ||
+      duration ||
+      weeklyHobbies ||
+      eisenhowerMatrix
+        ? 320
+        : 0,
   });
   const addTask = () => {
     if (!isValidated) return;
@@ -55,7 +63,7 @@ export default function CreateTask({ className }: { className?: string }) {
     });
     setTaskText('');
     setFocus(true);
-    inputRef.current?.focus(); 
+    inputRef.current?.focus();
     /* inputRef.current?.focus(); */
   };
   /* useKeyListener(e => { */
@@ -109,15 +117,15 @@ export default function CreateTask({ className }: { className?: string }) {
           maxRows={3}
           onBlur={() => setFocus(false)}
           onChange={e => {
-            setTaskText(e.currentTarget.value)
+            setTaskText(e.currentTarget.value);
           }}
           value={taskText}
           onKeyPress={e => {
             if (e.key === 'Enter') {
               addTask();
               setFocus(true);
-              setTaskText('')
-              e.preventDefault()
+              setTaskText('');
+              e.preventDefault();
             }
           }}
         />
@@ -158,7 +166,11 @@ export default function CreateTask({ className }: { className?: string }) {
               })}
             </Typography.Text>
           </div>
-          <Button disabled={!isValidated} className={styles.submitButton} onClick={addTask}>
+          <Button
+            disabled={!isValidated}
+            className={styles.submitButton}
+            onClick={addTask}
+          >
             {intl.formatMessage({
               id: 'CreateTask.label-submit',
               defaultMessage: 'Submit',
@@ -167,7 +179,12 @@ export default function CreateTask({ className }: { className?: string }) {
         </div>
         <EisenhowerMatrixComponent
           value={eisenhowerMatrix}
-          setValue={setEisenhowerMatrix}
+          setValue={eisenhower => {
+            if(eisenhower === EisenhowerMatrix.Schedule) {
+              setWeeklyHobbies([Day.Mon])
+            }
+            setEisenhowerMatrix(eisenhower);
+          }}
         />
         <BuildWeeklyHobby values={weeklyHobbies} setValues={setWeeklyHobbies} />
       </a.div>

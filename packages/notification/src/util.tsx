@@ -18,6 +18,12 @@ const { sounds, toggleSound, setSoundVolume, loadSounds } =
   createGoogleDriveAudio(GOOGLE_DRIVER_NOTIFICATION_ID_MAP);
 
 
+export const requireNotifyPermission = async () => {
+  if (Notification.permission !== 'granted') {
+    await Notification.requestPermission();
+  }
+}
+
 export const notify = async (title: string, options?: NotificationOptions) => {
   await toggleSound(NotificationSoundType.MusicBox, true)
   if (!('Notification' in window)) {

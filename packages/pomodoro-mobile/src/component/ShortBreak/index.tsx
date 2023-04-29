@@ -12,20 +12,23 @@ import { notify } from '@dreamer/notification';
 // Hooks
 import { useTimer } from '@dreamer/timer-hook';
 import { usePomodoro } from '@dreamer/pomodoro-common';
+// Hooks
+import { useIntl } from '@dreamer/translation';
 
 import styles from './index.module.scss';
 
 type Props = {
-  onTimeUp: () => void
-}
+  onTimeUp: () => void;
+};
 
 export default function ShortBreak({ onTimeUp }: Props) {
-  const { shortBreak: duration } = usePomodoro()
+  const { shortBreak: duration } = usePomodoro();
   const timer = useTimer({ duration });
+  const intl = useIntl();
   React.useEffect(() => {
     if (timer.time === 0) {
       notify("Let's continue", {});
-      onTimeUp()
+      onTimeUp();
     }
   }, [timer.time]);
   return (
@@ -39,7 +42,15 @@ export default function ShortBreak({ onTimeUp }: Props) {
           active={timer.isPlaying}
           onClick={timer.isPlaying ? timer.pause : timer.start}
         >
-          {timer.isPlaying ? 'PAUSE' : 'PLAY'}
+          {timer.isPlaying
+            ? intl.formatMessage({
+                id: 'pomodoro-mobile.label-pomodoro-pause',
+                defaultMessage: 'PAUSE',
+              })
+            : intl.formatMessage({
+                id: 'pomodoro-mobile.label-pomodoro-pause',
+                defaultMessage: 'PLAY',
+              })}
         </Button3D>
         <Button className={styles.skipButton} onClick={onTimeUp}>
           <IconSkip className={styles.icon} />

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { PomodoroContext } from './context';
+import { PomodoroContext } from '../context';
 
 // Hooks
 import { useLocalStorage } from '@dreamer/global';
@@ -30,3 +30,6 @@ export const withPomodoro = <P extends {}>(
     );
   };
 };
+
+
+
