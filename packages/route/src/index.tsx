@@ -42,4 +42,6 @@ const AppRouter = () => {
   );
 };
 
-export default withPomodoro(withPomodoroTimer(withGlobalTool(AppRouter)));
+export default withPomodoro(
+  withPomodoroTimer(withTask(withGlobalTool(AppRouter)))
+);
