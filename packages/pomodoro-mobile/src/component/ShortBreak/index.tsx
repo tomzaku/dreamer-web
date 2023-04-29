@@ -1,5 +1,6 @@
 import React from 'react';
 
+// Components
 import Timer from '../Timer';
 import SelectTask from '../SelectTask';
 import Button3D from '../Button3D';
@@ -10,9 +11,7 @@ import IconSkip from '@moon-ui/icon/IconSkip';
 import { notify } from '@dreamer/notification';
 
 // Hooks
-import { useTimer } from '@dreamer/timer-hook';
-import { usePomodoro } from '@dreamer/pomodoro-common';
-// Hooks
+import { usePomodoroTimer } from '@dreamer/pomodoro-common';
 import { useIntl } from '@dreamer/translation';
 
 import styles from './index.module.scss';
@@ -22,27 +21,27 @@ type Props = {
 };
 
 export default function ShortBreak({ onTimeUp }: Props) {
-  const { shortBreak: duration } = usePomodoro();
-  const timer = useTimer({ duration });
+  const { shortBreakTimer } = usePomodoroTimer();
   const intl = useIntl();
   React.useEffect(() => {
-    if (timer.time === 0) {
+    if (shortBreakTimer.time === 0) {
       notify("Let's continue", {});
+      shortBreakTimer.stop()
       onTimeUp();
     }
-  }, [timer.time]);
+  }, [shortBreakTimer.time]);
   return (
     <>
       <div className={styles.body}>
-        <Timer time={timer.time} />
+        <Timer time={shortBreakTimer.time} />
         <SelectTask />
       </div>
       <div className={styles.footer}>
         <Button3D
-          active={timer.isPlaying}
-          onClick={timer.isPlaying ? timer.pause : timer.start}
+          active={shortBreakTimer.isPlaying}
+          onClick={shortBreakTimer.isPlaying ? shortBreakTimer.pause : shortBreakTimer.start}
         >
-          {timer.isPlaying
+          {shortBreakTimer.isPlaying
             ? intl.formatMessage({
                 id: 'pomodoro-mobile.label-pomodoro-pause',
                 defaultMessage: 'PAUSE',

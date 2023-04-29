@@ -18,3 +18,4 @@ export const PomodoroContext = React.createContext<GlobalToolType>({
   longBreak: 0,
   setLongBreak: () => {}
 });
+

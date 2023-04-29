@@ -1,5 +1,8 @@
 import React from 'react'
 
+// Types
+import type { UseTimerOutput } from './type';
+
 export const useTimer = ({
   duration,
   step = 1000,
@@ -8,7 +11,7 @@ export const useTimer = ({
   duration: number;
   step?: number;
   shouldStop?: (timer: number, step: number) => boolean;
-}) => {
+}): UseTimerOutput => {
   const [time, setTimer] = React.useState(duration);
   const [isPlaying, setIsPlaying] = React.useState(true)
   let timerInterval = React.useRef<NodeJS.Timer>();
@@ -23,8 +26,14 @@ export const useTimer = ({
           return timer - step;
         }
       });
-    }, 1000);
+    }, step);
   }
+  const stopTimer = () => {
+    setIsPlaying(false)
+    setTimer(duration)
+    clearInterval(timerInterval.current)
+  }
+
   React.useEffect(() => {
     startTimer()
     return () => {
@@ -38,7 +47,11 @@ export const useTimer = ({
       setIsPlaying(false)
       clearInterval(timerInterval.current)
     },
-    start: startTimer
+    start: startTimer,
+    stop: stopTimer,
   }
 };
 
+export {
+  UseTimerOutput
+}

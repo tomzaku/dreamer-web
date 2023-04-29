@@ -7,38 +7,37 @@ import Timer from '../Timer';
 import { notify } from '@dreamer/notification';
 
 // Hooks
-import { usePomodoro } from '@dreamer/pomodoro-common';
-import { useTimer } from '@dreamer/timer-hook';
+import { usePomodoroTimer } from '@dreamer/pomodoro-common';
 
 import styles from './index.module.scss';
 import SelectTask from '../SelectTask';
 import Button3D from '../Button3D';
 
 type Props = {
-  onTimeUp: () => void
-}
+  onTimeUp: () => void;
+};
 
-export default function Pomodoro({onTimeUp}: Props) {
-  const { pomodoro: duration } = usePomodoro()
-  const timer = useTimer({ duration });
+export default function Pomodoro({ onTimeUp }: Props) {
+  const { pomodoroTimer } = usePomodoroTimer();
   React.useEffect(() => {
-    if (timer.time === 0) {
+    if (pomodoroTimer.time === 0) {
       notify("Let's break up", {});
-      onTimeUp()
+      pomodoroTimer.stop()
+      onTimeUp();
     }
-  }, [timer.time]);
+  }, [pomodoroTimer.time]);
   return (
     <>
       <div className={styles.body}>
-        <Timer time={timer.time} />
+        <Timer time={pomodoroTimer.time} />
         <SelectTask />
       </div>
       <div className={styles.footer}>
         <Button3D
-          active={timer.isPlaying}
-          onClick={timer.isPlaying ? timer.pause : timer.start}
+          active={pomodoroTimer.isPlaying}
+          onClick={pomodoroTimer.isPlaying ? pomodoroTimer.pause : pomodoroTimer.start}
         >
-          {timer.isPlaying ? 'PAUSE' : 'PLAY'}
+          {pomodoroTimer.isPlaying ? 'PAUSE' : 'PLAY'}
         </Button3D>
       </div>
     </>
