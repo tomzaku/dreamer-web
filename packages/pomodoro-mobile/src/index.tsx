@@ -28,7 +28,6 @@ import { loadSounds } from '@dreamer/notification';
 import { usePomodoroTimer } from '@dreamer/pomodoro-common';
 
 enum State {
-  Intro,
   Pomodoro,
 }
 
@@ -40,34 +39,19 @@ export default function PomodoroMobile({
   onClickBackButton?: () => void;
 }) {
   const intl = useIntl();
-  const [state, setState] = React.useState<State>(State.Intro);
   const [modalVisible, setModalVisible] = React.useState(false);
   const { pomodoroPhase, setPomodoroPhase } = usePomodoroTimer();
   const [modalInfo, setModalInfo] = React.useState<PomodoroPhase>(
     PomodoroPhase.Pomodoro
   );
-  const { activeTaskId } = useTask();
   const { open } = useGlobalTool();
   useWakeLockPwa();
-
-  React.useEffect(() => {
-    setState(State.Intro);
-  }, [activeTaskId]);
 
   React.useEffect(() => {
     loadSounds();
   }, []);
 
   const renderBody = () => {
-    if (state === State.Intro) {
-      return (
-        <Intro
-          onClickBackButton={onClickBackButton}
-          onSubmit={() => setState(State.Pomodoro)}
-        />
-      );
-    }
-
     return (
       <>
         <WarningModal

@@ -8,6 +8,7 @@ type Props = {
   className?: string;
   children?: React.ReactNode;
   noMargin?: boolean;
+  onClick?: () => void;
 };
 export default function Title({
   level,
@@ -15,6 +16,7 @@ export default function Title({
   primary,
   noMargin,
   className,
+  onClick,
 }: Props) {
   const commonStyle = [
     styles.default,
@@ -24,14 +26,14 @@ export default function Title({
   ];
   switch (level) {
     case 1:
-      return <h1 className={cx(...commonStyle)}>{children}</h1>;
+      return <h1 onClick={onClick} className={cx(...commonStyle)}>{children}</h1>;
     case 2:
-      return <h2 className={cx(...commonStyle)}>{children}</h2>;
+      return <h2 onClick={onClick} className={cx(...commonStyle)}>{children}</h2>;
     case 3:
-      return <h3 className={cx(...commonStyle)}>{children}</h3>;
+      return <h3 onClick={onClick} className={cx(...commonStyle)}>{children}</h3>;
     case 4:
-      return <h4 className={cx(...commonStyle)}>{children}</h4>;
+      return <h4 onClick={onClick} className={cx(...commonStyle)}>{children}</h4>;
     default:
-      return <h5 className={cx(...commonStyle)}>{children}</h5>;
+      return <h5 onClick={onClick} className={cx(...commonStyle)}>{children}</h5>;
   }
 }

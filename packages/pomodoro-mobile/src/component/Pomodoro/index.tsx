@@ -3,9 +3,6 @@ import React from 'react';
 // Component
 import Timer from '../Timer';
 
-// Utils
-import { notify } from '@dreamer/notification';
-
 // Hooks
 import { usePomodoroTimer } from '@dreamer/pomodoro-common';
 
@@ -15,9 +12,6 @@ import Button3D from '../Button3D';
 
 export default function Pomodoro() {
   const { pomodoroTimer } = usePomodoroTimer();
-  React.useEffect(() => {
-    pomodoroTimer.start()
-  }, [])
   return (
     <>
       <div className={styles.body}>

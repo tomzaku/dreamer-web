@@ -16,7 +16,7 @@ import { notify } from '@dreamer/notification';
 export const withPomodoroTimer = <P extends {}>(
   WrapComponent: React.ComponentType<P>
 ) => {
-  return function(props: P) {
+  return function (props: P) {
     const [pomodoroPhase, setPomodoroPhase] = React.useState(
       PomodoroPhase.Pomodoro
     );
@@ -29,6 +29,7 @@ export const withPomodoroTimer = <P extends {}>(
         notify("Let's continue", {});
         longBreakTimer.stop();
         setPomodoroPhase(PomodoroPhase.Pomodoro);
+        pomodoroTimer.start();
       }
     }, [longBreakTimer.time]);
     React.useEffect(() => {
@@ -36,13 +37,15 @@ export const withPomodoroTimer = <P extends {}>(
         notify("Let's continue", {});
         shortBreakTimer.stop();
         setPomodoroPhase(PomodoroPhase.Pomodoro);
+        pomodoroTimer.start();
       }
     }, [shortBreakTimer.time]);
     React.useEffect(() => {
       if (pomodoroTimer.time === 0) {
         notify("Let's break up", {});
-        pomodoroTimer.stop()
+        pomodoroTimer.stop();
         setPomodoroPhase(PomodoroPhase.ShortBreak);
+        shortBreakTimer.start();
       }
     }, [pomodoroTimer.time]);
     return (

@@ -8,7 +8,6 @@ import TaskItemActionModal from '../TaskItemActionModal';
 import { useTask } from '@dreamer/tasks-page-common';
 import { useIntl } from '@dreamer/translation';
 
-
 // Type
 import Typography from '@moon-ui/typography';
 
@@ -66,7 +65,7 @@ export default function CurrentListTask({ className }: Props) {
             }}
             className={styles.checkbox}
           />
-          <Typography.Text isDescription>
+          <Typography.Text className={styles.doneTaskText} isDescription>
             {intl.formatMessage({
               id: 'ListTask.label-show-done-task',
               defaultMessage: 'Show Done Tasks',

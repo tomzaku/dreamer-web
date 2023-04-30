@@ -9,7 +9,7 @@ export default function TaskPage() {
     <div className={styles.container}>
       <CreateTask className={styles.section} />
       <CurrentListTask className={styles.section} />
-      <PomodoroPlayer />
+      <PomodoroPlayer className={styles.player} />
     </div>
   );
 }

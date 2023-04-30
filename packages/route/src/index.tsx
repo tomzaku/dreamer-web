@@ -4,7 +4,6 @@ import Header from '@dreamer/header';
 import TaskPage from '@dreamer/tasks-page-ui';
 import SettingPage from '@dreamer/setting-page-ui';
 import MusicControllerMobile from '@dreamer/music-controller-mobile';
-import GlobalToolMobile from '@dreamer/global-tool-mobile';
 import PomodoroMobile from '@dreamer/pomodoro-mobile';
 
 // Hooks
@@ -33,7 +32,6 @@ const AppRouter = () => {
         onClickBackButton={close}
         visible={isToolVisible(GlobalTool.FocusMode)}
       />
-      <GlobalToolMobile />
       <Routes>
         <Route path="/" element={<TaskPage />}></Route>,
         <Route path="/setting" element={<SettingPage />}></Route>
