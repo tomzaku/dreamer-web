@@ -31,8 +31,6 @@ export const notify = async (title: string, options?: NotificationOptions) => {
       status: NotificationStatus.BrowserDoesNotSupport
     }
   }
-  console.log("Notification", Notification.permission)
-
   if (Notification.permission !== 'granted') {
     await Notification.requestPermission();
   }

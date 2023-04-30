@@ -109,9 +109,14 @@ export default function SettingPage() {
           }
         />
       </div>
-      <Typography.Text className={styles.version}>
-        Version: {version}
-      </Typography.Text>
+      <a href="https://github.com/tomzaku/dreamer-web-public/issues" className={styles.footer}>
+        <Typography.Text className={styles.version}>
+          Version: {version}
+        </Typography.Text>
+        <Typography.Text className={styles.link}>
+          | Feature Request | Bug Report
+        </Typography.Text>
+      </a>
     </div>
   );
 }

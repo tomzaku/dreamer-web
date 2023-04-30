@@ -146,12 +146,11 @@ const PomodoroPlayer = ({ className }: Props) => {
             onClick={onClickPlayOrPauseIcon}
           />
         )}
-        <span className={styles.pomodoroPhase}>
-          <Typography.Title
-            onClick={() => open(GlobalTool.FocusMode)}
-            level={4}
-            className={styles.pomodoroPhaseText}
-          >
+        <span
+          onClick={() => open(GlobalTool.FocusMode)}
+          className={styles.pomodoroPhase}
+        >
+          <Typography.Title level={4} className={styles.pomodoroPhaseText}>
             {getPomodoroPhaseText()}
           </Typography.Title>
           <Typography.Text

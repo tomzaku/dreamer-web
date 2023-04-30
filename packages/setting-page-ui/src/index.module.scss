@@ -13,10 +13,20 @@
   flex: 1
 }
 
-.version {
+.footer {
   text-align: center;
   margin-bottom: $spacing-md;
+  text-decoration: none;
+}
+
+.version {
   color: $black24;
+  cursor: pointer;
+}
+
+.link {
+  color: $primary;
+  margin-left: $spacing-sm;
 }
  
 .durationInput {
