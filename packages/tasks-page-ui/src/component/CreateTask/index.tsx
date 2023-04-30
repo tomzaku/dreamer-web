@@ -79,21 +79,20 @@ export default function CreateTask({ className }: { className?: string }) {
         <div className={styles.header}>
           <img src={HiImg} className={styles.hiImg} />
           <div>
-            <Typography.Title primary noMargin level={4}>
-              {intl.formatMessage(
-                {
-                  id: 'CreateTask.label-morning-greeting',
-                  defaultMessage: 'Good morning, {{name}}',
-                },
-                { name: '' }
-              )}
-            </Typography.Title>
-            <Typography.Paragraph noMargin isDescription>
+            {/* <Typography.Title primary noMargin level={4}> */}
+            {/*   {intl.formatMessage( */}
+            {/*     { */}
+            {/*       id: 'CreateTask.label-morning-greeting', */}
+            {/*       defaultMessage: 'Good morning', */}
+            {/*     } */}
+            {/*   )} */}
+            {/* </Typography.Title> */}
+            <Typography.Title noMargin level={4}>
               {intl.formatMessage({
                 id: 'CreateTask.msg-morning-greeting-description',
                 defaultMessage: 'What is your goal today?',
               })}
-            </Typography.Paragraph>
+            </Typography.Title>
           </div>
         </div>
         <div className={styles.menu} />

@@ -20,14 +20,14 @@ import { useWakeLockPwa } from '@dreamer/global';
 import styles from './index.module.scss';
 
 // Enum
-import { PomodoroPhase } from './enum';
 import { GlobalTool } from '@dreamer/global-tool-common';
+import { PomodoroPhase } from '@dreamer/pomodoro-common';
 
 // Utils
 import { loadSounds } from '@dreamer/notification';
+import { usePomodoroTimer } from '@dreamer/pomodoro-common';
 
 enum State {
-  Intro,
   Pomodoro,
 }
 
@@ -39,36 +39,23 @@ export default function PomodoroMobile({
   onClickBackButton?: () => void;
 }) {
   const intl = useIntl();
-  const [state, setState] = React.useState<State>(State.Intro);
-  const [pomodoroPhase, setPomodoroPhase] = React.useState<PomodoroPhase>(
-    PomodoroPhase.Pomodoro
-  );
   const [modalVisible, setModalVisible] = React.useState(false);
+  const {
+    pomodoroPhase,
+    setPomodoroPhase,
+    autoStartTimerWhenChangePomodoroPhase,
+  } = usePomodoroTimer();
   const [modalInfo, setModalInfo] = React.useState<PomodoroPhase>(
     PomodoroPhase.Pomodoro
   );
-  const { activeTaskId } = useTask();
   const { open } = useGlobalTool();
-  useWakeLockPwa()
-
-  React.useEffect(() => {
-    setState(State.Intro);
-  }, [activeTaskId]);
+  useWakeLockPwa();
 
   React.useEffect(() => {
     loadSounds();
   }, []);
 
   const renderBody = () => {
-    if (state === State.Intro) {
-      return (
-        <Intro
-          onClickBackButton={onClickBackButton}
-          onSubmit={() => setState(State.Pomodoro)}
-        />
-      );
-    }
-
     return (
       <>
         <WarningModal
@@ -90,15 +77,30 @@ export default function PomodoroMobile({
           secondaryButtonClick={() => {
             setModalVisible(false);
             setPomodoroPhase(modalInfo);
+            autoStartTimerWhenChangePomodoroPhase(modalInfo);
           }}
           visible={modalVisible}
           content={
             <>
-              {intl.formatMessage({
-                id: 'music-controller-mobile.label-modal-confirm',
-                defaultMessage:
-                  'The timer is running, are you sure you want to switch',
-              })}
+              {intl.formatMessage(
+                {
+                  id: 'music-controller-mobile.label-modal-confirm',
+                  defaultMessage:
+                    'Press Yes if you want to switch mode to {{mode}}',
+                },
+                {
+                  mode: (() => {
+                    switch (modalInfo) {
+                      case PomodoroPhase.Pomodoro:
+                        return 'Pomodoro';
+                      case PomodoroPhase.ShortBreak:
+                        return 'Short Break';
+                      case PomodoroPhase.LongBreak:
+                        return 'Long Break';
+                    }
+                  })(),
+                }
+              )}
             </>
           }
         />
@@ -168,26 +170,14 @@ export default function PomodoroMobile({
         {(() => {
           switch (pomodoroPhase) {
             case PomodoroPhase.Pomodoro: {
-              return (
-                <Pomodoro
-                  onTimeUp={() => setPomodoroPhase(PomodoroPhase.ShortBreak)}
-                />
-              );
+              return <Pomodoro />;
             }
             case PomodoroPhase.ShortBreak: {
-              return (
-                <ShortBreak
-                  onTimeUp={() => setPomodoroPhase(PomodoroPhase.Pomodoro)}
-                />
-              );
+              return <ShortBreak />;
             }
             case PomodoroPhase.LongBreak:
             default: {
-              return (
-                <LongBreak
-                  onTimeUp={() => setPomodoroPhase(PomodoroPhase.Pomodoro)}
-                />
-              );
+              return <LongBreak />;
             }
           }
         })()}

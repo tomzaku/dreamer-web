@@ -1,0 +1,49 @@
+@import '@moon-ui/app-scss/color';
+@import '@moon-ui/app-scss/metric';
+
+.container {
+  background: $primary;
+}
+
+.containerBreak {
+  background: #f178b6;
+}
+
+.body {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  padding: $spacing-xs $spacing-md;
+}
+
+.pomodoroPhase {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  cursor: pointer;
+}
+
+.pomodoroPhaseText {
+  color: $white;
+  margin: 0;
+  margin-left: $spacing-sm;
+  cursor: pointer;
+}
+
+.progressContainer {
+  position: relative;
+}
+
+.progress {
+  background: rgba(255, 255, 255, 0.27);
+  height: 16px;
+}
+
+.time {
+  margin-left: $spacing-sm;
+  color: $white50;
+}
+
+.icon {
+  cursor: pointer;
+}

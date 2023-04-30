@@ -7,28 +7,17 @@ import SelectTask from '../SelectTask';
 import IconSkip from '@moon-ui/icon/IconSkip';
 import Button from '@moon-ui/button/src/DefaultButton';
 
-// Utils
-import { notify } from '@dreamer/notification';
-
 // Hooks
 import { usePomodoroTimer } from '@dreamer/pomodoro-common';
 
 import styles from './index.module.scss';
+import { PomodoroPhase } from '../../enum';
 
-
-type Props = {
-  onTimeUp: () => void
-}
-
-export default function LongBreak({onTimeUp}: Props) {
-  const { longBreakTimer } = usePomodoroTimer();
+export default function LongBreak() {
+  const { longBreakTimer, setPomodoroPhase } = usePomodoroTimer();
   React.useEffect(() => {
-    if (longBreakTimer.time === 0) {
-      notify("Let's continue", {});
-      longBreakTimer.stop()
-      onTimeUp()
-    }
-  }, [longBreakTimer.time]);
+    longBreakTimer.start();
+  }, []);
   return (
     <>
       <div className={styles.body}>
@@ -38,11 +27,21 @@ export default function LongBreak({onTimeUp}: Props) {
       <div className={styles.footer}>
         <Button3D
           active={longBreakTimer.isPlaying}
-          onClick={longBreakTimer.isPlaying ? longBreakTimer.pause : longBreakTimer.start}
+          onClick={
+            longBreakTimer.isPlaying
+              ? longBreakTimer.pause
+              : longBreakTimer.start
+          }
         >
           {longBreakTimer.isPlaying ? 'PAUSE' : 'PLAY'}
         </Button3D>
-        <Button className={styles.skipButton} onClick={onTimeUp}>
+        <Button
+          className={styles.skipButton}
+          onClick={() => {
+            longBreakTimer.stop();
+            setPomodoroPhase(PomodoroPhase.Pomodoro);
+          }}
+        >
           <IconSkip className={styles.icon} />
         </Button>
       </div>

@@ -92,7 +92,6 @@ function DraggableList<T>({
   ]);
   const bind = useDrag(
     ({ args: [originalIndex], active, movement: [, y], tap }) => {
-      console.log('TAP', tap);
       const curIndex = order.current.indexOf(originalIndex);
       const curRow = clamp(
         Math.round((curIndex * ITEM_HEIGHT + y) / ITEM_HEIGHT),

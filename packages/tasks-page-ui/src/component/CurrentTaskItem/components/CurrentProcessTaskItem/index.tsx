@@ -57,55 +57,41 @@ export default function CurrentProcessTaskItem({ taskId, disabled }: Props) {
         />
         <div className={styles.main}>
           <div className={styles.header}>
-            <div
-              className={styles.section}
-            >
-          
-            <IconDrag className={cx(styles.dragIcon)} />
-            <Typography.Title noMargin level={5}>
-              {name}
-            </Typography.Title>
+            <div className={styles.section}>
+              <IconDrag className={cx(styles.dragIcon)} />
+              <Typography.Title noMargin level={5}>
+                {name}
+              </Typography.Title>
             </div>
-            <div className={styles.actionGroup}>
-              <div
-                onClick={() => open(GlobalTool.FocusMode)}
-                className={styles.actionButton}
-              >
-                <IconLaunch className={styles.actionIcon} />
-                <Typography.Text className={styles.actionText}>
-                  {intl.formatMessage({
-                    defaultMessage: 'Focus',
-                    id: 'label-focus',
-                  })}
-                </Typography.Text>
-              </div>
-              {/* <IconMoreVertical */}
-              {/*   className={styles.more} */}
-              {/*   width="20" */}
-              {/*   height="20" */}
-              {/* /> */}
-            </div>
+            {/* <div className={styles.actionGroup}> */}
+            {/* <IconMoreVertical */}
+            {/*   className={styles.more} */}
+            {/*   width="20" */}
+            {/*   height="20" */}
+            {/* /> */}
+            {/* </div> */}
           </div>
-            <div className={styles.bodyProcessing}>
-              <Typography.Paragraph noMargin>
-                {formatMinuteAndSecond(commit)}
-              </Typography.Paragraph>
-              <TimerButton
-                disabled={disabled}
-                duration={duration}
-                commit={commit}
-                status={status}
-                onClick={() => {
-                  nextStatus && changeTaskStatus(taskId, nextStatus);
-                }}
-              />
+          <div className={styles.bodyProcessing}>
+            {/* <Typography.Paragraph noMargin> */}
+            {/*   {formatMinuteAndSecond(commit)} */}
+            {/* </Typography.Paragraph> */}
+            <div />
+            <TimerButton
+              disabled={disabled}
+              duration={duration}
+              commit={commit}
+              status={status}
+              onClick={() => {
+                nextStatus && changeTaskStatus(taskId, nextStatus);
+              }}
+            />
           </div>
-          <div
-            className={styles.progress}
-            style={{ width: `${Math.min((commit / duration) * 100, 100)}%` }}
-          />
         </div>
       </div>
+      <div
+        className={styles.progress}
+        style={{ width: `${Math.min((commit / duration) * 100, 100)}%` }}
+      />
     </div>
   );
 }
