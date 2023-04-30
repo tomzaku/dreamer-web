@@ -42,13 +42,13 @@ export default function PomodoroMobile({
   const intl = useIntl();
   const [state, setState] = React.useState<State>(State.Intro);
   const [modalVisible, setModalVisible] = React.useState(false);
-  const { pomodoroPhase, setPomodoroPhase } = usePomodoroTimer()
+  const { pomodoroPhase, setPomodoroPhase } = usePomodoroTimer();
   const [modalInfo, setModalInfo] = React.useState<PomodoroPhase>(
     PomodoroPhase.Pomodoro
   );
   const { activeTaskId } = useTask();
   const { open } = useGlobalTool();
-  useWakeLockPwa()
+  useWakeLockPwa();
 
   React.useEffect(() => {
     setState(State.Intro);
@@ -167,26 +167,14 @@ export default function PomodoroMobile({
         {(() => {
           switch (pomodoroPhase) {
             case PomodoroPhase.Pomodoro: {
-              return (
-                <Pomodoro
-                  onTimeUp={() => setPomodoroPhase(PomodoroPhase.ShortBreak)}
-                />
-              );
+              return <Pomodoro />;
             }
             case PomodoroPhase.ShortBreak: {
-              return (
-                <ShortBreak
-                  onTimeUp={() => setPomodoroPhase(PomodoroPhase.Pomodoro)}
-                />
-              );
+              return <ShortBreak />;
             }
             case PomodoroPhase.LongBreak:
             default: {
-              return (
-                <LongBreak
-                  onTimeUp={() => setPomodoroPhase(PomodoroPhase.Pomodoro)}
-                />
-              );
+              return <LongBreak />;
             }
           }
         })()}

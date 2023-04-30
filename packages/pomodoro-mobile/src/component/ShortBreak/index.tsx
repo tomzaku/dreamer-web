@@ -11,28 +11,17 @@ import IconSkip from '@moon-ui/icon/IconSkip';
 import { notify } from '@dreamer/notification';
 
 // Hooks
-import { usePomodoroTimer } from '@dreamer/pomodoro-common';
+import { PomodoroPhase, usePomodoroTimer } from '@dreamer/pomodoro-common';
 import { useIntl } from '@dreamer/translation';
 
 import styles from './index.module.scss';
 
-type Props = {
-  onTimeUp: () => void;
-};
-
-export default function ShortBreak({ onTimeUp }: Props) {
-  const { shortBreakTimer } = usePomodoroTimer();
+export default function ShortBreak() {
+  const { shortBreakTimer, setPomodoroPhase } = usePomodoroTimer();
   const intl = useIntl();
   React.useEffect(() => {
-    shortBreakTimer.start()
-  }, [])
-  React.useEffect(() => {
-    if (shortBreakTimer.time === 0) {
-      notify("Let's continue", {});
-      shortBreakTimer.stop()
-      onTimeUp();
-    }
-  }, [shortBreakTimer.time]);
+    shortBreakTimer.start();
+  }, []);
   return (
     <>
       <div className={styles.body}>
@@ -42,7 +31,11 @@ export default function ShortBreak({ onTimeUp }: Props) {
       <div className={styles.footer}>
         <Button3D
           active={shortBreakTimer.isPlaying}
-          onClick={shortBreakTimer.isPlaying ? shortBreakTimer.pause : shortBreakTimer.start}
+          onClick={
+            shortBreakTimer.isPlaying
+              ? shortBreakTimer.pause
+              : shortBreakTimer.start
+          }
         >
           {shortBreakTimer.isPlaying
             ? intl.formatMessage({
@@ -54,7 +47,13 @@ export default function ShortBreak({ onTimeUp }: Props) {
                 defaultMessage: 'PLAY',
               })}
         </Button3D>
-        <Button className={styles.skipButton} onClick={onTimeUp}>
+        <Button
+          className={styles.skipButton}
+          onClick={() => {
+            setPomodoroPhase(PomodoroPhase.Pomodoro);
+            shortBreakTimer.stop();
+          }}
+        >
           <IconSkip className={styles.icon} />
         </Button>
       </div>

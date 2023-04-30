@@ -13,22 +13,11 @@ import styles from './index.module.scss';
 import SelectTask from '../SelectTask';
 import Button3D from '../Button3D';
 
-type Props = {
-  onTimeUp: () => void;
-};
-
-export default function Pomodoro({ onTimeUp }: Props) {
+export default function Pomodoro() {
   const { pomodoroTimer } = usePomodoroTimer();
   React.useEffect(() => {
     pomodoroTimer.start()
   }, [])
-  React.useEffect(() => {
-    if (pomodoroTimer.time === 0) {
-      notify("Let's break up", {});
-      pomodoroTimer.stop()
-      onTimeUp();
-    }
-  }, [pomodoroTimer.time]);
   return (
     <>
       <div className={styles.body}>

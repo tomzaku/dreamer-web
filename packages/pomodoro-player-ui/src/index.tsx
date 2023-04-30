@@ -18,7 +18,7 @@ import IconMusic from '@moon-ui/icon/IconMusic';
 const PomodoroPlayer = () => {
   const { pomodoroPhase, pomodoroTimer, shortBreakTimer, longBreakTimer } =
     usePomodoroTimer();
-  const { pomodoro, shortBreak, longBreak } = usePomodoro()
+  const { pomodoro, shortBreak, longBreak } = usePomodoro();
   const isPlaying =
     pomodoroTimer.isPlaying ||
     shortBreakTimer.isPlaying ||
@@ -75,16 +75,16 @@ const PomodoroPlayer = () => {
   const getPercentage = () => {
     switch (pomodoroPhase) {
       case PomodoroPhase.Pomodoro: {
-        return pomodoroTimer.time / pomodoro
+        return (pomodoro - pomodoroTimer.time) / pomodoro;
       }
       case PomodoroPhase.ShortBreak: {
-        return shortBreakTimer.time / shortBreak
+        return (shortBreak - shortBreakTimer.time) / shortBreak;
       }
       case PomodoroPhase.LongBreak: {
-        return longBreakTimer.time / longBreak
+        return (longBreak - longBreakTimer.time) / longBreak;
       }
     }
-  }
+  };
   const onClickPlayOrPauseIcon = isPlaying ? onPause : onStart;
   return (
     <div
@@ -95,7 +95,7 @@ const PomodoroPlayer = () => {
     >
       <div
         className={styles.progress}
-        style={{ width: `${getPercentage()}%` }}
+        style={{ width: `${getPercentage() * 100}%` }}
       />
       <div className={styles.body}>
         {isPlaying ? (
@@ -103,7 +103,7 @@ const PomodoroPlayer = () => {
         ) : (
           <IconPlayCircle onClick={onClickPlayOrPauseIcon} />
         )}
-        <Typography.Title level={2} className={styles.pomodoroPhaseText}>
+        <Typography.Title level={3} className={styles.pomodoroPhaseText}>
           {getPomodoroPhaseText()}
         </Typography.Title>
         <IconMusic width="40" height="40" />
