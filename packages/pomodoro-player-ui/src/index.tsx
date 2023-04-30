@@ -16,7 +16,6 @@ import { GlobalTool } from '@dreamer/global-tool-common';
 import cx from 'classnames';
 
 import styles from './index.module.scss';
-import Pomodoro from '@dreamer/pomodoro-mobile/src/component/Pomodoro';
 import { requireNotifyPermission } from '@dreamer/notification';
 
 type Props = {
@@ -26,7 +25,7 @@ type Props = {
 const PomodoroPlayer = ({ className }: Props) => {
   const { pomodoroPhase, pomodoroTimer, shortBreakTimer, longBreakTimer } =
     usePomodoroTimer();
-  const { open, visibleTool } = useGlobalTool();
+  const { open } = useGlobalTool();
   const { pomodoro, shortBreak, longBreak } = usePomodoro();
   const isPlaying =
     pomodoroTimer.isPlaying ||
@@ -66,6 +65,7 @@ const PomodoroPlayer = ({ className }: Props) => {
       }
     }
   };
+
   const getPomodoroPhaseText = () => {
     switch (pomodoroPhase) {
       case PomodoroPhase.Pomodoro: {
@@ -81,6 +81,7 @@ const PomodoroPlayer = ({ className }: Props) => {
       }
     }
   };
+
   const getProgress = () => {
     switch (pomodoroPhase) {
       case PomodoroPhase.Pomodoro: {
@@ -94,6 +95,7 @@ const PomodoroPlayer = ({ className }: Props) => {
       }
     }
   };
+
   const onClickPlayOrPauseIcon = () => {
     requireNotifyPermission();
     if (isPlaying) {
@@ -103,6 +105,19 @@ const PomodoroPlayer = ({ className }: Props) => {
     }
   };
   const progress = getProgress();
+  const getMinutes = () => {
+    switch (pomodoroPhase) {
+      case PomodoroPhase.Pomodoro: {
+        return pomodoro / 1000 / 60;
+      }
+      case PomodoroPhase.ShortBreak: {
+        return shortBreak / 1000 / 60;
+      }
+      case PomodoroPhase.LongBreak: {
+        return longBreak / 1000 / 60;
+      }
+    }
+  };
   return (
     <div
       className={cx(
@@ -112,7 +127,7 @@ const PomodoroPlayer = ({ className }: Props) => {
       )}
     >
       {progress > 0 && (
-        <div>
+        <div className={styles.progressContainer}>
           <div
             className={styles.progress}
             style={{ width: `${progress * 100}%` }}
@@ -131,18 +146,23 @@ const PomodoroPlayer = ({ className }: Props) => {
             onClick={onClickPlayOrPauseIcon}
           />
         )}
-        <Typography.Title
-          onClick={() => open(GlobalTool.FocusMode)}
-          level={3}
-          className={styles.pomodoroPhaseText}
-        >
-          {getPomodoroPhaseText()}
-        </Typography.Title>
+        <span className={styles.pomodoroPhase}>
+          <Typography.Title
+            onClick={() => open(GlobalTool.FocusMode)}
+            level={4}
+            className={styles.pomodoroPhaseText}
+          >
+            {getPomodoroPhaseText()}
+          </Typography.Title>
+          <Typography.Text
+            className={styles.time}
+          >{`| ${getMinutes()}:00`}</Typography.Text>
+        </span>
         <IconMusic
           className={styles.icon}
           onClick={() => open(GlobalTool.Sound)}
-          width="40"
-          height="40"
+          width="32"
+          height="32"
         />
       </div>
     </div>

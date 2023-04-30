@@ -48,6 +48,36 @@ export const withPomodoroTimer = <P extends {}>(
         shortBreakTimer.start();
       }
     }, [pomodoroTimer.time]);
+    const autoStartTimerWhenChangePomodoroPhase = (nextPhase: PomodoroPhase) => {
+      // currentPhase
+      switch(pomodoroPhase) {
+        case PomodoroPhase.Pomodoro: {
+          pomodoroTimer.stop()
+          break;
+        }
+        case PomodoroPhase.ShortBreak: {
+          shortBreakTimer.stop()
+          break
+        }
+        case PomodoroPhase.LongBreak: {
+          longBreakTimer.stop()
+        }
+      }
+      switch(nextPhase) {
+        case PomodoroPhase.Pomodoro: {
+          pomodoroTimer.start()
+          break;
+        }
+        case PomodoroPhase.ShortBreak: {
+          shortBreakTimer.start()
+          break;
+        }
+        case PomodoroPhase.LongBreak: {
+          return longBreakTimer.start()
+        }
+      }
+
+    }
     return (
       <PomodoroTimerContext.Provider
         value={{
@@ -56,6 +86,7 @@ export const withPomodoroTimer = <P extends {}>(
           longBreakTimer,
           pomodoroPhase,
           setPomodoroPhase,
+          autoStartTimerWhenChangePomodoroPhase,
         }}
       >
         <WrapComponent {...props} />

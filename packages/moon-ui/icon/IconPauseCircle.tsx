@@ -1,8 +1,8 @@
 export default function IconPauseCircle(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
-      width="40"
-      height="40"
+      width="32"
+      height="32"
       viewBox="0 0 48 48"
       fill="none"
       {...props}

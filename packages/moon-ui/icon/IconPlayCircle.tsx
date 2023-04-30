@@ -1,6 +1,6 @@
 export default function IconPlayCircle(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg width="40" height="40" viewBox="0 0 48 48" fill="none" {...props}>
+    <svg width="32" height="32" viewBox="0 0 48 48" fill="none" {...props}>
       <g id="play_circle_filled_24px">
         <path
           id="icon/av/play_circle_filled_24px"

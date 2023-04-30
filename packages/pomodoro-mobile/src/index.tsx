@@ -40,7 +40,11 @@ export default function PomodoroMobile({
 }) {
   const intl = useIntl();
   const [modalVisible, setModalVisible] = React.useState(false);
-  const { pomodoroPhase, setPomodoroPhase } = usePomodoroTimer();
+  const {
+    pomodoroPhase,
+    setPomodoroPhase,
+    autoStartTimerWhenChangePomodoroPhase,
+  } = usePomodoroTimer();
   const [modalInfo, setModalInfo] = React.useState<PomodoroPhase>(
     PomodoroPhase.Pomodoro
   );
@@ -73,15 +77,30 @@ export default function PomodoroMobile({
           secondaryButtonClick={() => {
             setModalVisible(false);
             setPomodoroPhase(modalInfo);
+            autoStartTimerWhenChangePomodoroPhase(modalInfo);
           }}
           visible={modalVisible}
           content={
             <>
-              {intl.formatMessage({
-                id: 'music-controller-mobile.label-modal-confirm',
-                defaultMessage:
-                  'The timer is running, are you sure you want to switch',
-              })}
+              {intl.formatMessage(
+                {
+                  id: 'music-controller-mobile.label-modal-confirm',
+                  defaultMessage:
+                    'Press Yes if you want to switch mode to {{mode}}',
+                },
+                {
+                  mode: (() => {
+                    switch (modalInfo) {
+                      case PomodoroPhase.Pomodoro:
+                        return 'Pomodoro';
+                      case PomodoroPhase.ShortBreak:
+                        return 'Short Break';
+                      case PomodoroPhase.LongBreak:
+                        return 'Long Break';
+                    }
+                  })(),
+                }
+              )}
             </>
           }
         />

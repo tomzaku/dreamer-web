@@ -12,6 +12,7 @@ type PomodoroTimer = {
   longBreakTimer: UseTimerOutput;
   pomodoroPhase: PomodoroPhase;
   setPomodoroPhase: (p: PomodoroPhase) => void
+  autoStartTimerWhenChangePomodoroPhase: (p: PomodoroPhase) => void
 };
 
 const TIMER_DEFAULT = {
@@ -28,4 +29,5 @@ export const PomodoroTimerContext = React.createContext<PomodoroTimer>({
   longBreakTimer: TIMER_DEFAULT,
   pomodoroPhase: PomodoroPhase.Pomodoro,
   setPomodoroPhase: () => {},
+  autoStartTimerWhenChangePomodoroPhase: () => {}
 });

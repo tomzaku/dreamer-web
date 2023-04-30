@@ -17,7 +17,7 @@
 }
 .activeButton {
   transform: translateY(-2px);
-  background: hsl(340deg 100% 32%);
+  background: rgba(254, 176, 0, 0.4);
 }
 
 .buttonText {
@@ -35,7 +35,7 @@
 }
 
 .activeButtonText {
-  background: hsl(345deg 100% 47%);
+  background: $warning;
   color: white;
-    transform: translateY(-2px);
+  transform: translateY(-2px);
 }

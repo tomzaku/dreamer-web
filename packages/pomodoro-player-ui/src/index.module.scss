@@ -16,17 +16,31 @@
   padding: $spacing-xs $spacing-md;
 }
 
+.pomodoroPhase {
+  display: flex;
+  flex: 1;
+  align-items: center;
+}
+
 .pomodoroPhaseText {
   color: $white;
   margin: 0;
   margin-left: $spacing-sm;
-  flex: 1;
   cursor: pointer;
+}
+
+.progressContainer {
+  position: relative;
 }
 
 .progress {
   background: rgba(255, 255, 255, 0.27);
   height: 16px;
+}
+
+.time {
+  margin-left: $spacing-sm;
+  color: $white50;
 }
 
 .icon {
