@@ -13,7 +13,10 @@
   display: flex;
   flex: 1;
   align-items: center;
-  padding: $spacing-xs $spacing-md $spacing-lg $spacing-md ;
+  padding: $spacing-xs $spacing-md;
+  @media only screen and (max-width: 600px) {
+    padding: $spacing-xs $spacing-md $spacing-lg $spacing-md ;
+  }
 }
 
 .pomodoroPhase {
@@ -46,4 +49,9 @@
 
 .icon {
   cursor: pointer;
+}
+
+.pipIcon {
+  cursor: pointer;
+  margin-right: $spacing-md;
 }

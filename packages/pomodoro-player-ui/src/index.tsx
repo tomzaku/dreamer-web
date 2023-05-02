@@ -3,6 +3,8 @@ import IconPauseCircle from '@moon-ui/icon/IconPauseCircle';
 import IconPlayCircle from '@moon-ui/icon/IconPlayCircle';
 import Typography from '@moon-ui/typography';
 import IconMusic from '@moon-ui/icon/IconMusic';
+import PomodoroPip from '@dreamer/pomodoro-pip';
+import Button from '@moon-ui/button';
 
 // Hooks
 import { usePomodoro, usePomodoroTimer } from '@dreamer/pomodoro-common';
@@ -17,6 +19,7 @@ import cx from 'classnames';
 
 import styles from './index.module.scss';
 import { requireNotifyPermission } from '@dreamer/notification';
+import IconPictureInPicture from '@moon-ui/icon/IconPictureInPicture';
 
 type Props = {
   className?: string;
@@ -157,6 +160,9 @@ const PomodoroPlayer = ({ className }: Props) => {
             className={styles.time}
           >{`| ${getMinutes()}:00`}</Typography.Text>
         </span>
+        <PomodoroPip>
+          <IconPictureInPicture className={styles.pipIcon} height="24" />
+        </PomodoroPip>
         <IconMusic
           className={styles.icon}
           onClick={() => open(GlobalTool.Sound)}

@@ -1,0 +1,27 @@
+@import '@moon-ui/app-scss/metric';
+
+.container {
+  position: relative;
+}
+.canvas {
+  display: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.video {
+  position: absolute;
+  z-index: $video-z-index;
+  width: 400px;
+  height: 400px;
+  top: -420px;
+  left: -370px;
+}
+
+.body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
