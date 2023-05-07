@@ -144,7 +144,7 @@ const PomodoroPip = ({
         ctx.stroke();
       }
     }
-  }, [pomodoroTimer.time]);
+  }, [pomodoroTimer.time, shortBreakTimer.time, longBreakTimer.time]);
 
   // Video config
   React.useEffect(() => {
