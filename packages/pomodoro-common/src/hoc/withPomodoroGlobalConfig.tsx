@@ -7,7 +7,7 @@ import { useLocalStorage } from '@dreamer/global';
 
 const ONE_MINUTE = 60 * 1000;
 
-export const withPomodoro = <P extends {}>(
+export const withPomodoroGlobalConfig = <P extends {}>(
   WrapComponent: React.ComponentType<P>
 ) => {
   return function (props: P) {

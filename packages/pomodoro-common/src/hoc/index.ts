@@ -1,6 +1,6 @@
 export {
-  withPomodoro
-} from './withPomodoro'
+  withPomodoroGlobalConfig
+} from './withPomodoroGlobalConfig'
 
 export {
   withPomodoroTimer
