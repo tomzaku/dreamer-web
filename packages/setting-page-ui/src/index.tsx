@@ -5,9 +5,11 @@ import Radio from '@moon-ui/radio';
 import Input from '@moon-ui/input';
 import IconTimer from '@moon-ui/icon/IconTimer';
 import Typography from '@moon-ui/typography';
+import IconTheme from '@moon-ui/icon/IconTheme';
 
 // Enum
 import { Language } from '@dreamer/global';
+import { Theme } from '@dreamer/pomodoro-common';
 
 // Hooks
 import { useIntl } from '@dreamer/translation';
@@ -27,11 +29,29 @@ export default function SettingPage() {
     setPomodoro,
     longBreak,
     setLongBreak,
+    theme,
+    setTheme
   } = usePomodoroGlobalConfig();
   const { language, changeLanguage } = useIntl();
   return (
     <div className={styles.container}>
       <div className={styles.body}>
+        <List.ItemMeta
+          logo={<IconTheme />}
+          title={'Theme'}
+          description={'Config theme for whole page'}
+          rightComponent={
+            <Radio
+              isButton
+              value={theme}
+              onChangeValue={(theme: Theme) => setTheme(theme)}
+              options={[
+                { label: 'Light', value: Theme.Light },
+                { label: 'Dark', value: Theme.Dark },
+              ]}
+            />
+          }
+        />
         <List.ItemMeta
           logo={<IconTranslate />}
           title={'Language'}

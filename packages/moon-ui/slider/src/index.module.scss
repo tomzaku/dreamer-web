@@ -6,13 +6,13 @@
 }
 
 .leftHandle {
-  background-color: $black50;
+  background-color: $slider-left-handle;
   border-radius: 3px;
   height: 6px;
 }
 
 .rightHandle {
-  background-color: $black12;
+  background-color: $slider-right-handle;
   border-radius: 3px;
   height: 6px;
 }
@@ -22,7 +22,7 @@
   top: -7px;
   height: 20px;
   width: 20px;
-  background-color: $primary;
+  background-color: $slider-active;
   position: absolute;
 }
 

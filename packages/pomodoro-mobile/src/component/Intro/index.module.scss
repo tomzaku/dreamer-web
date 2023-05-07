@@ -14,7 +14,7 @@
 }
 
 .icon {
-  fill: $white;
+  fill: $icon-color-revert;
   margin: $spacing-md;
 }
 
@@ -40,11 +40,11 @@
 }
 
 .text {
-  color: $white;
+  color: $text-color-invert;
 }
 
 .time {
-  color: $white;
+  color: $text-color-invert;
   flex: 0;
   margin-top: $spacing-xl;
 }

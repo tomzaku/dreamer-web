@@ -4,7 +4,7 @@
 
 .container {
   align-items: center;
-  background: $white;
+  background: $card-background;
   display: flex;
   padding: $spacing-md;
   @include media('<=tablet') {

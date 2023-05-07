@@ -6,7 +6,7 @@
 }
 
 .body {
-  background-color: $white;
+  background-color: $card-background;
   box-shadow: 0 7px 18px $card-shadow;
   position: relative;
   width: 100%;
@@ -14,7 +14,7 @@
 
 .empty {
   align-items: center;
-  border: 1px dashed $black50;
+  border: 1px dashed $current-list-task;
   border-radius: 6px;
   display: flex;
   height: 100px;

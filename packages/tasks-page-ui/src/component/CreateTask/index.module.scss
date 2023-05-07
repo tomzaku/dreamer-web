@@ -3,7 +3,7 @@
 @import 'include-media/dist/include-media';
 
 .container {
-  background: $white;
+  background: $card-background;
   border-radius: 10px;
   box-shadow: 0 7px 18px $card-shadow;
   display: flex;
@@ -65,7 +65,7 @@
 
 .dashed {
   border: 0;
-  border-top: 3px dashed $black6;
+  border-top: 3px dashed $create-task-dashed-border;
   height: 0;
   width: 100%;
 }
@@ -98,14 +98,14 @@
 }
 
 .recommend {
-  background: $white;
+  background: $card-background;
   max-height: 800px;
   overflow: hidden;
   transition: max-height 0.5s ease-in;
 }
 
 .hiddenRecommend {
-  background: $white;
+  background: $card-background;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.5s ease-out;

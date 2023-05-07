@@ -35,7 +35,6 @@ export default function CurrentProcessTaskItem({ taskId, disabled }: Props) {
   if (!task) return null;
 
   const { duration, eisenhowerMatrix, status, name, commit = 0 } = task[taskId];
-  const projectName = 'Other';
 
   if (!duration) return null;
 

@@ -2,10 +2,10 @@
 @import '@moon-ui/app-scss/function';
 
 .default {
-  background: $primary;
+  background: $button-default-background;
   border: 0;
   border-radius: 6px;
-  color: $white;
+  color: $text-color-invert;
   font-size: toRem(14px);
   font-weight: 400;
   padding: 6px 20px;
@@ -14,8 +14,8 @@
 
 .ghost {
   background: transparent;
-  border: 1px solid $black50;
-  color: $black50;
+  border: 1px solid $button-ghost-border;
+  color: $button-ghost-color;
   padding: 0 4px;
   border-radius: 3px;
 }
@@ -36,7 +36,7 @@
 }
 
 .dash {
-  border: 1px dashed $black24;
+  border: 1px dashed $button-dash;
   background: transparent;
 }
 

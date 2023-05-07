@@ -1,0 +1,125 @@
+@import './common-color';
+
+$background: $white;
+
+// Text
+$text-color: $black;
+$text-color-invert: $white;
+$text-description-color: $black24;
+$text-description-color-invert: $white50;
+$text-link: $primary;
+
+// Text - Title
+$text-title-primary-color: $primary;
+
+// Tab
+$tab-active-background: $white24;
+
+// Card
+$card-background: $white;
+$card-shadow: $black6;
+$card-border: $black24;
+
+// Button
+$button-default-background: $primary;
+$button-ghost-border: $black50;
+$button-ghost-color: $black50;
+$button-dash: $black24;
+$button-disabled: $black6;
+
+// Button - Action
+$button-action-background: $primary-extra-light;
+$button-action-color: $primary-dark;
+$button-action-success: $success-extra-light;
+$button-action-pending: $primary-extra-light;
+$button-action-processing: $secondary-extra-light;
+$button-action-vertical-line: $black12;
+
+// Button Multi Select
+$button-multi-select-border-color: $primary;
+$button-multi-select-text-color: $primary;
+
+
+// Button 3d
+$button-3d-skip-background: $white;
+$button-3d-background: $white24;
+$button-3d-text-background: $white;
+$button-3d-text-color: $primary;
+$button-3d-active-button-text-color: $warning;
+
+// Button for Select Task Pomodoro
+$button-pomodoro-select-task-border: $white50;
+$button-pomodoro-select-task-color: $white50;
+
+// Card Task Selected
+$card-task-selected-task-color: $white;
+$card-task-selected-task-background: $white24;
+
+// Icon
+$icon-primary: $primary;
+$icon-color: $black;
+$icon-color-revert: $white; // TODO: Rename revert to invert
+$icon-color-inactive-invert: $black50;
+
+// Pomodoro Player
+$pomodoro-player-background: $primary;
+
+// Checkbox
+$checkbox-accent-color: $success;
+
+// Modal
+$modal-overlay-background: $black50;
+$modal-logo-warning: $warning;
+$modal-button-primary: $warning;
+$modal-button-secondary: $warning;
+
+// Bottom Modal 
+$modal-from-bottom-border: $black24;
+
+// Header
+$header-logo-text: $primary;
+
+// Toggle
+$toggle-background: $black24;
+$toggle-checked-color: $primary;
+$toggle-handle: $white;
+
+// Input
+$input-border: $black24;
+
+// Radio
+$radio-color: $primary;
+
+// Slider
+$slider-active: $primary;
+$slider-left-handle: $black50;
+$slider-right-handle: $black12;
+
+// Drawer
+$drawer-background: $white;
+
+// Division
+$division-color: $black24;
+
+
+// 2. Create Task
+$create-task-dashed-border: $black6;
+
+// 2. Current List Task
+$current-list-task: $black50;
+
+// 2. CurrentTaskItem
+$current-task-item-action-text-color: $primary-dark;
+$current-task-item-action-button-background: $black6;
+$current-task-item-action-icon: $primary-dark;
+$current-task-item-progress-color: $secondary;
+$current-task-drag-icon: $black24;
+
+// 2. CommonTaskItem
+$common-task-item-division: $black12;
+$common-task-item-icon: $black80;
+$common-task-item-drag-icon: $black;
+$common-task-item-button-text: $black80;
+$common-task-item-vertical-division: $black24;
+$common-task-action-container-hover: $primary;
+

@@ -1,4 +1,4 @@
-@import '@moon-ui/app-scss/color';
+// @import '@moon-ui/app-scss/color';
 @import '@moon-ui/app-scss/metric';
 
 // should map constant.ts
@@ -32,7 +32,7 @@ $tray_slider_with_spacing: calc($slider-size / 2) + $padding-slider;
 
 .slider {
   align-items: center;
-  background-color: $white;
+  // background-color: $white;
   border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
   display: flex;
@@ -55,7 +55,7 @@ $tray_slider_with_spacing: calc($slider-size / 2) + $padding-slider;
 }
 
 .trayActive {
-  background-color: $white24;
+  // background-color: $white24;
   height: $tray-height;
   transform-origin: left center;
   width: $tray_slider_with_spacing;
@@ -64,7 +64,7 @@ $tray_slider_with_spacing: calc($slider-size / 2) + $padding-slider;
 }
 
 .text {
-  color: $white;
+  // color: $white;
   position: absolute;
   text-align: center;
   cursor: default;

@@ -1,29 +1,164 @@
-$black: #000;
-$black80: rgba($black, 0.8);
-$black50: rgba($black, 0.5);
-$black24: rgba($black, 0.24);
-$black12: rgba($black, 0.12);
-$black6: rgba($black, 0.06);
+// $black: #000;
+// $black80: rgba($black, 0.8);
+// $black50: rgba($black, 0.5);
+// $black24: rgba($black, 0.24);
+// $black12: rgba($black, 0.12);
+// $black6: rgba($black, 0.06);
+//
+// $white: #fff;
+// $white50: rgba($white, 0.50);
+// $white24: rgba($white, 0.24);
+// $white12: rgba($white, 0.12);
+// $white6: rgba($white, 0.06);
+//
+//
+// $primary: #0b7dc2;
+// $primary-dark: #334d6e;
+// $primary-extra-light: #ceedff;
+//
+// $card-shadow: $black6;
+//
+// $success: #219653;
+// $success-extra-light: #cdfee2;
+//
+// $warning: #FEB000;
+//
+// $secondary: #f2994a;
+// $secondary-extra-light: rgba($secondary, 0.4);
 
-$white: #fff;
-$white50: rgba($white, 0.50);
-$white24: rgba($white, 0.24);
-$white12: rgba($white, 0.12);
-$white6: rgba($white, 0.06);
+// @use './theme/light.scss' as light;
+// @use './theme/dark.scss' as dark;
+//
+// $background: light.$white;
+//
+// // Text
+// $text-color: light.$black;
+// $text-color-invert: light.$white;
+// $text-description-color: light.$black24;
+// $text-description-color-invert: light.$white50;
+// $text-link: light.$primary;
+//
+// // Text - Title
+// $text-title-primary-color: light.$primary;
+//
+// // Tab
+// $tab-active-background: light.$white24;
+//
+// // Card
+// $card-background: light.$white;
+// $card-shadow: light.$black6;
+// $card-border: light.$black24;
+//
+// // Button
+// $button-default-background: light.$primary;
+// $button-ghost-border: light.$black50;
+// $button-ghost-color: light.$black50;
+// $button-dash: light.$black24;
+// $button-disabled: light.$black6;
+//
+// // Button - Action
+// $button-action-background: light.$primary-extra-light;
+// $button-action-color: light.$primary-dark;
+// $button-action-success: light.$success-extra-light;
+// $button-action-pending: light.$primary-extra-light;
+// $button-action-processing: light.$secondary-extra-light;
+// $button-action-vertical-line: light.$black12;
+//
+// // Button Multi Select
+// $button-multi-select-border-color: light.$primary;
+// $button-multi-select-text-color: light.$primary;
+//
+// // Button 3d
+// $button-3d-skip-background: light.$white;
+// $button-3d-background: light.$white24;
+// $button-3d-text-background: light.$white;
+// $button-3d-text-color: light.$primary;
+// $button-3d-active-button-text-color: light.$warning;
+//
+// // Button for Select Task Pomodoro
+// $button-pomodoro-select-task-border: light.$white50;
+// $button-pomodoro-select-task-color: light.$white50;
+//
+// // Card Task Selected
+// $card-task-selected-task-color: light.$white;
+// $card-task-selected-task-background: light.$white24;
+//
+// // Icon
+// $icon-primary: light.$primary;
+// $icon-color: light.$black;
+// $icon-color-revert: light.$white; // TODO: Rename revert to invert
+// $icon-color-inactive-invert: light.$black50;
+//
+// // Pomodoro Player
+// $pomodoro-player-background: light.$primary;
+//
+// // Checkbox
+// $checkbox-accent-color: light.$success;
+//
+// // Modal
+// $modal-overlay-background: light.$black50;
+// $modal-logo-warning: light.$warning;
+// $modal-button-primary: light.$warning;
+// $modal-button-secondary: light.$warning;
+//
+// // Bottom Modal
+// $modal-from-bottom-border: light.$black24;
+//
+// // Header
+// $header-logo-text: light.$primary;
+//
+// // Toggle
+// $toggle-background: light.$black24;
+// $toggle-checked-color: light.$primary;
+// $toggle-handle: light.$white;
+//
+// // Input
+// $input-border: light.$black24;
+//
+// // Radio
+// $radio-color: light.$primary;
+//
+// // Slider
+// $slider-active: light.$primary;
+// $slider-left-handle: light.$black50;
+// $slider-right-handle: light.$black12;
+//
+// // Drawer
+// $drawer-background: light.$white;
+//
+// // Division
+// $division-color: light.$black24;
+//
+// // 2. Create Task
+// $create-task-dashed-border: light.$black6;
+//
+// // 2. Current List Task
+// $current-list-task: light.$black50;
+//
+// // 2. CurrentTaskItem
+// $current-task-item-action-text-color: light.$primary-dark;
+// $current-task-item-action-button-background: light.$black6;
+// $current-task-item-action-icon: light.$primary-dark;
+// $current-task-item-progress-color: light.$secondary;
+// $current-task-drag-icon: light.$black24;
+//
+// // 2. CommonTaskItem
+// $common-task-item-division: light.$black12;
+// $common-task-item-icon: light.$black80;
+// $common-task-item-drag-icon: light.$black;
+// $common-task-item-button-text: light.$black80;
+// $common-task-item-vertical-division: light.$black24;
+// $common-task-action-container-hover: light.$primary;
 
+@import './theme/light.scss';
 
-$primary: #0b7dc2;
-$primary-dark: #334d6e;
-$primary-extra-light: #ceedff;
+[data-theme="dark"] {
+  $background: '#000000';
+  $card-background: black;
+  // @import './theme/dark.scss';
+}
 
-$card-shadow: $black6;
-
-$success: #219653;
-$success-extra-light: #cdfee2;
-
-$warning: #FEB000;
-
-$secondary: #f2994a;
-$secondary-extra-light: rgba($secondary, 0.4);
-
-$background: #fafafa;
+.dark {
+  $background: '#000000';
+  $card-background: black;
+}

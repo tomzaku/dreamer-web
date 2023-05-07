@@ -2,7 +2,7 @@
 @import '@moon-ui/app-scss/metric';
 
 .container {
-  background: $primary;
+  background: $pomodoro-player-background;
 }
 
 .containerBreak {
@@ -27,7 +27,7 @@
 }
 
 .pomodoroPhaseText {
-  color: $white;
+  color: $text-color-invert;
   margin: 0;
   margin-left: $spacing-sm;
   cursor: pointer;
@@ -44,7 +44,7 @@
 
 .time {
   margin-left: $spacing-sm;
-  color: $white50;
+  color: $text-description-color-invert;
 }
 
 .icon {

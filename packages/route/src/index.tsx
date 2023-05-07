@@ -13,7 +13,7 @@ import { useGlobalTool, GlobalTool } from '@dreamer/global-tool-common';
 // Hocs
 import { withGlobalTool } from '@dreamer/global-tool-common';
 import { useTask, withTask } from '@dreamer/tasks-page-common';
-import { withPomodoroGlobalConfig, withPomodoroTimer } from '@dreamer/pomodoro-common';
+import { withPomodoroTimer } from '@dreamer/pomodoro-common';
 
 const AppRouter = () => {
   const { isToolVisible, close } = useGlobalTool();
@@ -42,6 +42,4 @@ const AppRouter = () => {
   );
 };
 
-export default withPomodoroGlobalConfig(
-  withPomodoroTimer(withTask(withGlobalTool(AppRouter)))
-);
+export default withPomodoroTimer(withTask(withGlobalTool(AppRouter)))

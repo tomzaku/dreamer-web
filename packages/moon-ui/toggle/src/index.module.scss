@@ -3,7 +3,7 @@
 .container {
   width: 45px;
   height: 24px;
-  background-color: $black24;
+  background-color: $toggle-background;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -14,12 +14,12 @@
 }
 
 .checkedContainer {
-  background-color: $primary;
+  background-color: $toggle-checked-color;
 }
 
 .handle {
   width: 20px;
   height: 20px;
-  background-color: white;
+  background-color: $toggle-handle;
   border-radius: 10px;
 }

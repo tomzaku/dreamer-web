@@ -2,13 +2,13 @@
 @import '@moon-ui/app-scss/color';
 
 .iconActive {
-  color: $primary;
-  fill: $primary;
+  color: $icon-primary;
+  fill: $icon-primary;
 }
 
 .iconInactive {
-  color: $black50;
-  fill: $black50;
+  color: $icon-color-inactive-invert;
+  fill: $icon-color-inactive-invert;
 }
 
 .drawer {

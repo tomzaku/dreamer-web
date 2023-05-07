@@ -3,8 +3,8 @@
 
 .container {
   align-items: stretch;
-  background: $primary-extra-light;
-  color: $primary-dark;
+  background: $button-action-background;
+  color: $button-action-color;
   display: flex;
   font-size: toRem(12px);
   font-weight: 500;
@@ -12,19 +12,19 @@
 }
 
 .success {
-  background: $success-extra-light;
+  background: $button-action-success;
 }
 
 .pending {
-  background: $primary-extra-light;
+  background: $button-action-pending;
 }
 
 .processing {
-  background: $secondary-extra-light;
+  background: $button-action-processing;
 }
 
 .verticalLine {
-  background: $black12;
+  background: $button-action-vertical-line;
   margin: 4px 6px;
   width: 1px;
 }
@@ -36,5 +36,5 @@
 }
 
 .disabled {
-  background: $black6;
+  background: $button-disabled;
 }

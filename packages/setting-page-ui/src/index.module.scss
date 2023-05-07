@@ -20,12 +20,12 @@
 }
 
 .version {
-  color: $black24;
+  color: $text-description-color;
   cursor: pointer;
 }
 
 .link {
-  color: $primary;
+  color: $text-link;
   margin-left: $spacing-sm;
 }
  
@@ -41,5 +41,5 @@
 }
 
 .icon {
-  fill: $black50
+  fill: $icon-color-inactive-invert;
 }

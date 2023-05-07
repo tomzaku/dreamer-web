@@ -26,12 +26,12 @@
 }
 
 .activeIcon {
- fill: $primary;
+ fill: $icon-primary;
 }
 
 .activeButton {
- fill: $primary;
- color: $primary;
- border-color: $primary;
+ fill: $icon-primary;
+ color: $button-multi-select-text-color;
+ border-color: $button-multi-select-border-color;
  font-weight: 700;
 }

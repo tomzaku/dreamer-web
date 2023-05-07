@@ -33,16 +33,12 @@
   margin-top: 8px;
 }
 
-.project {
-  color: $black80;
-}
-
 .checkbox {
-  accent-color: $success;
+  accent-color: $checkbox-accent-color;
 }
 
 .division {
-  background-color: $black12;
+  background-color: $common-task-item-division;
   height: 1px;
 }
 
@@ -50,36 +46,33 @@
   margin-right: $spacing-xs;
   width: 16px;
   height: 16px;
-  color: $black80;
-  fill: $black80;
+  color: $common-task-item-icon;
+  fill: $common-task-item-icon;
 }
 
 .actionContainer {
-  /* padding: 0 $spacing-sm; */
   padding: $spacing-xxs $spacing-xs;
-  /* background: $black6; */
-  /* border-radius: 4px; */
   cursor: pointer;
-  
+
   display: flex;
   align-items: center;
   justify-content: center;
   &:hover {
-    color: $primary;
-    fill: $primary;
+    color: $common-task-action-container-hover;
+    fill: $common-task-action-container-hover;
   }
 }
 
 .section {
   display: flex;
-	cursor: -webkit-grabbing;
+  cursor: -webkit-grabbing;
   cursor: move;
 }
 
 .dragIcon {
   cursor: move;
-	cursor: -webkit-grabbing;
-  fill: $black;
+  cursor: -webkit-grabbing;
+  fill: $common-task-item-drag-icon;
   height: 20px;
 }
 
@@ -92,29 +85,28 @@
   margin-left: 6px;
 }
 .do {
-  background-color: $eisenhower-do
+  background-color: $eisenhower-do;
 }
 
 .schedule {
-  background-color: $eisenhower-schedule
+  background-color: $eisenhower-schedule;
 }
 
 .delegate {
-  background-color: $eisenhower-delegate
+  background-color: $eisenhower-delegate;
 }
 .eliminate {
-  background-color: $eisenhower-eliminate
-
+  background-color: $eisenhower-eliminate;
 }
 
 .buttonText {
   font-size: toRem(12px);
-  color: $black80;
+  color: $common-task-item-button-text;
 }
 
 .verticalDivision {
   width: 1px;
   border-radius: 0.5px;
-  background: $black24;
+  background: $common-task-item-vertical-division;
   margin: 3px 6px;
 }
