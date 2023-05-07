@@ -10,7 +10,7 @@ type GlobalToolType = {
 };
 
 
-export const PomodoroContext = React.createContext<GlobalToolType>({
+export const PomodoroGlobalConfigContext = React.createContext<GlobalToolType>({
   pomodoro: 0,
   setPomodoro: () => {},
   shortBreak: 0,

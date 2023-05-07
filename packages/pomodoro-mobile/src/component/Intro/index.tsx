@@ -7,7 +7,7 @@ import SlideToPass from '@dreamer/slide-to-pass';
 import styles from './index.module.scss';
 
 // Hooks
-import { usePomodoro } from '@dreamer/pomodoro-common';
+import { usePomodoroGlobalConfig } from '@dreamer/pomodoro-common';
 
 // Constants
 import Header from '../Header';
@@ -18,7 +18,7 @@ type Props = {
 };
 
 export default function Intro({ onClickBackButton, onSubmit }: Props) {
-  const { pomodoro: duration } = usePomodoro()
+  const { pomodoro: duration } = usePomodoroGlobalConfig()
   return (
     <div className={styles.container}>
       <div className={styles.body}>

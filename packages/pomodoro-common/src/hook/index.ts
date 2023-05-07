@@ -1,6 +1,6 @@
 export {
-  usePomodoro
-} from './usePomodoro'
+  usePomodoroGlobalConfig
+} from './usePomodoroGlobalConfig'
 
 export {
   usePomodoroTimer

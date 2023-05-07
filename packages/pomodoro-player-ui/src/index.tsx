@@ -7,7 +7,7 @@ import PomodoroPip from '@dreamer/pomodoro-pip';
 import Button from '@moon-ui/button';
 
 // Hooks
-import { usePomodoro, usePomodoroTimer } from '@dreamer/pomodoro-common';
+import { usePomodoroGlobalConfig, usePomodoroTimer } from '@dreamer/pomodoro-common';
 import { useGlobalTool } from '@dreamer/global-tool-common';
 
 // Enums
@@ -29,7 +29,7 @@ const PomodoroPlayer = ({ className }: Props) => {
   const { pomodoroPhase, pomodoroTimer, shortBreakTimer, longBreakTimer } =
     usePomodoroTimer();
   const { open } = useGlobalTool();
-  const { pomodoro, shortBreak, longBreak } = usePomodoro();
+  const { pomodoro, shortBreak, longBreak } = usePomodoroGlobalConfig();
   const isPlaying =
     pomodoroTimer.isPlaying ||
     shortBreakTimer.isPlaying ||

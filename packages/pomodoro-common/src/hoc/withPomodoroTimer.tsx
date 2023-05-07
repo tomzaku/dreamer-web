@@ -4,7 +4,7 @@ import React from 'react';
 import { PomodoroTimerContext } from '../context';
 
 // Hooks
-import { usePomodoro } from '../hook';
+import { usePomodoroGlobalConfig } from '../hook';
 import { useTimer } from '@dreamer/timer-hook';
 
 // Enums
@@ -20,7 +20,7 @@ export const withPomodoroTimer = <P extends {}>(
     const [pomodoroPhase, setPomodoroPhase] = React.useState(
       PomodoroPhase.Pomodoro
     );
-    const { pomodoro, shortBreak, longBreak } = usePomodoro();
+    const { pomodoro, shortBreak, longBreak } = usePomodoroGlobalConfig();
     const pomodoroTimer = useTimer({ duration: pomodoro });
     const shortBreakTimer = useTimer({ duration: shortBreak });
     const longBreakTimer = useTimer({ duration: longBreak });

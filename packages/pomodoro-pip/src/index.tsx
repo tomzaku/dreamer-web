@@ -3,7 +3,7 @@ import React from 'react';
 // Hooks
 import {
   PomodoroPhase,
-  usePomodoro,
+  usePomodoroGlobalConfig,
   usePomodoroTimer,
 } from '@dreamer/pomodoro-common';
 import { formatMinuteAndSecond } from '@dreamer/tasks-page-common';
@@ -51,7 +51,7 @@ const PomodoroPip = ({
   const videoRef = React.useRef<HTMLVideoElement>(null);
   const { pomodoroTimer, pomodoroPhase, shortBreakTimer, longBreakTimer } =
     usePomodoroTimer();
-  const { pomodoro, shortBreak, longBreak } = usePomodoro();
+  const { pomodoro, shortBreak, longBreak } = usePomodoroGlobalConfig();
 
   const getPercentageOfProgress = () => {
     switch (pomodoroPhase) {

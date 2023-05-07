@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { PomodoroContext } from '../context';
+import { PomodoroGlobalConfigContext } from '../context';
 
 // Hooks
 import { useLocalStorage } from '@dreamer/global';
@@ -17,7 +17,7 @@ export const withPomodoro = <P extends {}>(
       longBreak: 10 * ONE_MINUTE,
     });
     return (
-      <PomodoroContext.Provider
+      <PomodoroGlobalConfigContext.Provider
         value={{
           ...pomodoro,
           setPomodoro: (value) => setPomodoro({...pomodoro, pomodoro: value}),
@@ -26,7 +26,7 @@ export const withPomodoro = <P extends {}>(
         }}
       >
         <WrapComponent {...props} />
-      </PomodoroContext.Provider>
+      </PomodoroGlobalConfigContext.Provider>
     );
   };
 };

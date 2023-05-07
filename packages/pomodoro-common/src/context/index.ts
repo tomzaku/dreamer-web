@@ -1,3 +1,3 @@
-export { PomodoroContext } from './PomodoroContext';
+export { PomodoroGlobalConfigContext } from './PomodoroGlobalConfigContext';
 
 export { PomodoroTimerContext } from './PomodoroTimerContext';

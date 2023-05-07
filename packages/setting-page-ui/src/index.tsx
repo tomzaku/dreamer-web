@@ -11,7 +11,7 @@ import { Language } from '@dreamer/global';
 
 // Hooks
 import { useIntl } from '@dreamer/translation';
-import { usePomodoro } from '@dreamer/pomodoro-common';
+import { usePomodoroGlobalConfig } from '@dreamer/pomodoro-common';
 
 import styles from './index.module.scss';
 
@@ -27,7 +27,7 @@ export default function SettingPage() {
     setPomodoro,
     longBreak,
     setLongBreak,
-  } = usePomodoro();
+  } = usePomodoroGlobalConfig();
   const { language, changeLanguage } = useIntl();
   return (
     <div className={styles.container}>
