@@ -1,10 +1,18 @@
-export default function IconDone(props: React.SVGProps<SVGSVGElement>) {
+import cx from 'classnames';
+
+import styles from './style.module.scss';
+
+export default function IconDone({
+  className,
+  ...props
+}: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       width="24"
       height="24"
       viewBox="0 0 24 24"
       fill="#00000075"
+      className={cx(styles.icon, className)}
       {...props}
     >
       <g id="done_24px">

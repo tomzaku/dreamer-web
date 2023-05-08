@@ -13,9 +13,14 @@
 
 .nameInput {
   font-size: toRem(20px);
+  background: var(--input-background);
+  color: var(--text-color);
   width: 100%;
   border: 0px;
   resize: none;
+  &::placeholder{
+    color: var(--text-placeholder-color);
+  }
   &:focus {
     outline: none;
   }

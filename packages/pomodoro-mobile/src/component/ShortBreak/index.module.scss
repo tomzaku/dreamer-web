@@ -24,7 +24,7 @@
 
 .skipButton {
   margin-left: $spacing-md;
-  background: $button-3d-skip-background;
+  background: var(--button-3d-skip-background);
   height: 44px;
   margin-bottom: 4px;
 }
@@ -32,5 +32,5 @@
 .icon {
   width: 30px;
   height: 30px;
-  fill: $icon-primary;
+  fill: var(--icon-primary);
 }

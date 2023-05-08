@@ -1,6 +1,8 @@
 @import '@moon-ui/app-scss/color';
 
 .container {
+  color: var(--text-color);
+  background: var(--input-background);
   border: 0;
 
   &:focus {
@@ -9,9 +11,9 @@
 }
 
 .dash {
-  border: 1px dashed $input-border;
+  border: 1px dashed var(--input-border);
 }
 
 .solid {
-  border: 1px solid $input-border;
+  border: 1px solid var(--input-border);
 }

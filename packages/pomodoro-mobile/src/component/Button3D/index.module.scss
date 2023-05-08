@@ -5,7 +5,7 @@
 .button {
   border: none;
   border-radius: 12px;
-  background: $button-3d-background;
+  background: var(--button-3d-background);
   padding: 0;
   width: 250px;
   cursor: pointer;
@@ -26,8 +26,8 @@
   border-radius: 12px;
   font-size: 1.25rem;
   font-weight: 500;
-  background: $button-3d-text-background;
-  color: $button-3d-text-color;
+  background: var(--button-3d-text-background);
+  color: var(--button-3d-text-color);
   transform: translateY(-6px);
   &:active {
     transform: translateY(-2px);
@@ -35,7 +35,7 @@
 }
 
 .activeButtonText {
-  background: $button-3d-active-button-text-color;
+  background: var(--button-3d-active-button-text-color);
   color: white;
   transform: translateY(-2px);
 }

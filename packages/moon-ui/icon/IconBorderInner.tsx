@@ -1,3 +1,5 @@
+import styles from './style.module.scss';
+
 export default function IconBorderInner(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
@@ -5,6 +7,7 @@ export default function IconBorderInner(props: React.SVGProps<SVGSVGElement>) {
       height="24"
       viewBox="0 0 24 24"
       fill="#00000075"
+      className={styles.icon}
       {...props}
     >
       <g>

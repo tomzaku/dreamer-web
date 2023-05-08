@@ -12,8 +12,8 @@
 }
 
 .footer {
-  background: $card-background;
-  box-shadow: 0 7px 18px $card-shadow;
+  background: var(--card-background);
+  box-shadow: 0 7px 18px var(--card-shadow);
   padding: 12px;
 }
 
@@ -39,7 +39,7 @@
   background: transparent;
   border-radius: 6px;
   flex: 1;
-  color: $text-color;
+  color: var(--text-color);
   text-align: center;
   cursor: pointer;
   font-weight: 400;
@@ -47,7 +47,7 @@
 }
 
 .tabNameActive {
-  background: $tab-active-background;
+  background: var(--tab-active-background);
 }
 
 .tabContainer {

@@ -18,9 +18,9 @@
 }
 
 .active {
-  border-color: $radio-color;
+  border-color: var(--radio-color);
   border-width: 1px;
-  color: $radio-color;
+  color: var(--radio-color);
 }
 
 .leftActiveBorder {

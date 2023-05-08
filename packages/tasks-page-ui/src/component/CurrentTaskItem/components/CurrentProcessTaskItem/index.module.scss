@@ -38,7 +38,7 @@
 }
 
 .actionText {
-  color: $current-task-item-action-text-color;
+  color: var(--current-task-item-action-text-color);
   margin-left: $spacing-xs;
 }
 
@@ -46,7 +46,7 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  background: $current-task-item-action-button-background;
+  background: var(--current-task-item-action-button-background);
   padding: 0 $spacing-md;
   border-radius: 6px;
 }
@@ -54,7 +54,7 @@
 .actionIcon {
   width: 16px;
   height: 16px;
-  fill: $current-task-item-action-icon;
+  fill: var(--current-task-item-action-icon);
 }
 
 .more {
@@ -76,7 +76,7 @@
 }
 
 .progress {
-  background-color: $current-task-item-progress-color;
+  background-color: var(--current-task-item-progress-color);
   height: 5px;
 }
 
@@ -97,7 +97,7 @@
 
 .dragIcon {
   cursor: -webkit-grabbing;
-  fill: $current-task-drag-icon;
+  fill: var(--current-task-drag-icon);
   height: 20px;
 }
 

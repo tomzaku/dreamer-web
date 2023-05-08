@@ -3,19 +3,19 @@
 @import '@moon-ui/app-scss/function';
 
 .container {
-  background: $card-background;
+  background: var(--card-background);
   min-height: 200px;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   width: 100%;
-  box-shadow: 0 8px 25px $card-shadow;
-  border: 1px solid $modal-from-bottom-border;
+  box-shadow: 0 8px 25px var(--card-shadow);
+  border: 1px solid var(--modal-from-bottom-border);
   z-index:  $modal-z-index;
   max-width: 600px;
 }
 
 .overlay {
-  background: $modal-overlay-background;
+  background: var(--modal-overlay-background);
   position: fixed;
   width: 100%;
   z-index: $modal-z-index;

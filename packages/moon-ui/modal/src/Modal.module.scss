@@ -9,8 +9,8 @@
   max-width: 600px;
   min-width: 350px;
   min-height: 180px;
-  background: $white;
-  box-shadow: 0px 8px 25px $card-shadow;
+  background: var(--card-background);
+  box-shadow: 0px 8px 25px var(--card-shadow);
   border-radius: 10px;
 }
 
@@ -21,7 +21,7 @@
 
 .overlay {
   align-items: center;
-  background: $modal-overlay-background;
+  background: var(--modal-overlay-background);
   position: fixed;
   display: flex;
   height: 100%;

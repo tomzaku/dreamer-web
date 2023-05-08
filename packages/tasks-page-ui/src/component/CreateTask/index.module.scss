@@ -3,9 +3,9 @@
 @import 'include-media/dist/include-media';
 
 .container {
-  background: $card-background;
+  background: var(--card-background);
   border-radius: 10px;
-  box-shadow: 0 7px 18px $card-shadow;
+  box-shadow: 0 7px 18px var(--card-shadow);
   display: flex;
   flex-direction: column;
   margin-top: 40px;
@@ -22,9 +22,9 @@
 
 .header {
   align-items: center;
-  background: #fff;
+  background: var(--card-background);
   border-radius: 12px;
-  box-shadow: 0 8px 25px $card-shadow;
+  box-shadow: 0 8px 25px var(--card-shadow);
   display: flex;
   left: 20px;
   padding: 6px 12px;
@@ -35,10 +35,16 @@
 .input {
   border: 0;
   box-sizing: border-box;
+  background: transparent;
   font-size: toRem(20px);
   min-height: 36px;
   resize: none;
   width: 100%;
+  color: var(--text-color);
+
+  &::placeholder{
+    color: var(--text-placeholder-color);
+  }
 
   &:focus {
     outline: none;
@@ -65,7 +71,7 @@
 
 .dashed {
   border: 0;
-  border-top: 3px dashed $create-task-dashed-border;
+  border-top: 3px dashed var(--create-task-dashed-border);
   height: 0;
   width: 100%;
 }
@@ -93,19 +99,19 @@
 }
 
 .divider {
-  border-top: 6px solid #f4f4f4;
+  border-top: 6px solid var(--background);
   width: 100%;
 }
 
 .recommend {
-  background: $card-background;
+  background: var(--card-background);
   max-height: 800px;
   overflow: hidden;
   transition: max-height 0.5s ease-in;
 }
 
 .hiddenRecommend {
-  background: $card-background;
+  background: var(--card-background);
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.5s ease-out;

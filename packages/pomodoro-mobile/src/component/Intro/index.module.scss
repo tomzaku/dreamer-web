@@ -14,7 +14,7 @@
 }
 
 .icon {
-  fill: $icon-color-revert;
+  fill: var(--icon-color-revert);
   margin: $spacing-md;
 }
 
@@ -40,11 +40,11 @@
 }
 
 .text {
-  color: $text-color-invert;
+  color: var(--text-color-invert);
 }
 
 .time {
-  color: $text-color-invert;
+  color: var(--text-color-invert);
   flex: 0;
   margin-top: $spacing-xl;
 }

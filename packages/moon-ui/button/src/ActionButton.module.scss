@@ -3,8 +3,8 @@
 
 .container {
   align-items: stretch;
-  background: $button-action-background;
-  color: $button-action-color;
+  background: var(--button-action-background);
+  color: var(--button-action-color);
   display: flex;
   font-size: toRem(12px);
   font-weight: 500;
@@ -12,19 +12,19 @@
 }
 
 .success {
-  background: $button-action-success;
+  background: var(--button-action-success);
 }
 
 .pending {
-  background: $button-action-pending;
+  background: var(--button-action-pending);
 }
 
 .processing {
-  background: $button-action-processing;
+  background: var(--button-action-processing);
 }
 
 .verticalLine {
-  background: $button-action-vertical-line;
+  background: var(--button-action-vertical-line);
   margin: 4px 6px;
   width: 1px;
 }
@@ -36,5 +36,5 @@
 }
 
 .disabled {
-  background: $button-disabled;
+  background: var(--button-disabled);
 }

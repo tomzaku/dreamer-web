@@ -2,10 +2,11 @@
 
 .default {
   font-weight: 500;
+  color: var(--text-color);
 }
 
 .primary {
-  color: $text-title-primary-color;
+  color: var(--text-title-primary-color);
 }
 
 .noMargin {

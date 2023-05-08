@@ -19,9 +19,9 @@ type Props = {
   children?: React.ReactNode;
   placeholderStroke?: number;
   progressStroke?: number;
-  background?: string;
-  timeTextColor?: string;
-  titleTextColor?: string;
+  background: string;
+  timeTextColor: string;
+  titleTextColor: string;
 };
 
 export const LIGHT_THEME_PROPS = {
@@ -42,9 +42,9 @@ const PomodoroPip = ({
   height = 1000,
   placeholderStroke = 20,
   progressStroke = 40,
-  background = '#FFFFFF',
-  timeTextColor = '#000000',
-  titleTextColor = '#8F8F8F',
+  background,
+  timeTextColor,
+  titleTextColor,
 }: Props) => {
   const canvasRef = React.useRef<HTMLCanvasElement>(null);
   const [isVisible, setIsVisible] = React.useState(false);
@@ -104,6 +104,7 @@ const PomodoroPip = ({
         ctx.fillRect(0, 0, width, height);
 
         // Draw time
+        console.log(">timeTextColor", timeTextColor)
         ctx.fillStyle = timeTextColor;
         ctx.font = '300px monospace';
         ctx.textAlign = 'center';
@@ -144,7 +145,7 @@ const PomodoroPip = ({
         ctx.stroke();
       }
     }
-  }, [pomodoroTimer.time, shortBreakTimer.time, longBreakTimer.time]);
+  }, [pomodoroTimer.time, shortBreakTimer.time, longBreakTimer.time, background,timeTextColor, titleTextColor]);
 
   // Video config
   React.useEffect(() => {

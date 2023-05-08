@@ -13,6 +13,10 @@ import { useGlobalTool } from '@dreamer/global-tool-common';
 // Enums
 import { PomodoroPhase } from '@dreamer/pomodoro-common';
 import { GlobalTool } from '@dreamer/global-tool-common';
+import { Theme } from '@dreamer/pomodoro-common';
+
+// Constants
+import { DARK_THEME_PROPS, LIGHT_THEME_PROPS } from '@dreamer/pomodoro-pip';
 
 // Utils
 import cx from 'classnames';
@@ -29,7 +33,7 @@ const PomodoroPlayer = ({ className }: Props) => {
   const { pomodoroPhase, pomodoroTimer, shortBreakTimer, longBreakTimer } =
     usePomodoroTimer();
   const { open } = useGlobalTool();
-  const { pomodoro, shortBreak, longBreak } = usePomodoroGlobalConfig();
+  const { theme, pomodoro, shortBreak, longBreak } = usePomodoroGlobalConfig();
   const isPlaying =
     pomodoroTimer.isPlaying ||
     shortBreakTimer.isPlaying ||
@@ -160,7 +164,10 @@ const PomodoroPlayer = ({ className }: Props) => {
             className={styles.time}
           >{`| ${getMinutes()}:00`}</Typography.Text>
         </span>
-        <PomodoroPip>
+        <PomodoroPip
+        {...(theme === Theme.Light ? LIGHT_THEME_PROPS : DARK_THEME_PROPS)}
+
+        >
           <IconPictureInPicture className={styles.pipIcon} height="24" />
         </PomodoroPip>
         <IconMusic

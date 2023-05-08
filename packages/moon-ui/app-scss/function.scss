@@ -3,3 +3,11 @@
 
   @return $remSize * 1rem;
 }
+
+@function to-css-variable($variable-name) {
+  // @return #{'--#{$variable-name}': #{$variable-name}}
+  $value: inspect(var($variable-name)); // get the value of the SCSS variable
+  @return unquote(
+    '--#{$variable-name}: #{ $value };'
+  ); // return the CSS variable declaration
+}

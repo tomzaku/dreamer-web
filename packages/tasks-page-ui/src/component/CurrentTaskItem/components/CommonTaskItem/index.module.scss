@@ -34,11 +34,11 @@
 }
 
 .checkbox {
-  accent-color: $checkbox-accent-color;
+  accent-color: var(--checkbox-accent-color);
 }
 
 .division {
-  background-color: $common-task-item-division;
+  background-color: var(--common-task-item-division);
   height: 1px;
 }
 
@@ -46,8 +46,8 @@
   margin-right: $spacing-xs;
   width: 16px;
   height: 16px;
-  color: $common-task-item-icon;
-  fill: $common-task-item-icon;
+  color: var(--common-task-item-icon);
+  fill: var(--common-task-item-icon);
 }
 
 .actionContainer {
@@ -58,8 +58,8 @@
   align-items: center;
   justify-content: center;
   &:hover {
-    color: $common-task-action-container-hover;
-    fill: $common-task-action-container-hover;
+    color: var(--common-task-action-container-hover);
+    fill: var(--common-task-action-container-hover);
   }
 }
 
@@ -72,7 +72,7 @@
 .dragIcon {
   cursor: move;
   cursor: -webkit-grabbing;
-  fill: $common-task-item-drag-icon;
+  fill: var(--common-task-item-drag-icon);
   height: 20px;
 }
 
@@ -101,12 +101,12 @@
 
 .buttonText {
   font-size: toRem(12px);
-  color: $common-task-item-button-text;
+  color: var(--common-task-item-button-text);
 }
 
 .verticalDivision {
   width: 1px;
   border-radius: 0.5px;
-  background: $common-task-item-vertical-division;
+  background: var(--common-task-item-vertical-division);
   margin: 3px 6px;
 }

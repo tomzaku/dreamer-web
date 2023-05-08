@@ -3,7 +3,7 @@
 
 .time {
   align-items: center;
-  color: $text-color-invert;
+  color: var(--text-color-invert);
   display: flex;
   font-size: toRem(100px);
   font-weight: bold;

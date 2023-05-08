@@ -13,7 +13,10 @@ import { useGlobalTool, GlobalTool } from '@dreamer/global-tool-common';
 // Hocs
 import { withGlobalTool } from '@dreamer/global-tool-common';
 import { useTask, withTask } from '@dreamer/tasks-page-common';
-import { withPomodoroTimer } from '@dreamer/pomodoro-common';
+import {
+  withPomodoroTimer,
+} from '@dreamer/pomodoro-common';
+
 
 const AppRouter = () => {
   const { isToolVisible, close } = useGlobalTool();
@@ -33,7 +36,6 @@ const AppRouter = () => {
         onClickBackButton={close}
         visible={isToolVisible(GlobalTool.FocusMode)}
       />
-      <PomodoroPip />
       <Routes>
         <Route path="/" element={<TaskPage />}></Route>,
         <Route path="/setting" element={<SettingPage />}></Route>
@@ -42,4 +44,4 @@ const AppRouter = () => {
   );
 };
 
-export default withPomodoroTimer(withTask(withGlobalTool(AppRouter)))
+export default withPomodoroTimer(withTask(withGlobalTool(AppRouter)));

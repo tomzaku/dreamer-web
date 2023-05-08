@@ -2,8 +2,8 @@
 @import '@moon-ui/app-scss/metric';
 
 .addTaskButton {
-  border: 2px dashed $button-pomodoro-select-task-border;
-  color: $button-pomodoro-select-task-color;
+  border: 2px dashed var(--button-pomodoro-select-task-border);
+  color: var(--button-pomodoro-select-task-color);
 }
 
 .container {
@@ -13,10 +13,10 @@
 }
 
 .task {
-  background: $card-task-selected-task-background;
+  background: var(--card-task-selected-task-background);
   padding: $spacing-xl;
   border-radius: 12px;
   margin-bottom: $spacing-sm;
-  color: $card-task-selected-task-color;
+  color: var(--card-task-selected-task-color);
   text-align: center;
 }
