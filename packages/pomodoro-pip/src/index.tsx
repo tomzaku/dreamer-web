@@ -28,13 +28,13 @@ export const LIGHT_THEME_PROPS = {
   background: '#FFFFFF',
   timeTextColor: '#000000',
   titleTextColor: '#8F8F8F',
-}
+};
 
 export const DARK_THEME_PROPS = {
   background: '#000000',
   timeTextColor: '#FFFFFF',
   titleTextColor: '#8F8F8F',
-}
+};
 
 const PomodoroPip = ({
   children,
@@ -82,13 +82,13 @@ const PomodoroPip = ({
   const getText = () => {
     switch (pomodoroPhase) {
       case PomodoroPhase.Pomodoro: {
-        return 'FOCUS'
+        return 'FOCUS';
       }
       case PomodoroPhase.ShortBreak: {
-        return 'SHORT BREAK'
+        return 'SHORT BREAK';
       }
       case PomodoroPhase.LongBreak: {
-        return 'LONG BREAK'
+        return 'LONG BREAK';
       }
     }
   };
@@ -104,7 +104,6 @@ const PomodoroPip = ({
         ctx.fillRect(0, 0, width, height);
 
         // Draw time
-        console.log(">timeTextColor", timeTextColor)
         ctx.fillStyle = timeTextColor;
         ctx.font = '300px monospace';
         ctx.textAlign = 'center';
@@ -145,7 +144,14 @@ const PomodoroPip = ({
         ctx.stroke();
       }
     }
-  }, [pomodoroTimer.time, shortBreakTimer.time, longBreakTimer.time, background,timeTextColor, titleTextColor]);
+  }, [
+    pomodoroTimer.time,
+    shortBreakTimer.time,
+    longBreakTimer.time,
+    background,
+    timeTextColor,
+    titleTextColor,
+  ]);
 
   // Video config
   React.useEffect(() => {
@@ -175,9 +181,29 @@ const PomodoroPip = ({
         onClick={() => {
           if (videoRef.current) {
             videoRef.current.play();
-            // setIsVisible(true);
-            document.pictureInPictureEnabled &&
+            // If safari or ios
+            // if (true) {
+            //   navigator.mediaDevices
+            //     .getUserMedia({ video: true })
+            //     .then(mediaStream => {
+            //       if (videoRef.current && canvasRef.current) {
+            //         videoRef.current.srcObject = mediaStream;
+            //         const ctx = canvasRef.current.getContext('2d');
+            //         if (ctx) {
+            //           ctx.fillStyle = 'red';
+            //           ctx.fillRect(0, 0, width, height);
+            //           ctx.drawImage(videoRef.current, 0, 0, 400, 400);
+            //         }
+            //       }
+            //     });
+            // }
+            // If chrome
+            if (document.pictureInPictureEnabled) {
               videoRef.current.requestPictureInPicture();
+            } else {
+              // if firefox
+              setIsVisible(true);
+            }
           }
         }}
       >

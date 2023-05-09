@@ -5,6 +5,8 @@
 }
 .canvas {
   display: none;
+  width: 100px;
+  height: 100px;
 }
 
 .hidden {
@@ -14,10 +16,11 @@
 .video {
   position: absolute;
   z-index: $video-z-index;
-  width: 400px;
-  height: 400px;
-  top: -420px;
-  left: -370px;
+  width: 100px;
+  height: 100px;
+  top: -115px;
+  left: -80px;
+  border: 1px solid var(--card-border);
 }
 
 .body {
